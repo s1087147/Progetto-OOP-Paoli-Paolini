@@ -1,0 +1,80 @@
+Eccezioni: ClassNotFoundException, NoClassDefFoundError, LinkageError, NoSuchMethodException,
+	SecurityException, IllegalArgumentException, InstantionException, IllegalAccessException,
+	InvocationTargetException, "FilterNotFoundException", "FilterIllegalArgumentException",
+	"StatsNotFoundException", IOException, ParseException, "InternalGeneralException",
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+MAIN CLASS
+	@SpringBootApplication
+	public class Main{
+		public static void main(String[] args){
+			//download json
+			SpringApplication.run(Main.class, args) //avvia app sbringboot
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+MODEL
+Creare classi per rappresentare gli oggetti contenuti nel json
+Attenzione ai modificatori di visibilità
+@JsonPropertyDescription(String descrizione)
+@JsonIgnore
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+SERVICE
+Necessario un parser per JSON? (https://github.com/CriVitali/SpringBootAPI/blob/master/EsameProgrammazione/src/main/java/com/esame/service/JsonParser.java)
+
+Creazione di un istanziatore di Filter:
+	Class<?> cls = Class.forName(ClassFilterName); //Seleziono la classe
+	Constructor<?> ct = cls.getDeclaredConstructor(Object.class); //Seleziono il costruttore
+	filtro = (Filter)ct.newInstance(param); //Istanzio l'oggetto Filter
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+CONTROLLER
+Richieste HTTP
+getData
+getMetadata
+getStats
+postFilter
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+DATABASE
+Gestisce la memoria e inizializza il dataset
+Metodi che ritornano gli Array di Records e Metadata
+Metodo che scarica il json
+
+public static void download(String url, StringfileName){
+	try(InputStream in = URI.create(url).toURL().openStream()){
+		Files.copy(in, Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
+		records = CsvParser.csvParsing("configFile/dataset.csv");
+	catch(...){...}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+UTIL
+Filtri e Calcolatori di statistiche
+Massimo e minimo
+Media e mediana
+Deviazione standard
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Json Simple
+try{
+	URLConnection openConnection = new URL(url).openConnection();
+	openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv: ...");
+	InputStream in = openConnection.getInputStream();
+	
+	String data = "";
+	String line = "";
+	try{
+		InputStreamReader inR = new InputStreamReader(in);
+		BufferedReader buf = new BufferedReader(inR);
+		while ((line = buf.readLine()) != null){
+			data += line;
+		}
+	} finally {
+		in.close();
+	}
+	JSONArray obj = (JSONArray) JSONValue.parseWithException(data);
+} catch(...){...}
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+has:geo
+POST /labs/1/tweets/stream/filter/rules
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Come si usa l'api Stream? e quindi come ottengo i json su cui lavorare?---
+Selezionare i tweet?
+
+
+
+	
