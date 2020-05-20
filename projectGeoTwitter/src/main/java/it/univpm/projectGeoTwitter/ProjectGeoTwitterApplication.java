@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProjectGeoTwitterApplication {
 
 	public static void main(String[] args) {
+		System.out.print("Hello");
 		SpringApplication.run(ProjectGeoTwitterApplication.class, args);
 	}
 
