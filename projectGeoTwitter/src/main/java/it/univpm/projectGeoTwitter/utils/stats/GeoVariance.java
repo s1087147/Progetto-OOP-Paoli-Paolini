@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.service.StatsCalculator;
+import it.univpm.projectGeoTwitter.service.Calculator;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMean;
 
-public class GeoVariance extends StatsCalculator {
+public class GeoVariance extends Calculator {
 
 	public static double[] getVariance(Map<Integer, TwitterData> tweetsMap) {
 

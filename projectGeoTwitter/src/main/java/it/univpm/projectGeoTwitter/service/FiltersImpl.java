@@ -5,6 +5,7 @@ import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.filter.IdFilter;
+import it.univpm.projectGeoTwitter.utils.filter.RadiusFilter;
 import it.univpm.projectGeoTwitter.utils.filter.TextFilter;
 
 public class FiltersImpl implements Filters {
@@ -19,5 +20,12 @@ public class FiltersImpl implements Filters {
 	public TwitterData idFilter(Map<Integer, TwitterData> tweetsMap, Integer id) {
 		
 		return IdFilter.getTweetWithThisId(tweetsMap, id);
+	}
+
+	@Override
+	public ArrayList<TwitterData> getTweetsWithinRadius(
+			Map<Integer, TwitterData> tweetsMap, double[] capoluogoCoordinates, double radius) {
+		
+		return RadiusFilter.getTweetsWithinRadius(tweetsMap, capoluogoCoordinates, radius);
 	}
 }

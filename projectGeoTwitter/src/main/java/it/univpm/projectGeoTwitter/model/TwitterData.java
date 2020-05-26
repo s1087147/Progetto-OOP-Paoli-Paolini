@@ -6,7 +6,7 @@ public class TwitterData {
 	String text;
 	double latit;
 	double longit;
-	double[] coordinates;
+	double[] coordinates; //???
 	
 	//GETTERS AND SETTERS
 	public int getId() {

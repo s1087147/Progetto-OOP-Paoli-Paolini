@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.service.StatsCalculator;
+import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMean extends StatsCalculator {
+public class GeoMean extends Calculator {
 
 	public static double[] getMean(Map<Integer, TwitterData> tweetsMap) {
 
 		double[] coordinatesMean = new double[2];
-		ArrayList<Double> coordinatesLatit = new ArrayList<Double>();
-		ArrayList<Double> coordinatesLongit = new ArrayList<Double>();
+		ArrayList<Double> coordinatesLatit = new ArrayList<>();
+		ArrayList<Double> coordinatesLongit = new ArrayList<>();
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			coordinatesLatit.add(tweet.getLatit());
