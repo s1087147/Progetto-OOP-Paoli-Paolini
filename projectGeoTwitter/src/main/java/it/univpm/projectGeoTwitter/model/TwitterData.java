@@ -2,12 +2,13 @@ package it.univpm.projectGeoTwitter.model;
 
 public class TwitterData {
 
-	int id;
+	int id;					//String? 
 	String text;
 	double latit;
 	double longit;
+	double[] coordinates;
 	
-	
+	//GETTERS AND SETTERS
 	public int getId() {
 		return id;
 	}
