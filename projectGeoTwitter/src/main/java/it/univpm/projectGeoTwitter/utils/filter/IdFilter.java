@@ -6,13 +6,13 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class IdFilter {
 
-	public static TwitterData getTweetWithThisId(Map<Integer, TwitterData> tweetsMap, Integer id) {
+	public static TwitterData getTweetWithThisId(Map<Integer, TwitterData> tweetsMap, String id) {
 		
 		TwitterData tweetWithThisId = null;
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			if(tweet.getId() == id) {
+			if(tweet.getId().equals(id)) {
 				
 				tweetWithThisId = tweet;
 				break;

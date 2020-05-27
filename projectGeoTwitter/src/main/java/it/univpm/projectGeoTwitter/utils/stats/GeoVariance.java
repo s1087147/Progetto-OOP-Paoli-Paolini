@@ -18,10 +18,9 @@ public class GeoVariance extends Calculator {
 		ArrayList<Double> coordinatesLongit = new ArrayList<Double>();
 		
 		for(TwitterData tweet : tweetsMap.values()) {
-			coordinatesLatit.add(tweet.getLatit());
-			coordinatesLongit.add(tweet.getLongit());
+			coordinatesLatit.add(tweet.getGeo().getCoordinates().getLatit());		
+			coordinatesLongit.add(tweet.getGeo().getCoordinates().getLongit());		
 		}
-		
 		coordinatesVariance[0] = variance(coordinatesLatit, coordinatesMean[0]);
 		coordinatesVariance[1] = variance(coordinatesLongit, coordinatesMean[1]);
 		

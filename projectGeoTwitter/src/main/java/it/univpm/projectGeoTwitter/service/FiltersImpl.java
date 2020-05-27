@@ -17,7 +17,7 @@ public class FiltersImpl implements Filters {
 	}
 
 	@Override
-	public TwitterData idFilter(Map<Integer, TwitterData> tweetsMap, Integer id) {
+	public TwitterData idFilter(Map<Integer, TwitterData> tweetsMap, String id) {
 		
 		return IdFilter.getTweetWithThisId(tweetsMap, id);
 	}

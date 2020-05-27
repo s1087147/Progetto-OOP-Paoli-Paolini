@@ -15,8 +15,10 @@ public class TweetsInsideMarche {
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			if(regioneMarche.getPoligonoMarche().contains(tweet.getLatit(), tweet.getLongit())) {
-				
+			if(regioneMarche.getPoligonoMarche()
+						    .contains(tweet.getGeo().getCoordinates().getLatit(),
+						    		  tweet.getGeo().getCoordinates().getLongit())) {
+
 				tweetsInsideMarche.add(tweet);
 			}
 		}

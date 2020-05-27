@@ -15,8 +15,8 @@ public class GeoMean extends Calculator {
 		ArrayList<Double> coordinatesLongit = new ArrayList<>();
 		
 		for(TwitterData tweet : tweetsMap.values()) {
-			coordinatesLatit.add(tweet.getLatit());
-			coordinatesLongit.add(tweet.getLongit());
+			coordinatesLatit.add(tweet.getGeo().getCoordinates().getLatit());		
+			coordinatesLongit.add(tweet.getGeo().getCoordinates().getLongit());	
 		}
 		
 		coordinatesMean[0] = mean(coordinatesLatit);

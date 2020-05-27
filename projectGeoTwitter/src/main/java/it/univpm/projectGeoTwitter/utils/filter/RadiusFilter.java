@@ -15,7 +15,7 @@ public class RadiusFilter extends Calculator{
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			double[] tweetCoordinates = {tweet.getLatit(), tweet.getLongit()};
+			double[] tweetCoordinates = tweet.getGeo().getCoordinates().getCoordinates();
 			
 			if(Calculator.distance(tweetCoordinates, capoluogoCoordinates) < radius) {
 				

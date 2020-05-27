@@ -13,7 +13,11 @@ import java.net.URLConnection;
 class JsonDownloader {
 	
 	final static String idpath = new File("src/main/resources/id.txt").getAbsolutePath(); 				//Inserire path per il documento contenente gli id
-	static String url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets?ids="+readIds()+"&tweet.fields=geo&place.fields=name&user.fields=location";;
+	static String url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets"
+						+ "?ids=" + readIds()				//Id dei tweet
+						+ "&tweet.fields=geo"				//Ottieni dati geo
+						+ "&expansions=geo.place_id"		//Includi informazioni sulla località 	
+						+ "&place.fields=full_name";		//Mostra nome completo della località
 	
 	public JsonDownloader() {}
 	
