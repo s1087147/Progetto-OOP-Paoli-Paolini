@@ -11,16 +11,16 @@ public class GeoMean extends Calculator {
 	public static double[] getMean(Map<Integer, TwitterData> tweetsMap) {
 
 		double[] coordinatesMean = new double[2];
-		ArrayList<Double> coordinatesLatit = new ArrayList<>();
 		ArrayList<Double> coordinatesLongit = new ArrayList<>();
+		ArrayList<Double> coordinatesLatit = new ArrayList<>();
 		
-		for(TwitterData tweet : tweetsMap.values()) {
-			coordinatesLatit.add(tweet.getGeo().getCoordinates().getLatit());		
-			coordinatesLongit.add(tweet.getGeo().getCoordinates().getLongit());	
+		for(TwitterData tweet : tweetsMap.values()) {		
+			coordinatesLongit.add(tweet.getGeo().getCoordinates().getLongit());
+			coordinatesLatit.add(tweet.getGeo().getCoordinates().getLatit());
 		}
 		
-		coordinatesMean[0] = mean(coordinatesLatit);
-		coordinatesMean[1] = mean(coordinatesLongit);
+		coordinatesMean[0] = mean(coordinatesLongit);
+		coordinatesMean[1] = mean(coordinatesLatit);
 		
 		return coordinatesMean;
 	}

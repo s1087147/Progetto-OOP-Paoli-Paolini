@@ -12,8 +12,8 @@ public class TweetInsideMarche {
 		PoligonoMarche regioneMarche = new PoligonoMarche();
 		
 		if(regioneMarche.getPoligonoMarche()
-						.contains(tweetsMap.get(id).getGeo().getCoordinates().getLatit(),
-								  tweetsMap.get(id).getGeo().getCoordinates().getLongit())) {
+						.contains(tweetsMap.get(id).getGeo().getCoordinates().getLongit(),
+								  tweetsMap.get(id).getGeo().getCoordinates().getLatit())) {
 			return true;
 		}
 		
