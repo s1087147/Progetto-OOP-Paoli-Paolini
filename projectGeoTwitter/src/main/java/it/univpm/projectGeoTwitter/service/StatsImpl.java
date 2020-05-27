@@ -2,11 +2,12 @@ package it.univpm.projectGeoTwitter.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMean;
-import it.univpm.projectGeoTwitter.utils.stats.GeoTweets;
+import it.univpm.projectGeoTwitter.utils.stats.GetTweets;
 import it.univpm.projectGeoTwitter.utils.stats.GeoVariance;
 import it.univpm.projectGeoTwitter.utils.stats.TweetInsideMarche;
 import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
@@ -16,11 +17,11 @@ public class StatsImpl implements Stats {
 	@Override
 	public Collection<TwitterData> getAllTweets(Map<Integer, TwitterData> tweetsMap) {
 		
-		return GeoTweets.getAllTweets(tweetsMap);
+		return GetTweets.getAllTweets(tweetsMap);
 	}
 	
 	@Override
-	public double[] getMean(Map<Integer, TwitterData> tweetsMap) {
+	public double[] getMean(HashMap<Integer, TwitterData> tweetsMap) {
 
 		return GeoMean.getMean(tweetsMap);
 	}

@@ -2,26 +2,26 @@ package it.univpm.projectGeoTwitter.model;
 
 public class CapoluoghiMarche {
 
-	private final double[] coordinatesAncona = {43.5991, 13.511};
-	private final double[] coordinatesAscoliPiceno = {42.8481, 13.6312};
-	private final double[] coordinatesFermo = {43.1656, 13.7242};
-	private final double[] coordinatesMacerata = {43.2991, 13.442};
-	private final double[] coordinatesPesaroEUrbino = {43.9045, 12.8912};
+	private static final double[] coordinatesAncona = {13.511, 43.5991};
+	private static final double[] coordinatesAscoliPiceno = {13.6312, 42.8481};
+	private static final double[] coordinatesFermo = {13.7242, 43.1656};
+	private static final double[] coordinatesMacerata = {13.442, 43.2991};
+	private static final double[] coordinatesPesaroEUrbino = {12.8912, 43.9045};
 	
 	
-	public double[] getCoordinatesAncona() {
+	public static double[] getCoordinatesAncona() {
 		return coordinatesAncona;
 	}
-	public double[] getCoordinatesAscoliPiceno() {
+	public static double[] getCoordinatesAscoliPiceno() {
 		return coordinatesAscoliPiceno;
 	}
-	public double[] getCoordinatesFermo() {
+	public static double[] getCoordinatesFermo() {
 		return coordinatesFermo;
 	}
-	public double[] getCoordinatesMacerata() {
+	public static double[] getCoordinatesMacerata() {
 		return coordinatesMacerata;
 	}
-	public double[] getCoordinatesPesaroEUrbino() {
+	public static double[] getCoordinatesPesaroEUrbino() {
 		return coordinatesPesaroEUrbino;
 	}
 }

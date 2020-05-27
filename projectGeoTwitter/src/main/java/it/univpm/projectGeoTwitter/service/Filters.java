@@ -1,6 +1,7 @@
 package it.univpm.projectGeoTwitter.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
@@ -12,5 +13,5 @@ public interface Filters {
 	public abstract TwitterData idFilter(Map<Integer, TwitterData> tweetsMap,  String id);		//id -> String
 	
 	public abstract ArrayList<TwitterData> getTweetsWithinRadius(
-			Map<Integer, TwitterData> tweetsMap, double[] capoluogoCoordinates, double radius);
+			HashMap<Integer, TwitterData> tweetsMap, double[] capoluogoCoordinates, double radius);
 }

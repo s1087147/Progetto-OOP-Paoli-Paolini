@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Calculator {
 
+	private final static long R = 6371; //reaggio della terra (in Km)
+	
 	public static double mean(ArrayList<Double> arrayDouble) {
 		
 		double temp = 0;
@@ -32,6 +34,16 @@ public class Calculator {
 	
 	public static double distance(double[] coordinates1, double[] coordinates2) {
 		
-		return Math.sqrt(Math.pow((coordinates1[0] - coordinates2[0]), 2) + Math.pow((coordinates1[1] - coordinates2[1]), 2));
+		double longit1 = Math.toRadians(coordinates1[0]);
+		double latit1 = Math.toRadians(coordinates1[1]);
+		double longit2 = Math.toRadians(coordinates2[0]);
+		double latit2 = Math.toRadians(coordinates2[1]);
+		
+		double distanzaMiglia = R * Math.acos(Math.sin(latit1) * Math.sin(latit2) + Math.cos(latit1) * Math.cos(latit2)
+				 * Math.cos(longit1-longit2));
+		
+		double distanzaKm = 1.60934 * distanzaMiglia;
+
+		return distanzaKm;
 	}
 }

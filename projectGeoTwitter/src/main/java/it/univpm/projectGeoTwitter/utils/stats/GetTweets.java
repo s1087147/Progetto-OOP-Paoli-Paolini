@@ -5,7 +5,7 @@ import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
-public class GeoTweets {
+public class GetTweets {
 
 	public static Collection<TwitterData> getAllTweets(Map<Integer, TwitterData> tweetsMap) {
 		

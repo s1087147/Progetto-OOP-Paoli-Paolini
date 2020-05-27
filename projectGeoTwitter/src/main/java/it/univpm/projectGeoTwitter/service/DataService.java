@@ -16,6 +16,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 @Service
 public class DataService {
+	
 		private static HashMap<Integer, TwitterData> dataRepo = new HashMap<>();	
 		
 		public DataService() {
@@ -44,7 +45,15 @@ public class DataService {
 		}
 		
 		public Collection<TwitterData> test(){
-			System.out.println(dataRepo);
-			return null;
+			
+			//System.out.println(dataRepo.values());
+			//return null;
+			
+			return dataRepo.values();
+		}
+		
+		public static HashMap<Integer, TwitterData> getDataRepo() {
+			
+			return dataRepo;
 		}
 }
