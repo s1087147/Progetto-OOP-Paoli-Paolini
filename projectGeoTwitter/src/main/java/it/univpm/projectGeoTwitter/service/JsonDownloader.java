@@ -9,8 +9,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
-class JsonDownloader {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import it.univpm.projectGeoTwitter.model.TwitterData;
+import it.univpm.projectGeoTwitter.model.TwitterMetadata;
+
+class JsonManager {
 	
 	final static String idpath = new File("src/main/resources/id.txt").getAbsolutePath(); 				//Inserire path per il documento contenente gli id
 	static String url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets"
@@ -19,31 +31,46 @@ class JsonDownloader {
 						+ "&expansions=geo.place_id"		//Includi informazioni sulla località 	
 						+ "&place.fields=full_name";		//Mostra nome completo della località
 	
-	public JsonDownloader() {}
+	public JsonManager() {}
 	
-	static String getJson() {
+	static String getJson() throws IOException{ // Eccezione per l'URLConnection
 		String content = "";
 		String line = "";
-		
-		try {
-			URLConnection connection = new URL(url).openConnection();
-			connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
-			InputStream input = connection.getInputStream();
-			
-			try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))){
-				while((line = reader.readLine()) != null) {
-					content += line;
-				}
-			} catch (Exception e) {
-				//GESTIONE ECCEZIONI
-			}
-		} catch (Exception e) {
-			//GESTIONE ECCEZIONI
+		URLConnection connection = new URL(url).openConnection();
+		connection.addRequestProperty("User-Agent",
+				"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+		InputStream input = connection.getInputStream();
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+		while ((line = reader.readLine()) != null) {
+			content += line;
 		}
 		return content;
 	}
 	
-	private static String readIds() {
+	static void loadData(String json, Map<Integer, TwitterData> data) throws JsonProcessingException{
+		ArrayList<TwitterData> appoggio = new ArrayList<>();
+		ObjectMapper mapper = new ObjectMapper();
+		
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // Verificare se necessario
+		JsonNode node = mapper.readTree(json).findValue("data");
+		json = node.toString();
+
+		appoggio = mapper.readValue(json, new TypeReference<ArrayList<TwitterData>>() {});
+		for (TwitterData tweet : appoggio) {
+			int key = tweet.getId().hashCode();
+			data.put(key, tweet);
+		}
+	}
+	
+	static void loadMetadata(Collection<TwitterMetadata> metadata) {
+		metadata.add(new TwitterMetadata("id", "Numero identificativo del tweet", "String"));
+		metadata.add(new TwitterMetadata("text", "Testo del tweet", "String"));
+		metadata.add(new TwitterMetadata("place_id", "Identificativo della località da cui è stato inviato il tweet", "String"));
+		metadata.add(new TwitterMetadata("coordinates", "Coppia di coordinate longitudine-latitudine", "double[]"));
+	}
+	
+	private static String readIds(){
 		String line = "";
 		try (BufferedReader fileReader = new BufferedReader(new FileReader(new File(idpath)))) {
 			line = fileReader.readLine();
@@ -53,5 +80,5 @@ class JsonDownloader {
 			// GESTIONE ECCEZIONE IO
 		}
 		return line;
-	}
+	}	
 }

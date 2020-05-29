@@ -1,5 +1,6 @@
 package it.univpm.projectGeoTwitter.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,47 +14,41 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
+import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 
 @Service
 public class DataService {
+
+	private static HashMap<Integer, TwitterData> dataRepo = new HashMap<>();
 	
-		private static HashMap<Integer, TwitterData> dataRepo = new HashMap<>();	
-		
-		public DataService() {
-			//Download JSON
-			String json = JsonDownloader.getJson();
-			System.out.println("JSON:" + json);
-			//Caricamento dataSet
-			ArrayList<TwitterData> appoggio = new ArrayList<>();
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);  //??
-			try {			
-				JsonNode node = mapper.readTree(json);
-				System.out.println("Node: " + node.toString());
-				JsonNode data = node.findValue("data");
-				json = data.toString();
-				
-				appoggio = mapper.readValue(json, new TypeReference<ArrayList<TwitterData>>(){});
-				for(TwitterData tweet : appoggio) {
-					int key = tweet.getId().hashCode();
-					dataRepo.put(key, tweet);
-				}
-			} catch (JsonProcessingException jsonException) {
-				//GESTIONE ECCEZIONE
-				jsonException.printStackTrace();
-			}
+	private static ArrayList<TwitterMetadata> metadata = new ArrayList<>();
+
+	public DataService(){
+		// Download JSON
+		try {
+		String json = JsonManager.getJson();
+		// Caricamento TwitterData
+		JsonManager.loadData(json, dataRepo);
+		} catch (JsonProcessingException e) {			//extends IOException
+			//GESTIONE ECCEZIONE
+			System.err.println("Errore nella letture del JSON.");
+		} catch (IOException ioException){
+			//GESTIONE ECCEZIONE
+			System.err.println("Errore nella lettura degli id.");
 		}
-		
-		public Collection<TwitterData> test(){
-			
-			//System.out.println(dataRepo.values());
-			//return null;
-			
-			return dataRepo.values();
-		}
-		
-		public static HashMap<Integer, TwitterData> getDataRepo() {
-			
-			return dataRepo;
-		}
+		//Caricamento Metadata
+		JsonManager.loadMetadata(metadata);
+	}
+	
+	public static Collection<TwitterData> getData(){
+		return dataRepo.values();
+	}
+	
+	public static Collection<TwitterMetadata> getMetadata(){
+		return metadata;
+	}
+
+	public static HashMap<Integer, TwitterData> getDataRepo() {						//Hashmap o Collection?
+		return dataRepo;
+	}
 }

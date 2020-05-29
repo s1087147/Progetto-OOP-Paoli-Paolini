@@ -24,8 +24,13 @@ public class GeoTwitterController {
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
 	public ResponseEntity<Object> getData(){
 		
-		return new ResponseEntity<>(dataService.test(), HttpStatus.OK);
+		return new ResponseEntity<>(dataService.getData(), HttpStatus.OK);
 	}
+	
+	 @RequestMapping(value="/metadata", method = RequestMethod.GET)
+	 public ResponseEntity<Object> getMetadata(){
+		 return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
+	 }
 	
 	@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)
 	public ResponseEntity<Object> getCoordinatesMean(){
