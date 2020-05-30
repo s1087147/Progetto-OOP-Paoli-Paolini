@@ -12,25 +12,25 @@ import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
 public class StatsImpl implements Stats {
 	
 	@Override
-	public double[] getMean(HashMap<Integer, TwitterData> tweetsMap) {
+	public double[] getMean(HashMap<String, TwitterData> hashMap) {
 
-		return GeoMean.getMean(tweetsMap);
+		return GeoMean.getMean(hashMap);
 	}
 
 	@Override
-	public double[] getVariance(HashMap<Integer, TwitterData> tweetsMap) {
+	public double[] getVariance(HashMap<String, TwitterData> tweetsMap) {
 
 		return GeoVariance.getVariance(tweetsMap);
 	}
 	
 	@Override
-	public ArrayList<TwitterData> getTweetsInsideMarche(HashMap<Integer, TwitterData> tweetsMap) {
+	public ArrayList<TwitterData> getTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap) {
 		
 		return TweetsInsideMarche.tweetsInsideMarche(tweetsMap);
 	}
 	
 	@Override
-	public boolean tweetInsideMarche(HashMap<Integer, TwitterData> tweetsMap, String id) {
+	public boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id) {
 		
 		return TweetInsideMarche.tweetInsideMarche(tweetsMap, id);
 	}

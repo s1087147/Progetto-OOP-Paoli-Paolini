@@ -2,6 +2,7 @@ package it.univpm.projectGeoTwitter.service;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
@@ -16,9 +17,10 @@ public class ArrayListToJsonStringConverter {
 		try {
 			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayList);
 	    }
-		catch(Exception e) {
-			
-	    	e.printStackTrace();
+		catch(JsonProcessingException jsonException) {
+			//Gestione Eccezione
+			System.err.println("Errore nella serializzazione.");
+	    	jsonException.printStackTrace();
 	    }
 		
 		return json;

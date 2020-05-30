@@ -10,7 +10,7 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 public class BoundingBoxFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			HashMap<Integer, TwitterData> tweetsMap, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
+			HashMap<String, TwitterData> tweetsMap, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
 		
 		ArrayList<TwitterData> tweetsWithinBoundingBox = new ArrayList<>();
 		
@@ -28,8 +28,7 @@ public class BoundingBoxFilter {
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			if(boundingBox.contains(tweet.getGeo().getCoordinates().getLongit(),
-					tweet.getGeo().getCoordinates().getLatit())) {
+			if(boundingBox.contains(tweet.getLongit(), tweet.getLatit())) {
 				
 				tweetsWithinBoundingBox.add(tweet);
 			}

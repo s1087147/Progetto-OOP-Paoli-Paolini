@@ -7,7 +7,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TextFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithThisText(HashMap<Integer, TwitterData> tweetsMap, String text) {
+	public static ArrayList<TwitterData> getTweetsWithThisText(HashMap<String, TwitterData> tweetsMap, String text) {
 		
 		ArrayList<TwitterData> tweetsWithThisText = new ArrayList<TwitterData>();
 		

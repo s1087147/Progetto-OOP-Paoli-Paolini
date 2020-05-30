@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
@@ -11,7 +12,7 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 public class RadiusFilter extends Calculator{
 
 	public static ArrayList<TwitterData> getTweetsWithinRadius(
-			HashMap<Integer, TwitterData> tweetsMap, String capoluogo, double radius) throws /*CapoluogoNotFoundException*/ Exception {
+			HashMap<String, TwitterData> tweetsMap, String capoluogo, double radius) throws CapoluogoNotFoundException{
 		
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
 		int index = -1;
@@ -20,9 +21,9 @@ public class RadiusFilter extends Calculator{
 			
 			index = Arrays.asList(CapoluoghiMarche.getCapoluoghi()).indexOf(capoluogo);
 		}
-		catch(/*CapoluogoNotFoundException*/Exception e) {
+		catch(CapoluogoNotFoundException cnfe) {										//?????
 			
-			throw /*CapoluogoNotFoundException*/new Exception(e);
+			throw new CapoluogoNotFoundException(/*messaggio*/);
 		}
 		
 		double[] capoluogoCoordinates = {
@@ -31,7 +32,7 @@ public class RadiusFilter extends Calculator{
 		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			double[] tweetCoordinates = tweet.getGeo().getCoordinates().getCoordinates();
+			double[] tweetCoordinates = {tweet.getLongit(), tweet.getLatit()};			//GETTER PER ARRAY ASSENTE
 			
 			if(Calculator.distance(tweetCoordinates, capoluogoCoordinates) < radius) {
 				

@@ -7,13 +7,12 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TweetInsideMarche {
 
-	public static boolean tweetInsideMarche(HashMap<Integer, TwitterData> tweetsMap, String id) {
+	public static boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id) {
 		
 		PoligonoMarche regioneMarche = new PoligonoMarche();
 		
 		if(regioneMarche.getPoligonoMarche()
-						.contains(tweetsMap.get(id.hashCode()).getGeo().getCoordinates().getLongit(),
-								  tweetsMap.get(id.hashCode()).getGeo().getCoordinates().getLatit())) {
+						.contains(tweetsMap.get(id).getLongit(), tweetsMap.get(id).getLatit())) {
 			return true;
 		}
 		

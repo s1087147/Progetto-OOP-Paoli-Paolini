@@ -8,7 +8,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TweetsInsideMarche {
 
-	public static ArrayList<TwitterData> tweetsInsideMarche(HashMap<Integer, TwitterData> tweetsMap) {
+	public static ArrayList<TwitterData> tweetsInsideMarche(HashMap<String, TwitterData> tweetsMap) {
 		
 		ArrayList<TwitterData> tweetsInsideMarche = new ArrayList<>();
 		PoligonoMarche regioneMarche = new PoligonoMarche();
@@ -16,8 +16,7 @@ public class TweetsInsideMarche {
 		for(TwitterData tweet : tweetsMap.values()) {
 			
 			if(regioneMarche.getPoligonoMarche()
-						    .contains(tweet.getGeo().getCoordinates().getLongit(),
-						    		  tweet.getGeo().getCoordinates().getLatit())) {
+						    .contains(tweet.getLongit(), tweet.getLatit())) {
 
 				tweetsInsideMarche.add(tweet);
 			}

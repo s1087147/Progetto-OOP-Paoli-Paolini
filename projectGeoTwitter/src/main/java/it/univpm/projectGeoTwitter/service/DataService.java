@@ -13,13 +13,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import it.univpm.projectGeoTwitter.exception.URLException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 
 @Service
 public class DataService {
 
-	private static HashMap<Integer, TwitterData> dataRepo = new HashMap<>();
+	private static HashMap<String, TwitterData> dataRepo = new HashMap<>();
 	
 	private static ArrayList<TwitterMetadata> metadata = new ArrayList<>();
 
@@ -29,7 +30,10 @@ public class DataService {
 		String json = JsonManager.getJson();
 		// Caricamento TwitterData
 		JsonManager.loadData(json, dataRepo);
-		} catch (JsonProcessingException e) {			//extends IOException
+		} catch (URLException urlException) {
+			//GESTIONE ECCEZIONE
+			System.err.println("Errore nella richiesta all'API Twitter.");
+		} catch (JsonProcessingException jsonException) {			//extends IOException
 			//GESTIONE ECCEZIONE
 			System.err.println("Errore nella letture del JSON.");
 		} catch (IOException ioException){
@@ -49,7 +53,7 @@ public class DataService {
 		return metadata;
 	}
 
-	public static HashMap<Integer, TwitterData> getDataRepo() {						//Hashmap o Collection?
+	public static HashMap<String, TwitterData> getDataRepo() {
 		return dataRepo;
 	}
 }

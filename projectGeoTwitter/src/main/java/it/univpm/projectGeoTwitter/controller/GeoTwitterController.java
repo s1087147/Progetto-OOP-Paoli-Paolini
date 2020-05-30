@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.ArrayListToJsonStringConverter;
@@ -26,8 +27,7 @@ public class GeoTwitterController {
 	DataService dataService;
 	
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
-	public ResponseEntity<Object> getData(){
-		
+	public ResponseEntity<Object> getData(){		
 		return new ResponseEntity<>(dataService.getData(), HttpStatus.OK);
 	}
 	
@@ -61,7 +61,7 @@ public class GeoTwitterController {
 				dataService.getDataRepo())), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/data/stats/insideMarche", method = RequestMethod.POST)
+	@RequestMapping(value = "/data/stats/insideMarche", method = RequestMethod.POST)				//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> tweetInsideMarche(@RequestParam(name="id") String id){
 		
 		if(new StatsImpl().tweetInsideMarche(dataService.getDataRepo(), id)) {
@@ -87,14 +87,14 @@ public class GeoTwitterController {
 		}
 	}
 	
-	@RequestMapping(value = "/data/filter/text", method = RequestMethod.POST)
+	@RequestMapping(value = "/data/filter/text", method = RequestMethod.POST)							//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> getTweetsWithThisText(@RequestParam(name="text") String text){
 		
 		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().
 				getTweetsWithThisText(dataService.getDataRepo(), text)), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)
+	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> getTweetsWithinBoundingBox(
 			@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
 			@RequestParam(name="latitBoundingBoxUpLeft") double latitUpLeft,
@@ -112,7 +112,7 @@ public class GeoTwitterController {
 	@RequestMapping(value = "/data/filter/{capoluogo}/radius/{radius}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweetsWithinRadius(@PathVariable("capoluogo") String capoluogo,
 														@PathVariable("radius") int radius)
-														throws /*CapoluogoNotFoundException*/ Exception {
+														throws CapoluogoNotFoundException {
 		
 		ResponseEntity<Object> response = null;
 		

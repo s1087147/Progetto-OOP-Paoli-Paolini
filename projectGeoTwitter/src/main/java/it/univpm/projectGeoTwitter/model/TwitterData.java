@@ -1,19 +1,47 @@
 package it.univpm.projectGeoTwitter.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import it.univpm.projectGeoTwitter.service.TwitterDataDeserializer;
+
+@JsonDeserialize(using = TwitterDataDeserializer.class)
 public class TwitterData {
 
 	String id;			
-	String text;
-	Geo geo;
+	String text;	
+	String place_id;
+	double longit;
+	double latit;
 	
 	//GETTERS	
 	public String getId() {
 		return id;
 	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getText() {
 		return text;
 	}
-	public Geo getGeo() {
-		return geo;
+	public void setText(String text) {
+		this.text = text;
+	}
+	public String getPlace_id() {
+		return place_id;
+	}
+	public void setPlace_id(String place_id) {
+		this.place_id = place_id;
+	}
+	public double getLongit() {
+		return longit;
+	}
+	public void setLongit(double longit) {
+		this.longit = longit;
+	}
+	public double getLatit() {
+		return latit;
+	}
+	public void setLatit(double latit) {
+		this.latit = latit;
 	}
 }

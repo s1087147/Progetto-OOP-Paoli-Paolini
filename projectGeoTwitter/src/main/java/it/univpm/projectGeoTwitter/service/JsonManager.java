@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.univpm.projectGeoTwitter.exception.URLException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 
@@ -33,7 +34,7 @@ class JsonManager {
 	
 	public JsonManager() {}
 	
-	static String getJson() throws IOException{ // Eccezione per l'URLConnection
+	static String getJson() throws IOException, URLException{
 		String content = "";
 		String line = "";
 		URLConnection connection = new URL(url).openConnection();
@@ -48,18 +49,17 @@ class JsonManager {
 		return content;
 	}
 	
-	static void loadData(String json, Map<Integer, TwitterData> data) throws JsonProcessingException{
+	static void loadData(String json, Map<String, TwitterData> data) throws JsonProcessingException{
 		ArrayList<TwitterData> appoggio = new ArrayList<>();
 		ObjectMapper mapper = new ObjectMapper();
 		
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // Verificare se necessario
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // VERIFICARE SE NECESSARIO
 		JsonNode node = mapper.readTree(json).findValue("data");
 		json = node.toString();
 
 		appoggio = mapper.readValue(json, new TypeReference<ArrayList<TwitterData>>() {});
 		for (TwitterData tweet : appoggio) {
-			int key = tweet.getId().hashCode();
-			data.put(key, tweet);
+			data.put(tweet.getId(), tweet);
 		}
 	}
 	
@@ -67,7 +67,8 @@ class JsonManager {
 		metadata.add(new TwitterMetadata("id", "Numero identificativo del tweet", "String"));
 		metadata.add(new TwitterMetadata("text", "Testo del tweet", "String"));
 		metadata.add(new TwitterMetadata("place_id", "Identificativo della località da cui è stato inviato il tweet", "String"));
-		metadata.add(new TwitterMetadata("coordinates", "Coppia di coordinate longitudine-latitudine", "double[]"));
+		metadata.add(new TwitterMetadata("longit", "Longitudine", "double"));
+		metadata.add(new TwitterMetadata("latit", "Latitudine", "double"));
 	}
 	
 	private static String readIds(){
