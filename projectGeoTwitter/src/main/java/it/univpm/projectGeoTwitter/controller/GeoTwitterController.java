@@ -1,5 +1,7 @@
 package it.univpm.projectGeoTwitter.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -109,38 +111,21 @@ public class GeoTwitterController {
 	
 	@RequestMapping(value = "/data/filter/{capoluogo}/radius/{radius}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweetsWithinRadius(@PathVariable("capoluogo") String capoluogo,
-														@PathVariable("radius") int radius) throws ResponseStatusException {
+														@PathVariable("radius") int radius)
+														throws /*CapoluogoNotFoundException*/ Exception {
 		
-		if(capoluogo.equals("Ancona")) {
+		ResponseEntity<Object> response = null;
 		
-			return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), CapoluoghiMarche.getCoordinatesAncona(), radius)), HttpStatus.OK);
-		}
-		
-		else if(capoluogo.equals("Ascoli Piceno")) {
+		try {
 			
-			return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), CapoluoghiMarche.getCoordinatesAscoliPiceno(), radius)), HttpStatus.OK);
+			response = new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
+					dataService.getDataRepo(), capoluogo, radius)), HttpStatus.OK);
 		}
-
-		else if(capoluogo.equals("Fermo")) {
+		catch(/*CapoluogoNotFoundException*/ Exception e) {
 			
-			return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), CapoluoghiMarche.getCoordinatesFermo(), radius)), HttpStatus.OK);
+			System.out.println(e);
 		}
 		
-		else if(capoluogo.equals("Macerata")) {
-			
-			return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), CapoluoghiMarche.getCoordinatesMacerata(), radius)), HttpStatus.OK);
-		}
-		
-		else if(capoluogo.equals("Pesaro e Urbino")) {
-			
-			return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), CapoluoghiMarche.getCoordinatesPesaroEUrbino(), radius)), HttpStatus.OK);
-		}
-		
-		else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Il capoluogo richiesto non esiste. Riprovare...");
+		return response;
 	}
 }

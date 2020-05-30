@@ -18,15 +18,4 @@ public class PoligonoMarche {
 	public Path2D getPoligonoMarche() {
 		return poligonoMarche;
 	}
-	
-	//NON SO SE QUESTI GETTER SERVONO
-	/*
-	public double[] getLongitMarche() {
-		return longitMarche;
-	}
-
-	public double[] getLatitMarche() {
-		return latitMarche;
-	}
-	*/
 }

@@ -25,9 +25,9 @@ public class FiltersImpl implements Filters {
 
 	@Override
 	public ArrayList<TwitterData> getTweetsWithinRadius(
-			HashMap<Integer, TwitterData> tweetsMap, double[] capoluogoCoordinates, double radius) {
+			HashMap<Integer, TwitterData> tweetsMap, String capoluogo, double radius) throws /*CapoluogoNotFoundException*/ Exception {
 		
-		return RadiusFilter.getTweetsWithinRadius(tweetsMap, capoluogoCoordinates, radius);
+		return RadiusFilter.getTweetsWithinRadius(tweetsMap, capoluogo, radius);
 	}
 	
 	@Override
