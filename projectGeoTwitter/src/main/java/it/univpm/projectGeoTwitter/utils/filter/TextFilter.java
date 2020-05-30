@@ -1,13 +1,13 @@
 package it.univpm.projectGeoTwitter.utils.filter;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TextFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithThisText(Map<Integer, TwitterData> tweetsMap, String text) {
+	public static ArrayList<TwitterData> getTweetsWithThisText(HashMap<Integer, TwitterData> tweetsMap, String text) {
 		
 		ArrayList<TwitterData> tweetsWithThisText = new ArrayList<TwitterData>();
 		

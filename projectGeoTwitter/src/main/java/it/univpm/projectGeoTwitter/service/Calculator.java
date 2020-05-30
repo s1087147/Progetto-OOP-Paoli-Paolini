@@ -1,5 +1,6 @@
 package it.univpm.projectGeoTwitter.service;
 
+import java.awt.geom.Path2D;
 import java.util.ArrayList;
 
 public class Calculator {
@@ -44,6 +45,21 @@ public class Calculator {
 		
 		double distanzaKm = 1.60934 * distanzaMiglia;
 
+		System.out.println(distanzaKm);
+		
 		return distanzaKm;
+	}
+	
+	public static Path2D polygonGenerator(double[] arrayLongit, double[] arrayLatit) {
+		
+		Path2D poligono = new Path2D.Double();
+		
+		poligono.moveTo(arrayLongit[0], arrayLatit[0]);
+		for(int i = 1; i < arrayLongit.length; i++) {
+			poligono.lineTo(arrayLongit[i], arrayLatit[i]);
+		}
+		poligono.closePath();
+		
+		return poligono;
 	}
 }

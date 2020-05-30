@@ -2,6 +2,8 @@ package it.univpm.projectGeoTwitter.model;
 
 import java.awt.geom.Path2D;
 
+import it.univpm.projectGeoTwitter.service.Calculator;
+
 public class PoligonoMarche {
 
 	private Path2D poligonoMarche;
@@ -10,17 +12,21 @@ public class PoligonoMarche {
 	
 	public PoligonoMarche() {
 		
-		poligonoMarche = new Path2D.Double();
-		
-		poligonoMarche.moveTo(latitMarche[0], longitMarche[0]);
-		for(int i = 1; i < latitMarche.length; i++) {
-			poligonoMarche.lineTo(latitMarche[i], longitMarche[i]);
-		}
-		poligonoMarche.closePath();
+		poligonoMarche = Calculator.polygonGenerator(longitMarche, latitMarche);
 	}
 	
 	public Path2D getPoligonoMarche() {
 		return poligonoMarche;
 	}
 	
+	//NON SO SE QUESTI GETTER SERVONO
+	/*
+	public double[] getLongitMarche() {
+		return longitMarche;
+	}
+
+	public double[] getLatitMarche() {
+		return latitMarche;
+	}
+	*/
 }

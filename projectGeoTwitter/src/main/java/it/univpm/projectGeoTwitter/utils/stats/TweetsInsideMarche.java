@@ -1,14 +1,14 @@
 package it.univpm.projectGeoTwitter.utils.stats;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.model.PoligonoMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TweetsInsideMarche {
 
-	public static ArrayList<TwitterData> tweetsInsideMarche(Map<Integer, TwitterData> tweetsMap) {
+	public static ArrayList<TwitterData> tweetsInsideMarche(HashMap<Integer, TwitterData> tweetsMap) {
 		
 		ArrayList<TwitterData> tweetsInsideMarche = new ArrayList<>();
 		PoligonoMarche regioneMarche = new PoligonoMarche();
