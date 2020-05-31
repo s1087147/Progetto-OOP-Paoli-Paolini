@@ -6,13 +6,13 @@ import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
-import it.univpm.projectGeoTwitter.utils.stats.GeoMean;
+import it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord;
 
-public class GeoVariance extends Calculator {
+public class GeoVarianceCoord extends Calculator {
 
 	public static double[] getVariance(HashMap<String, TwitterData> tweetsMap) {
 
-		double[] coordinatesMean = GeoMean.getMean(tweetsMap);
+		double[] coordinatesMean = GeoMeanCoord.getMean(tweetsMap);
 		
 		double[] coordinatesVariance = new double[2];
 		ArrayList<Double> coordinatesLongit = new ArrayList<Double>();

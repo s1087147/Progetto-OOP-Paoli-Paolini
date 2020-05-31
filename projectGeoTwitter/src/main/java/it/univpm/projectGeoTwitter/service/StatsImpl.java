@@ -4,23 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.utils.stats.GeoMean;
-import it.univpm.projectGeoTwitter.utils.stats.GeoVariance;
+import it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord;
+import it.univpm.projectGeoTwitter.utils.stats.GeoVarianceCoord;
 import it.univpm.projectGeoTwitter.utils.stats.TweetInsideMarche;
 import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
 
 public class StatsImpl implements Stats {
 	
+	public static StatsModel getStats(HashMap<String, TwitterData> tweetsMap, String capoluogo) {
+		
+		
+	}
+	
 	@Override
 	public double[] getMean(HashMap<String, TwitterData> hashMap) {
 
-		return GeoMean.getMean(hashMap);
+		return GeoMeanCoord.getMean(hashMap);
 	}
 
 	@Override
 	public double[] getVariance(HashMap<String, TwitterData> tweetsMap) {
 
-		return GeoVariance.getVariance(tweetsMap);
+		return GeoVarianceCoord.getVariance(tweetsMap);
 	}
 	
 	@Override
@@ -34,5 +39,4 @@ public class StatsImpl implements Stats {
 		
 		return TweetInsideMarche.tweetInsideMarche(tweetsMap, id);
 	}
-
 }

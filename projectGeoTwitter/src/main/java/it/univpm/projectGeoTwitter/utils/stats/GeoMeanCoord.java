@@ -2,12 +2,11 @@ package it.univpm.projectGeoTwitter.utils.stats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMean extends Calculator {
+public class GeoMeanCoord extends Calculator {
 
 	public static double[] getMean(HashMap<String, TwitterData> hashMap) {
 

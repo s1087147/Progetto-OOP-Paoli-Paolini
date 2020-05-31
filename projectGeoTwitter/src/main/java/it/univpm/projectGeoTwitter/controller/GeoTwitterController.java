@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
@@ -35,6 +38,16 @@ public class GeoTwitterController {
 	 public ResponseEntity<Object> getMetadata(){
 		 return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
 	 }
+	 
+	 @RequestMapping(value="/stats", method = RequestMethod.GET)
+	 public ResponseEntity<Object> getStats(
+			 @RequestParam(name = "capoluogo", defaultValue = "") String capoluogo){
+		 
+		 return new ResponseEntity<>(StatsImpl.getStats(), HttpStatus.OK);
+	 }
+	 
+	 
+	 
 	
 	@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)
 	public ResponseEntity<Object> getCoordinatesMean(){
@@ -95,11 +108,13 @@ public class GeoTwitterController {
 	}
 	
 	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
-	public ResponseEntity<Object> getTweetsWithinBoundingBox(
-			@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
+	public ResponseEntity<Object> getTweetsWithinBoundingBox(@RequestBody ArrayNode boundingBox) {
+			/*@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
 			@RequestParam(name="latitBoundingBoxUpLeft") double latitUpLeft,
 			@RequestParam(name="longitBoundingBoxDownRight") double longitDownRight,
-			@RequestParam(name="latitBoundingBoxDownRight") double latitDownRight){
+			@RequestParam(name="latitBoundingBoxDownRight") double latitDownRight){*/
+		
+		
 		
 		double[] boundingBoxUpLeft = {longitUpLeft, latitUpLeft};
 		double[] boundingBoxDownRight = {longitDownRight, latitDownRight};
@@ -121,11 +136,12 @@ public class GeoTwitterController {
 			response = new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
 					dataService.getDataRepo(), capoluogo, radius)), HttpStatus.OK);
 		}
-		catch(/*CapoluogoNotFoundException*/ Exception e) {
+		catch(CapoluogoNotFoundException e) {
 			
 			System.out.println(e);
 		}
 		
 		return response;
 	}
+	
 }

@@ -33,12 +33,12 @@ public class Calculator {
 		return variance;
 	}
 	
-	public static double distance(double[] coordinates1, double[] coordinates2) {
+	public static double distance(double longit1, double latit1, double longit2, double latit2) {
 		
-		double longit1 = Math.toRadians(coordinates1[0]);
-		double latit1 = Math.toRadians(coordinates1[1]);
-		double longit2 = Math.toRadians(coordinates2[0]);
-		double latit2 = Math.toRadians(coordinates2[1]);
+		longit1 = Math.toRadians(longit1);
+		latit1 = Math.toRadians(latit1);
+		longit2 = Math.toRadians(longit2);
+		latit2 = Math.toRadians(latit2);
 		
 		double distanzaMiglia = R * Math.acos(Math.sin(latit1) * Math.sin(latit2) + Math.cos(latit1) * Math.cos(latit2)
 				 * Math.cos(longit1-longit2));
