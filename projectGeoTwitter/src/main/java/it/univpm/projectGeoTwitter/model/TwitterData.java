@@ -10,6 +10,7 @@ public class TwitterData {
 	String id;			
 	String text;	
 	String place_id;
+	String place;
 	double longit;
 	double latit;
 	
@@ -31,6 +32,12 @@ public class TwitterData {
 	}
 	public void setPlace_id(String place_id) {
 		this.place_id = place_id;
+	}	
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public double getLongit() {
 		return longit;

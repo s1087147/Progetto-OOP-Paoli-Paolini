@@ -3,6 +3,7 @@ package it.univpm.projectGeoTwitter.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import it.univpm.projectGeoTwitter.model.StatsModel;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord;
 import it.univpm.projectGeoTwitter.utils.stats.GeoVarianceCoord;
@@ -12,7 +13,7 @@ import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
 public class StatsImpl implements Stats {
 	
 	public static StatsModel getStats(HashMap<String, TwitterData> tweetsMap, String capoluogo) {
-		
+		return null;	
 		
 	}
 	

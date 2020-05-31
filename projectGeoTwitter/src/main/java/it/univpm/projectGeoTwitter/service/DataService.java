@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.UnsatisfiedDependencyException;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -25,20 +26,29 @@ public class DataService {
 	private static ArrayList<TwitterMetadata> metadata = new ArrayList<>();
 
 	public DataService(){
-		// Download JSON
+		
 		try {
-		String json = JsonManager.getJson();
-		// Caricamento TwitterData
-		JsonManager.loadData(json, dataRepo);
+			// Download JSON
+			String json = JsonManager.getJson();
+			// Caricamento TwitterData
+			JsonManager.loadData(json, dataRepo);
+
+		} catch (NullPointerException npException) {
+			npException.printStackTrace();
+			System.err.println("Errore fatale nella creazione del DataService!");
+			System.exit(1);
 		} catch (URLException urlException) {
-			//GESTIONE ECCEZIONE
-			System.err.println("Errore nella richiesta all'API Twitter.");
-		} catch (JsonProcessingException jsonException) {			//extends IOException
-			//GESTIONE ECCEZIONE
-			System.err.println("Errore nella letture del JSON.");
-		} catch (IOException ioException){
-			//GESTIONE ECCEZIONE
+			urlException.printStackTrace();
+			System.err.println("Errore fatale nella richiesta all'API Twitter!");
+			System.exit(1);
+		} catch (JsonProcessingException jsonException) {
+			jsonException.printStackTrace();
+			System.err.println("Errore fatale nella lettura del JSON!");
+			System.exit(1);
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
 			System.err.println("Errore nella lettura degli id.");
+			System.exit(1);
 		}
 		//Caricamento Metadata
 		JsonManager.loadMetadata(metadata);

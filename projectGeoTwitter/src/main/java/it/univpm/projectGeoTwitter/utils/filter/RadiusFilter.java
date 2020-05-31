@@ -15,15 +15,15 @@ public class RadiusFilter extends Calculator{
 			HashMap<String, TwitterData> tweetsMap, String capoluogo, double radius) throws CapoluogoNotFoundException{
 		
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
-		int index = -1;
+		/*int index = -1;
 		
 		try {
 			
-			index = Arrays.asList(CapoluoghiMarche.getCapoluoghi()).indexOf(capoluogo);
+			//index = Arrays.asList(CapoluoghiMarche.getCapoluoghi()).indexOf(capoluogo);
 		}
 		catch(CapoluogoNotFoundException cnfe) {										//?????
 			
-			throw new CapoluogoNotFoundException(/*messaggio*/);
+			throw new CapoluogoNotFoundException();
 		}
 		
 		double[] capoluogoCoordinates = {
@@ -38,7 +38,7 @@ public class RadiusFilter extends Calculator{
 				
 				tweetsWithinRadius.add(tweet);
 			}
-		}
+		}*/
 		
 		return tweetsWithinRadius;
 	}

@@ -11,7 +11,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.projectGeoTwitter.exception.URLException;
+import it.univpm.projectGeoTwitter.model.Place;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 
@@ -54,11 +58,19 @@ class JsonManager {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // VERIFICARE SE NECESSARIO
-		JsonNode node = mapper.readTree(json).findValue("data");
-		json = node.toString();
+		JsonNode tree = mapper.readTree(json);
+		JsonNode node = tree.findValue("data");
+		json = node.toString();		
 
 		appoggio = mapper.readValue(json, new TypeReference<ArrayList<TwitterData>>() {});
+		
+		JsonNode place = tree.findValue("includes").findValue("places");
+		json = place.toString();
+		ArrayList<Place> placesArray = mapper.readValue(json, new TypeReference<ArrayList<Place>>() {});
+		Map<String, Place> placesMap = placesArray.stream().collect(Collectors.toMap(Place::getId, Function.identity()));		
+		
 		for (TwitterData tweet : appoggio) {
+			tweet.setPlace(placesMap.get(tweet.getPlace_id()).getFull_name());
 			data.put(tweet.getId(), tweet);
 		}
 	}
@@ -67,6 +79,7 @@ class JsonManager {
 		metadata.add(new TwitterMetadata("id", "Numero identificativo del tweet", "String"));
 		metadata.add(new TwitterMetadata("text", "Testo del tweet", "String"));
 		metadata.add(new TwitterMetadata("place_id", "Identificativo della località da cui è stato inviato il tweet", "String"));
+		metadata.add(new TwitterMetadata("place", "Località da cui è stato inviato il tweet", "String"));
 		metadata.add(new TwitterMetadata("longit", "Longitudine", "double"));
 		metadata.add(new TwitterMetadata("latit", "Latitudine", "double"));
 	}

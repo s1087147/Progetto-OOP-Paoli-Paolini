@@ -43,7 +43,7 @@ public class GeoTwitterController {
 	 public ResponseEntity<Object> getStats(
 			 @RequestParam(name = "capoluogo", defaultValue = "") String capoluogo){
 		 
-		 return new ResponseEntity<>(StatsImpl.getStats(), HttpStatus.OK);
+		 return new ResponseEntity<>(StatsImpl.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
 	 }
 	 
 	 
@@ -107,12 +107,12 @@ public class GeoTwitterController {
 				getTweetsWithThisText(dataService.getDataRepo(), text)), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
+	/*@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> getTweetsWithinBoundingBox(@RequestBody ArrayNode boundingBox) {
-			/*@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
+			@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
 			@RequestParam(name="latitBoundingBoxUpLeft") double latitUpLeft,
 			@RequestParam(name="longitBoundingBoxDownRight") double longitDownRight,
-			@RequestParam(name="latitBoundingBoxDownRight") double latitDownRight){*/
+			@RequestParam(name="latitBoundingBoxDownRight") double latitDownRight){
 		
 		
 		
@@ -122,7 +122,7 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(
 				new FiltersImpl().getTweetsWithinBoundingBox(
 						dataService.getDataRepo(), boundingBoxUpLeft,boundingBoxDownRight)), HttpStatus.OK);
-	}
+	}*/
 	
 	@RequestMapping(value = "/data/filter/{capoluogo}/radius/{radius}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweetsWithinRadius(@PathVariable("capoluogo") String capoluogo,
