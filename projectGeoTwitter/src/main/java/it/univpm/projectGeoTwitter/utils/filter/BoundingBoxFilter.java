@@ -4,13 +4,14 @@ import java.awt.geom.Path2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
 public class BoundingBoxFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			HashMap<String, TwitterData> tweetsMap, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
+			HashMap<String, TwitterData> tweetsMap, String operator, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
 		
 		ArrayList<TwitterData> tweetsWithinBoundingBox = new ArrayList<>();
 		
@@ -26,9 +27,18 @@ public class BoundingBoxFilter {
 		
 		Path2D boundingBox = Calculator.polygonGenerator(boundingBoxLongit, boundingBoxLatit);
 		
+		boolean choice;
+		
+		if(operator.equals("inside"))
+			choice = true;
+		else if(operator.equals("outside"))
+			choice = false;
+		else
+			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
+		
 		for(TwitterData tweet : tweetsMap.values()) {
 			
-			if(boundingBox.contains(tweet.getLongit(), tweet.getLatit())) {
+			if(boundingBox.contains(tweet.getLongit(), tweet.getLatit()) == choice) {
 				
 				tweetsWithinBoundingBox.add(tweet);
 			}

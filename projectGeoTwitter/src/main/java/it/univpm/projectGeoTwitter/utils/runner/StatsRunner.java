@@ -1,4 +1,4 @@
-package it.univpm.projectGeoTwitter.service;
+package it.univpm.projectGeoTwitter.utils.runner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,6 +11,8 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.StatsCoord;
 import it.univpm.projectGeoTwitter.model.StatsDistance;
 import it.univpm.projectGeoTwitter.model.TwitterData;
+import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
+import it.univpm.projectGeoTwitter.service.StatsImpl;
 
 public class StatsRunner extends StatsImpl{
 
@@ -20,11 +22,7 @@ public class StatsRunner extends StatsImpl{
 		
 		if(capoluogoName.isPresent()) {
 			try {
-				CapoluoghiMarche capoluogoMarche = new CapoluoghiMarche();
-			    Class<CapoluoghiMarche> capoluogoClass = CapoluoghiMarche.class;
-			    String getterCapoluogo = "get" + capoluogoName.get();
-				Method method = capoluogoClass.getDeclaredMethod(getterCapoluogo, null);
-				Geo capoluogo = (Geo) method.invoke(capoluogoMarche, null);
+				Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName.get());
 				
 				return new StatsDistance(stats.getMean(tweetsMap, capoluogo),
 						stats.getVariance(tweetsMap, capoluogo),

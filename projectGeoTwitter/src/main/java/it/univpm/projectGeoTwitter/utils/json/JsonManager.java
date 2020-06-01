@@ -1,4 +1,4 @@
-package it.univpm.projectGeoTwitter.service;
+package it.univpm.projectGeoTwitter.utils.json;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -2,7 +2,7 @@ package it.univpm.projectGeoTwitter.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import it.univpm.projectGeoTwitter.service.TwitterDataDeserializer;
+import it.univpm.projectGeoTwitter.utils.json.TwitterDataDeserializer;
 
 @JsonDeserialize(using = TwitterDataDeserializer.class)
 public class TwitterData {

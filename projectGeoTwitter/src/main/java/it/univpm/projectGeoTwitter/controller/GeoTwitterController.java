@@ -20,11 +20,12 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.service.ObjectToJsonStringConverter;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;
 import it.univpm.projectGeoTwitter.service.StatsImpl;
-import it.univpm.projectGeoTwitter.service.StatsRunner;
+import it.univpm.projectGeoTwitter.utils.json.ObjectToJsonStringConverter;
+import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
+import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
 
 @RestController
 public class GeoTwitterController {
@@ -51,8 +52,21 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(StatsRunner.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
 	}
 	
-	 
-	 
+	@RequestMapping(value="/filter", method = RequestMethod.POST)
+	public ResponseEntity<Object> getStats(
+			@RequestBody Object body) {
+		 
+		return new ResponseEntity<>(FilterRunner.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
+	}
+	
+	 /*
+	  * {
+	  * 	filter: String
+	  * 	operator: String
+	  * 	filterValue: Object
+	  * 	capoluogo: String
+	  * }
+	 */
 	 
 	
 	@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)

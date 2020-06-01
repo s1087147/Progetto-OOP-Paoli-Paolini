@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import it.univpm.projectGeoTwitter.exception.URLException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.model.TwitterMetadata;
+import it.univpm.projectGeoTwitter.utils.json.JsonManager;
 
 @Service
 public class DataService {
