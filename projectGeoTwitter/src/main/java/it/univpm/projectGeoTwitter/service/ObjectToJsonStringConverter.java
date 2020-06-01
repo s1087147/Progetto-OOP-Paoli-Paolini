@@ -1,21 +1,17 @@
 package it.univpm.projectGeoTwitter.service;
 
-import java.util.ArrayList;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univpm.projectGeoTwitter.model.TwitterData;
+public class ObjectToJsonStringConverter {
 
-public class ArrayListToJsonStringConverter {
-
-	public static String convert(ArrayList<TwitterData> arrayList) {
+	public static String convert(Object obj) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 	    String json = "";
 	    
 		try {
-			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(arrayList);
+			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
 	    }
 		catch(JsonProcessingException jsonException) {
 			//Gestione Eccezione

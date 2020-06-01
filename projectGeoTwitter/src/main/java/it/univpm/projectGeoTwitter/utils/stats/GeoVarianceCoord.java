@@ -2,7 +2,6 @@ package it.univpm.projectGeoTwitter.utils.stats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;

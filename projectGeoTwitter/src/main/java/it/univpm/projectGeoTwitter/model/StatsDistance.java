@@ -1,15 +1,14 @@
 package it.univpm.projectGeoTwitter.model;
 
-public class StatsModel {
+public class StatsDistance {
 
-	private double[] mean;
-	private double[] variance;
-	private double[] stdDev;
+	private double mean;
+	private double variance;
+	private double stdDev;
 	private double max;
 	private double min;
 	
-	public StatsModel(double[] mean, double[] variance, double[] stdDev, double max, double min) {
-		
+	public StatsDistance(double mean, double variance, double stdDev, double max, double min) {
 		super();
 		this.mean = mean;
 		this.variance = variance;
@@ -18,22 +17,22 @@ public class StatsModel {
 		this.min = min;
 	}
 	
-	public double[] getMean() {
+	public double getMean() {
 		return mean;
 	}
-	public void setMean(double[] mean) {
+	public void setMean(double mean) {
 		this.mean = mean;
 	}
-	public double[] getVariance() {
+	public double getVariance() {
 		return variance;
 	}
-	public void setVariance(double[] variance) {
+	public void setVariance(double variance) {
 		this.variance = variance;
 	}
-	public double[] getStdDev() {
+	public double getStdDev() {
 		return stdDev;
 	}
-	public void setStdDev(double[] stdDev) {
+	public void setStdDev(double stdDev) {
 		this.stdDev = stdDev;
 	}
 	public double getMax() {

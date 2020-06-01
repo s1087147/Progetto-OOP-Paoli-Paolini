@@ -8,13 +8,13 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 
 public class GeoMeanCoord extends Calculator {
 
-	public static double[] getMean(HashMap<String, TwitterData> hashMap) {
+	public static double[] getMean(HashMap<String, TwitterData> tweetsMap) {
 
 		double[] coordinatesMean = new double[2];
 		ArrayList<Double> coordinatesLongit = new ArrayList<>();
 		ArrayList<Double> coordinatesLatit = new ArrayList<>();
 		
-		for(TwitterData tweet : hashMap.values()) {		
+		for(TwitterData tweet : tweetsMap.values()) {
 			coordinatesLongit.add(tweet.getLongit());
 			coordinatesLatit.add(tweet.getLatit());
 		}

@@ -1,6 +1,8 @@
 package it.univpm.projectGeoTwitter.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +20,11 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.service.ArrayListToJsonStringConverter;
+import it.univpm.projectGeoTwitter.service.ObjectToJsonStringConverter;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;
 import it.univpm.projectGeoTwitter.service.StatsImpl;
+import it.univpm.projectGeoTwitter.service.StatsRunner;
 
 @RestController
 public class GeoTwitterController {
@@ -30,21 +33,24 @@ public class GeoTwitterController {
 	DataService dataService;
 	
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
-	public ResponseEntity<Object> getData(){		
+	public ResponseEntity<Object> getData() {
+		
 		return new ResponseEntity<>(dataService.getData(), HttpStatus.OK);
 	}
 	
-	 @RequestMapping(value="/metadata", method = RequestMethod.GET)
-	 public ResponseEntity<Object> getMetadata(){
-		 return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
-	 }
+	@RequestMapping(value="/metadata", method = RequestMethod.GET)
+	public ResponseEntity<Object> getMetadata() {
+		
+		return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
+	}
 	 
-	 @RequestMapping(value="/stats", method = RequestMethod.GET)
-	 public ResponseEntity<Object> getStats(
-			 @RequestParam(name = "capoluogo", defaultValue = "") String capoluogo){
+	@RequestMapping(value="/stats", method = RequestMethod.GET)
+	public ResponseEntity<Object> getStats(
+			@RequestParam(name = "capoluogo") Optional<String> capoluogo) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		 
-		 return new ResponseEntity<>(StatsImpl.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
-	 }
+		return new ResponseEntity<>(StatsRunner.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
+	}
+	
 	 
 	 
 	 
@@ -70,7 +76,7 @@ public class GeoTwitterController {
 	@RequestMapping(value = "/data/stats/insideMarche", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweetsInsideMarche() {
 		
-		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new StatsImpl().getTweetsInsideMarche(
+		return new ResponseEntity<>(ObjectToJsonStringConverter.convert(new StatsImpl().getTweetsInsideMarche(
 				dataService.getDataRepo())), HttpStatus.OK);
 	}
 	
@@ -103,7 +109,7 @@ public class GeoTwitterController {
 	@RequestMapping(value = "/data/filter/text", method = RequestMethod.POST)							//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> getTweetsWithThisText(@RequestParam(name="text") String text){
 		
-		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().
+		return new ResponseEntity<>(ObjectToJsonStringConverter.convert(new FiltersImpl().
 				getTweetsWithThisText(dataService.getDataRepo(), text)), HttpStatus.OK);
 	}
 	
@@ -133,7 +139,7 @@ public class GeoTwitterController {
 		
 		try {
 			
-			response = new ResponseEntity<>(ArrayListToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
+			response = new ResponseEntity<>(ObjectToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
 					dataService.getDataRepo(), capoluogo, radius)), HttpStatus.OK);
 		}
 		catch(CapoluogoNotFoundException e) {
