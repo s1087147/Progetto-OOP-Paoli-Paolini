@@ -13,33 +13,35 @@ import it.univpm.projectGeoTwitter.utils.filter.TextFilter;
 public class FiltersImpl implements Filters {
 
 	@Override
-	public ArrayList<TwitterData> getTweetsWithThisText(HashMap<String, TwitterData> tweetsMap, String operator, String text) {
+	public ArrayList<TwitterData> filterText(HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue) {
 		
-		return TextFilter.getTweetsWithThisText(tweetsMap, operator, text);
+		return TextFilter.getTweetsWithThisText(tweetsMap, operator, filterValue);
 	}
 
 	@Override
-	public ArrayList<TwitterData> getTweetsWithinRadius(
-			HashMap<String, TwitterData> tweetsMap, String capoluogo, String operator, double[] radius)
-					throws SecurityException, IllegalAccessException,
-					IllegalArgumentException, InvocationTargetException{
+	public ArrayList<TwitterData> filterDistance(
+			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue){
 		
-		return RadiusFilter.getTweetsWithinRadius(tweetsMap, capoluogo, operator, radius);
+		try {
+			return RadiusFilter.getTweetsWithinRadius(tweetsMap, operator, filterValue);
+		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@Override
-	public ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			HashMap<String, TwitterData> tweetsMap, String operator, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
+	public ArrayList<TwitterData> filterBoundingBox(
+			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue) {				
 		
-		return BoundingBoxFilter.getTweetsWithinBoundingBox(tweetsMap, operator, coordinatesUpLeft, coordinatesDownRight);
+		//return BoundingBoxFilter.getTweetsWithinBoundingBox(tweetsMap, operator, filterValue);
+		return null;
 	}
 	
 	@Override
 	public Collection<TwitterData> getTweetsFiltered(
 			HashMap<String, TwitterData> tweetsMap, String filter, String operator, Object filterValue) {
-		
-		if(text)
-			return getTweetsWithThisText
+			
 		return null;
 	}
 }

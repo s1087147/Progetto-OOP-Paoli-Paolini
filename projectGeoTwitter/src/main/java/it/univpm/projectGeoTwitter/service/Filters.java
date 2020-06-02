@@ -10,15 +10,15 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public interface Filters {
 
-	public abstract ArrayList<TwitterData> getTweetsWithThisText(HashMap<String, TwitterData> tweetsMap, String operator, String text);
+	public abstract ArrayList<TwitterData> filterText(HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue);
 	
-	public abstract ArrayList<TwitterData> getTweetsWithinRadius (
-			HashMap<String, TwitterData> tweetsMap, String capoluogo, String operator, double[] radius)
+	public abstract ArrayList<TwitterData> filterDistance (
+			HashMap<String, TwitterData> tweetsMap, String operator,Object filterValue)
 					throws SecurityException, IllegalAccessException,
 					IllegalArgumentException, InvocationTargetException;
 	
-	public abstract ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			HashMap<String, TwitterData> tweetsMap, String operator, double[] coordinatesUpLeft, double[] coordinatesDownRight);
+	public abstract ArrayList<TwitterData> filterBoundingBox(
+			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue);
 	
 	public abstract Collection<TwitterData> getTweetsFiltered(
 			HashMap<String, TwitterData> tweetsMap, String filterType, String operator, Object filterValue);

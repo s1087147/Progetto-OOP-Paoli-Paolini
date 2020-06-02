@@ -1,29 +1,17 @@
 package it.univpm.projectGeoTwitter.controller;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
-import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
-import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.DataService;
-import it.univpm.projectGeoTwitter.service.FiltersImpl;
-import it.univpm.projectGeoTwitter.service.StatsImpl;
-import it.univpm.projectGeoTwitter.utils.json.ObjectToJsonStringConverter;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
 import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
 
@@ -53,10 +41,10 @@ public class GeoTwitterController {
 	}
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
-	public ResponseEntity<Object> getStats(
+	public ResponseEntity<Object> getFilteredTweets(
 			@RequestBody Object body) {
 		 
-		return new ResponseEntity<>(FilterRunner.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
+		return new ResponseEntity<>(FilterRunner.getFilters(dataService.getDataRepo(), body), HttpStatus.OK);
 	}
 	
 	 /*
@@ -69,7 +57,7 @@ public class GeoTwitterController {
 	 */
 	 
 	
-	@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)
 	public ResponseEntity<Object> getCoordinatesMean(){
 		
 		double[] coordinatesMean = new StatsImpl().getMean(dataService.getDataRepo());
@@ -112,7 +100,7 @@ public class GeoTwitterController {
 		
 		if(new FiltersImpl().tweetWithThisId(dataService.getDataRepo(), id)) {
 			
-			return new ResponseEntity<>(/*STAMPARE IL TWEET TROVATO*/"Tweet trovato", HttpStatus.OK);
+			return new ResponseEntity<>(/*STAMPARE IL TWEET TROVATO*//*"Tweet trovato", HttpStatus.OK);
 		}
 		else {
 			
@@ -127,7 +115,7 @@ public class GeoTwitterController {
 				getTweetsWithThisText(dataService.getDataRepo(), text)), HttpStatus.OK);
 	}
 	
-	/*@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
+	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
 	public ResponseEntity<Object> getTweetsWithinBoundingBox(@RequestBody ArrayNode boundingBox) {
 			@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
 			@RequestParam(name="latitBoundingBoxUpLeft") double latitUpLeft,
@@ -142,7 +130,7 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(
 				new FiltersImpl().getTweetsWithinBoundingBox(
 						dataService.getDataRepo(), boundingBoxUpLeft,boundingBoxDownRight)), HttpStatus.OK);
-	}*/
+	}
 	
 	@RequestMapping(value = "/data/filter/{capoluogo}/radius/{radius}", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweetsWithinRadius(@PathVariable("capoluogo") String capoluogo,
@@ -162,6 +150,6 @@ public class GeoTwitterController {
 		}
 		
 		return response;
-	}
+	} */
 	
 }

@@ -11,7 +11,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ import it.univpm.projectGeoTwitter.model.Place;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 
-class JsonManager {
+public class JsonManager {
 	
 	final static String idpath = new File("src/main/resources/id.txt").getAbsolutePath(); 				//Inserire path per il documento contenente gli id
 	static String url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets"
@@ -38,7 +37,7 @@ class JsonManager {
 	
 	public JsonManager() {}
 	
-	static String getJson() throws IOException, URLException{
+	public static String getJson() throws IOException, URLException{
 		String content = "";
 		String line = "";
 		URLConnection connection = new URL(url).openConnection();
@@ -46,14 +45,13 @@ class JsonManager {
 				"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 		InputStream input = connection.getInputStream();
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-		while ((line = reader.readLine()) != null) {
+		while ((line = new BufferedReader(new InputStreamReader(input)).readLine()) != null) {
 			content += line;
 		}
 		return content;
 	}
 	
-	static void loadData(String json, Map<String, TwitterData> data) throws JsonProcessingException{
+	public static void loadData(String json, Map<String, TwitterData> data) throws JsonProcessingException{
 		ArrayList<TwitterData> appoggio = new ArrayList<>();
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -75,7 +73,7 @@ class JsonManager {
 		}
 	}
 	
-	static void loadMetadata(Collection<TwitterMetadata> metadata) {
+	public static void loadMetadata(Collection<TwitterMetadata> metadata) {
 		metadata.add(new TwitterMetadata("id", "Numero identificativo del tweet", "String"));
 		metadata.add(new TwitterMetadata("text", "Testo del tweet", "String"));
 		metadata.add(new TwitterMetadata("place_id", "Identificativo della località da cui è stato inviato il tweet", "String"));

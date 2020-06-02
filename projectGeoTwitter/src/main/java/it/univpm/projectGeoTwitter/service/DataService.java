@@ -1,18 +1,14 @@
 package it.univpm.projectGeoTwitter.service;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.UnsatisfiedDependencyException;
-import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 import it.univpm.projectGeoTwitter.exception.URLException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
