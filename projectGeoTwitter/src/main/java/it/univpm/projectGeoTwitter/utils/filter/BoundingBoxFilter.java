@@ -4,6 +4,7 @@ import java.awt.geom.Path2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
@@ -14,6 +15,11 @@ public class BoundingBoxFilter {
 			HashMap<String, TwitterData> tweetsMap, String operator, double[] coordinatesUpLeft, double[] coordinatesDownRight) {
 		
 		ArrayList<TwitterData> tweetsWithinBoundingBox = new ArrayList<>();
+		
+		//LA CONDIZIONE DELL'IF DIPENDE DA COME VERRA' GESTITO DENTRO QUESTO CLASSE l'Object filterValue (ovvero la BoundingBox)
+		if(coordinatesDownRight[0] < coordinatesUpLeft[0] || coordinatesDownRight[1] > coordinatesUpLeft[1])
+			throw new BoundingBoxVertexException("Le coordinate dei vertici della bounding box non sono validi. "
+					+ "Il primo vertice deve essere posto in alto a sinistra rispetto al secondo");
 		
 		double[] boundingBoxLongit = {coordinatesUpLeft[0],
 									  coordinatesUpLeft[0],

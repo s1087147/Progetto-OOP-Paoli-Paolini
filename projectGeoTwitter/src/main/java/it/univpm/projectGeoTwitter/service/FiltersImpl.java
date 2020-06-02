@@ -39,7 +39,7 @@ public class FiltersImpl implements Filters {
 	}
 	
 	@Override
-	public Collection<TwitterData> getTweetsFiltered(
+	public Collection<TwitterData> getTweetsFiltered( //SERVE?? ABBIAMO GIA' FilterRunner CHE RESTITUISCE LA COLLEZIONE FILTRATA
 			HashMap<String, TwitterData> tweetsMap, String filter, String operator, Object filterValue) {
 			
 		return null;

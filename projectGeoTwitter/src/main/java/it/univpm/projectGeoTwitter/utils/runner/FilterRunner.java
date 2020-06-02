@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
+
+import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;
 
@@ -25,9 +27,11 @@ public class FilterRunner {
 		try {
 			Method filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, HashMap.class, String.class, Object.class);
 			filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, tweetsMap, operator, filterValue);
+			
 		} catch (NoSuchMethodException | SecurityException e) {
 			//GESTIONE ECCEZIONE
-			e.printStackTrace();
+			throw new FilterNotFoundException("Il filtro selezionato non è disponibile");
+			//e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			//GESTIONE ECCEZIONE
 			e.printStackTrace();

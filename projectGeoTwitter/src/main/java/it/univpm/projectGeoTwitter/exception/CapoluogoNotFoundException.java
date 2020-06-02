@@ -1,6 +1,6 @@
 package it.univpm.projectGeoTwitter.exception;
 
-public class CapoluogoNotFoundException extends IllegalArgumentException{
+public class CapoluogoNotFoundException extends IllegalArgumentException {
 	
 	public CapoluogoNotFoundException() {
 		super();

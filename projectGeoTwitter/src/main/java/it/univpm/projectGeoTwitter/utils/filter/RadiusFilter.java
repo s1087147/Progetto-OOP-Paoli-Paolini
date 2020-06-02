@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
+import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.Geo;
@@ -20,7 +21,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
 
-public class RadiusFilter extends Calculator{
+public class RadiusFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinRadius(
 			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue)
@@ -35,13 +36,16 @@ public class RadiusFilter extends Calculator{
 		String capoluogoName = jsonMap.get("capoluogo").toString();
 		ArrayList<Double> radius = (ArrayList<Double>) jsonMap.get("distance");
 		
+		if(radius.get(0) < 0 || radius.get(1) < 0)
+			throw new NegativeRadiusException();
+		
 		try {
 			Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName);
 			
 			if(operator.equals("inside")) {
 				for(TwitterData tweet : tweetsMap.values()) {
 					
-					double distance = distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
+					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance < radius.get(0))
 						tweetsWithinRadius.add(tweet);
 				}
@@ -50,7 +54,7 @@ public class RadiusFilter extends Calculator{
 			else if(operator.equals("outside")) {
 				for(TwitterData tweet : tweetsMap.values()) {
 					
-					double distance = distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
+					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance > radius.get(0))
 						tweetsWithinRadius.add(tweet);
 				}
@@ -59,7 +63,7 @@ public class RadiusFilter extends Calculator{
 			else if(operator.equals("beetween")) {
 				for(TwitterData tweet : tweetsMap.values()) {
 					
-					double distance = distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
+					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance > radius.get(0) && distance < radius.get(1))
 						tweetsWithinRadius.add(tweet);
 				}
@@ -68,8 +72,8 @@ public class RadiusFilter extends Calculator{
 				throw new OperatorNotFoundException("L'operatore richiesto non esiste");
 			
 			return tweetsWithinRadius;
-		}
-		catch(NoSuchMethodException e) {
+			
+		} catch(NoSuchMethodException e) {
 			throw new CapoluogoNotFoundException("Il campo inserito non fa riferimento ad alcun capoluogo");
 		}		
 	}

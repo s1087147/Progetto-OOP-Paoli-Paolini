@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Calculator {
 
-	private final static long R = 6371; //reaggio della terra (in Km)
+	private final static long R = 6371; //raggio della terra (in Km)
 	
 	public static double mean(ArrayList<Double> arrayDouble) {
 		
@@ -44,8 +44,6 @@ public class Calculator {
 				 * Math.cos(longit1-longit2));
 		
 		double distanzaKm = 1.60934 * distanzaMiglia;
-
-		System.out.println(distanzaKm);
 		
 		return distanzaKm;
 	}
