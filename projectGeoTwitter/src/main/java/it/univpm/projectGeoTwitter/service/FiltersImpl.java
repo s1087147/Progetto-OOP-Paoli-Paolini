@@ -31,11 +31,10 @@ public class FiltersImpl implements Filters {
 	}
 	
 	@Override
-	public ArrayList<TwitterData> filterBoundingBox(
+	public ArrayList<TwitterData> filterBoundingbox(
 			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue) {				
 		
-		//return BoundingBoxFilter.getTweetsWithinBoundingBox(tweetsMap, operator, filterValue);
-		return null;
+		return BoundingBoxFilter.getTweetsWithinBoundingBox(tweetsMap, operator, filterValue);
 	}
 	
 	@Override

@@ -17,7 +17,7 @@ public interface Filters {
 					throws SecurityException, IllegalAccessException,
 					IllegalArgumentException, InvocationTargetException;
 	
-	public abstract ArrayList<TwitterData> filterBoundingBox(
+	public abstract ArrayList<TwitterData> filterBoundingbox(
 			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue);
 	
 	public abstract Collection<TwitterData> getTweetsFiltered(

@@ -30,6 +30,7 @@ public class RadiusFilter {
 		
 		HashMap<String, Object> jsonMap = new ObjectMapper().convertValue(filterValue, new TypeReference<HashMap<String, Object>>(){});
 		
+		//CONTROLLO SUL TIPO DI CAPOLUOGO
 		String capoluogoName = jsonMap.get("capoluogo").toString();
 		filterValue = jsonMap.get("distanza");
 		
