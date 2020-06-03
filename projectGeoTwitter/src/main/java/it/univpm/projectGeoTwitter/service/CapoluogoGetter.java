@@ -13,7 +13,7 @@ public class CapoluogoGetter {
 		
 		CapoluoghiMarche capoluogoMarche = new CapoluoghiMarche();
 	    Class<CapoluoghiMarche> capoluogoClass = CapoluoghiMarche.class;
-	    String getterCapoluogoName = "get" + capoluogoName.substring(0, 1).toUpperCase() + capoluogoName.substring(1).toLowerCase();
+	    String getterCapoluogoName = "get" + capoluogoName.toLowerCase();
 		Method getterCapoluogo = capoluogoClass.getDeclaredMethod(getterCapoluogoName, null);
 		return (Geo) getterCapoluogo.invoke(capoluogoMarche, null);
 	}

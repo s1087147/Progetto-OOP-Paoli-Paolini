@@ -18,19 +18,19 @@ public class CapoluoghiMarche {
 	}
 	
 	
-	public Geo getAncona() {
+	public Geo getancona() {
 		return Ancona;
 	}
-	public Geo getAscoliPiceno() {
+	public Geo getascolipiceno() {
 		return AscoliPiceno;
 	}
-	public Geo getFermo() {
+	public Geo getfermo() {
 		return Fermo;
 	}
-	public Geo getMacerata() {
+	public Geo getmacerata() {
 		return Macerata;
 	}
-	public Geo getPesaroEUrbino() {
+	public Geo getpesaroeurbino() {
 		return PesaroEUrbino;
 	}
 	
