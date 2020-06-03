@@ -5,13 +5,17 @@ public class StatsCoord {
 	private double[] mean;
 	private double[] variance;
 	private double[] stdDev;
+	private double textAverageLength;
+	private int tweetsInsideMarche;
 	
-	public StatsCoord(double[] mean, double[] variance, double[] stdDev) {
+	public StatsCoord(double[] mean, double[] variance, double[] stdDev, double textAverageLength, int tweetsInsideMarche) {
 		
 		super();
 		this.mean = mean;
 		this.variance = variance;
 		this.stdDev = stdDev;
+		this.textAverageLength = textAverageLength;
+		this.tweetsInsideMarche = tweetsInsideMarche;
 	}
 	
 	public double[] getMean() {
@@ -31,5 +35,17 @@ public class StatsCoord {
 	}
 	public void setStdDev(double[] stdDev) {
 		this.stdDev = stdDev;
+	}
+	public double getTextAverageLength() {
+		return textAverageLength;
+	}
+	public void setTextAverageLength(double textAverageLength) {
+		this.textAverageLength = textAverageLength;
+	}
+	public int getTweetsInsideMarche() {
+		return tweetsInsideMarche;
+	}
+	public void setTweetsInsideMarche(int tweetsInsideMarche) {
+		this.tweetsInsideMarche = tweetsInsideMarche;
 	}
 }

@@ -24,6 +24,10 @@ public interface Stats {
 	
 	public abstract double getMin(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
 	
+	public abstract double getTextAverageLength(HashMap<String, TwitterData> tweetsMap);
+	
+	public abstract int countTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap);
+	
 	public abstract ArrayList<TwitterData> getTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap);
 	
 	public abstract boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id);

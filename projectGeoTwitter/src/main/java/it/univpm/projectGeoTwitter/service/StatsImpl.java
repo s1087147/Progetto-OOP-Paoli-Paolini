@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
+import it.univpm.projectGeoTwitter.utils.stats.CountTweetsInsideMarche;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMaxDistance;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMeanDistance;
@@ -14,6 +15,7 @@ import it.univpm.projectGeoTwitter.utils.stats.GeoStdDevCoord;
 import it.univpm.projectGeoTwitter.utils.stats.GeoStdDevDistance;
 import it.univpm.projectGeoTwitter.utils.stats.GeoVarianceCoord;
 import it.univpm.projectGeoTwitter.utils.stats.GeoVarianceDistance;
+import it.univpm.projectGeoTwitter.utils.stats.TextAverageLength;
 import it.univpm.projectGeoTwitter.utils.stats.TweetInsideMarche;
 import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
 
@@ -65,6 +67,18 @@ public class StatsImpl implements Stats {
 	public double getMin(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
 		
 		return GeoMinDistance.getMin(tweetsMap, capoluogo);
+	}
+	
+	@Override
+	public double getTextAverageLength(HashMap<String, TwitterData> tweetsMap) {
+		
+		return TextAverageLength.averageLength(tweetsMap);
+	}
+	
+	@Override
+	public int countTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap) {
+		
+		return CountTweetsInsideMarche.insideMarche(tweetsMap);
 	}
 	
 	@Override

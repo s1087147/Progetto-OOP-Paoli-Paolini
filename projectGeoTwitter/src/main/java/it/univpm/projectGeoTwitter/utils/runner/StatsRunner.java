@@ -39,7 +39,9 @@ public class StatsRunner extends StatsImpl{
 			return new StatsCoord(
 					statsInstance.getMean(tweetsMap),
 					statsInstance.getVariance(tweetsMap),
-					statsInstance.getStdDev(tweetsMap));
+					statsInstance.getStdDev(tweetsMap),
+					statsInstance.getTextAverageLength(tweetsMap),
+					statsInstance.countTweetsInsideMarche(tweetsMap));
 		}
 	}
 }
