@@ -23,7 +23,7 @@ public class RadiusFilter {
 	public static ArrayList<TwitterData> getTweetsWithinRadius(
 			Collection<TwitterData> tweets, String operator, Object filterValue)
 					throws SecurityException, IllegalAccessException,
-					IllegalArgumentException, InvocationTargetException{
+					IllegalArgumentException, InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException{
 		
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
 		if(filterValue.getClass() != LinkedHashMap.class)
@@ -37,7 +37,6 @@ public class RadiusFilter {
 		
 		try {
 			Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName);
-			System.out.println("Capoluogo: " + capoluogo.toString());
 			
 			if(operator.equals("inside")) {
 				double radius = getRadius(filterValue);
@@ -81,10 +80,10 @@ public class RadiusFilter {
 	private static ArrayList<Double> getRadiusArray(Object filterValue) {
 		ArrayList<Double> radius = new ArrayList<>();
 		if (filterValue.getClass() == ArrayList.class) {
-			for(Number num : (ArrayList<Number>)filterValue)
+			for(Number num : (ArrayList<Number>)filterValue)		//NESSUN CONTROLLO SUL NUMERO DI ELEMENTI NELL'ARRAY
 				radius.add(num.doubleValue());
 			if(radius.get(0)< 0 || radius.get(1) < 0)
-				throw new NegativeRadiusException();
+				throw new NegativeRadiusException("Non sono ammessi valori negativi per la distanza.");
 		}
 		else
 			throw new IllegalValueException("Valori della distanza non validi.");

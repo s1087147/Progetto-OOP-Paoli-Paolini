@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
+import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
 import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
@@ -51,14 +52,15 @@ public class GeoTwitterController {
 	}
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
-	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) {
+	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) throws BoundingBoxVertexException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NegativeRadiusException {
 		
-		try{
+		/*try{
 			return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 			
 		} catch(Exception e) {
 			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
-		}
+		}*/
+		return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 	}
 	
 	 /*
