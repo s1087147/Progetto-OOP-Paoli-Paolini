@@ -40,7 +40,7 @@ public class GeoTwitterController {
 			@RequestParam(name = "capoluogo") Optional<String> capoluogo) throws NoSuchMethodException, SecurityException,
 					IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		try {
-			return new ResponseEntity<>(StatsRunner.getStats(dataService.getDataRepo(), capoluogo), HttpStatus.OK);
+			return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo), HttpStatus.OK);
 			
 		} catch(Exception e) {
 			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
@@ -49,8 +49,8 @@ public class GeoTwitterController {
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
 	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) {
-		try {
-			return new ResponseEntity<>(FilterRunner.getFilters(dataService.getDataRepo(), body), HttpStatus.OK);
+		try{
+			return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 			
 		} catch(Exception e) {
 			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
@@ -59,11 +59,16 @@ public class GeoTwitterController {
 	
 	 /*
 	  * {
+	  * "filters":[
+	  * 	{
 	  * 	filter: String
 	  * 	operator: String
-	  * 	filterValue: Object
-	  * 	capoluogo: String
+	  * 	filterValue: Object		//Capoluogo e distanza unici dati in italiano
+	  * 	},
+	  * 	{...}
+	  * ]
 	  * }
+	  * 
 	 */
 	 
 	

@@ -2,6 +2,7 @@ package it.univpm.projectGeoTwitter.utils.filter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -20,7 +21,7 @@ import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
 public class RadiusFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinRadius(
-			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue)
+			Collection<TwitterData> tweets, String operator, Object filterValue)
 					throws SecurityException, IllegalAccessException,
 					IllegalArgumentException, InvocationTargetException{
 		
@@ -40,7 +41,7 @@ public class RadiusFilter {
 			
 			if(operator.equals("inside")) {
 				double radius = getRadius(filterValue);
-				for(TwitterData tweet : tweetsMap.values()) {
+				for(TwitterData tweet : tweets) {
 					
 					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance < radius)
@@ -50,7 +51,7 @@ public class RadiusFilter {
 			
 			else if(operator.equals("outside")) {
 				double radius = getRadius(filterValue);
-				for(TwitterData tweet : tweetsMap.values()) {
+				for(TwitterData tweet : tweets) {
 					
 					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance > radius)
@@ -60,7 +61,7 @@ public class RadiusFilter {
 			
 			else if(operator.equals("between")) {
 				ArrayList<Double> radius = getRadiusArray(filterValue);
-				for(TwitterData tweet : tweetsMap.values()) {
+				for(TwitterData tweet : tweets) {
 					
 					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
 					if(distance > radius.get(0) && distance < radius.get(1))

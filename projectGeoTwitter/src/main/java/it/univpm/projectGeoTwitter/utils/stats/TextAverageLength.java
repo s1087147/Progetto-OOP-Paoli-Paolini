@@ -1,19 +1,19 @@
 package it.univpm.projectGeoTwitter.utils.stats;
 
-import java.util.HashMap;
+import java.util.Collection;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TextAverageLength {
 
-	public static double averageLength(HashMap<String, TwitterData> tweetsMap) {
+	public static double averageLength(Collection<TwitterData> tweets) {
 		
 		double totalLength = 0;
 		
-		for(TwitterData tweet : tweetsMap.values()) {
+		for(TwitterData tweet : tweets) {
 			totalLength += tweet.getText().length();
 		}
 		
-		return totalLength / tweetsMap.size();
+		return totalLength / tweets.size();
 	}
 }

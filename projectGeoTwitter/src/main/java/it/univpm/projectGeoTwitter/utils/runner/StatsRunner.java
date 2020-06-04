@@ -1,7 +1,7 @@
 package it.univpm.projectGeoTwitter.utils.runner;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.Optional;
 
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
@@ -14,7 +14,7 @@ import it.univpm.projectGeoTwitter.service.StatsImpl;
 
 public class StatsRunner extends StatsImpl{
 
-	public static Object getStats(HashMap<String, TwitterData> tweetsMap, Optional<String> capoluogoName)
+	public static Object getStats(Collection<TwitterData> tweets, Optional<String> capoluogoName)
 			throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		
 		StatsImpl statsInstance = new StatsImpl();
@@ -24,11 +24,11 @@ public class StatsRunner extends StatsImpl{
 				
 				Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName.get());
 				
-				return new StatsDistance(statsInstance.getMean(tweetsMap, capoluogo),
-						statsInstance.getVariance(tweetsMap, capoluogo),
-						statsInstance.getStdDev(tweetsMap, capoluogo),
-						statsInstance.getMax(tweetsMap, capoluogo),
-						statsInstance.getMin(tweetsMap, capoluogo));
+				return new StatsDistance(statsInstance.getMean(tweets, capoluogo),
+						statsInstance.getVariance(tweets, capoluogo),
+						statsInstance.getStdDev(tweets, capoluogo),
+						statsInstance.getMax(tweets, capoluogo),
+						statsInstance.getMin(tweets, capoluogo));
 				
 			} catch(NoSuchMethodException e) {
 				throw new CapoluogoNotFoundException("Il parametro inserito non fa riferimento ad alcun capoluogo");
@@ -37,11 +37,11 @@ public class StatsRunner extends StatsImpl{
 		else {
 			
 			return new StatsCoord(
-					statsInstance.getMean(tweetsMap),
-					statsInstance.getVariance(tweetsMap),
-					statsInstance.getStdDev(tweetsMap),
-					statsInstance.getTextAverageLength(tweetsMap),
-					statsInstance.countTweetsInsideMarche(tweetsMap));
+					statsInstance.getMean(tweets),
+					statsInstance.getVariance(tweets),
+					statsInstance.getStdDev(tweets),
+					statsInstance.getTextAverageLength(tweets),
+					statsInstance.countTweetsInsideMarche(tweets));
 		}
 	}
 }

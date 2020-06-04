@@ -60,7 +60,7 @@ public class DataService {
 		return metadata;
 	}
 
-	public static HashMap<String, TwitterData> getDataRepo() {
+	/*public static HashMap<String, TwitterData> getDataRepo() {
 		return dataRepo;
-	}
+	}*/ 
 }

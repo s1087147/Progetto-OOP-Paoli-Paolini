@@ -2,6 +2,7 @@ package it.univpm.projectGeoTwitter.utils.filter;
 
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,7 +18,7 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 public class BoundingBoxFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue) {
+			Collection<TwitterData> tweets, String operator, Object filterValue) {
 		
 		ArrayList<TwitterData> tweetsWithinBoundingBox = new ArrayList<>();
 		
@@ -46,7 +47,7 @@ public class BoundingBoxFilter {
 		else
 			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
 		
-		for(TwitterData tweet : tweetsMap.values()) {
+		for(TwitterData tweet : tweets) {
 			
 			if(boundingBox.contains(tweet.getLongit(), tweet.getLatit()) == choice) {
 				

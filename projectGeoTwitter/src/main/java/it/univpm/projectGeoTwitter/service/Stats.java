@@ -1,6 +1,7 @@
 package it.univpm.projectGeoTwitter.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.model.Geo;
@@ -8,27 +9,27 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public interface Stats {
 
-	public abstract double[] getMean(HashMap<String, TwitterData> tweetsMap);
+	public abstract double[] getMean(Collection<TwitterData> tweets);
 	
-	public abstract double getMean(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
+	public abstract double getMean(Collection<TwitterData> tweets, Geo capoluogo);
 	
-	public abstract double[] getVariance(HashMap<String, TwitterData> tweetsMap);
+	public abstract double[] getVariance(Collection<TwitterData> tweets);
 	
-	public abstract double getVariance(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
+	public abstract double getVariance(Collection<TwitterData> tweets, Geo capoluogo);
 	
-	public abstract double[] getStdDev(HashMap<String, TwitterData> tweetsMap);
+	public abstract double[] getStdDev(Collection<TwitterData> tweets);
 	
-	public abstract double getStdDev(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
+	public abstract double getStdDev(Collection<TwitterData> tweets, Geo capoluogo);
 	
-	public abstract double getMax(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
+	public abstract double getMax(Collection<TwitterData> tweets, Geo capoluogo);
 	
-	public abstract double getMin(HashMap<String, TwitterData> tweetsMap, Geo capoluogo);
+	public abstract double getMin(Collection<TwitterData> tweets, Geo capoluogo);
 	
-	public abstract double getTextAverageLength(HashMap<String, TwitterData> tweetsMap);
+	public abstract double getTextAverageLength(Collection<TwitterData> tweets);
 	
-	public abstract int countTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap);
+	public abstract int countTweetsInsideMarche(Collection<TwitterData> tweets);
 	
-	public abstract ArrayList<TwitterData> getTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap);
+	public abstract ArrayList<TwitterData> getTweetsInsideMarche(Collection<TwitterData> tweets);
 	
-	public abstract boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id);
+	public abstract boolean tweetInsideMarche(HashMap<String, TwitterData> tweets, String id);
 }

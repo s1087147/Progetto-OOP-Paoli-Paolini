@@ -1,6 +1,7 @@
 package it.univpm.projectGeoTwitter.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 
@@ -22,73 +23,73 @@ import it.univpm.projectGeoTwitter.utils.stats.TweetsInsideMarche;
 public class StatsImpl implements Stats {
 	
 	@Override
-	public double[] getMean(HashMap<String, TwitterData> tweetsMap) {
+	public double[] getMean(Collection<TwitterData> tweets) {
 
-		return GeoMeanCoord.getMean(tweetsMap);
+		return GeoMeanCoord.getMean(tweets);
 	}
 	
 	@Override
-	public double getMean(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
+	public double getMean(Collection<TwitterData> tweets, Geo capoluogo) {
 
-		return GeoMeanDistance.getMean(tweetsMap, capoluogo);
+		return GeoMeanDistance.getMean(tweets, capoluogo);
 	}
 
 	@Override
-	public double[] getVariance(HashMap<String, TwitterData> tweetsMap) {
+	public double[] getVariance(Collection<TwitterData> tweets) {
 
-		return GeoVarianceCoord.getVariance(tweetsMap);
-	}
-	
-	@Override
-	public double getVariance(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
-
-		return GeoVarianceDistance.getVariance(tweetsMap, capoluogo);
+		return GeoVarianceCoord.getVariance(tweets);
 	}
 	
 	@Override
-	public double[] getStdDev(HashMap<String, TwitterData> tweetsMap) {
+	public double getVariance(Collection<TwitterData> tweets, Geo capoluogo) {
 
-		return GeoStdDevCoord.getStdDev(tweetsMap);
+		return GeoVarianceDistance.getVariance(tweets, capoluogo);
 	}
 	
 	@Override
-	public double getStdDev(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
+	public double[] getStdDev(Collection<TwitterData> tweets) {
 
-		return GeoStdDevDistance.getStdDev(tweetsMap, capoluogo);
+		return GeoStdDevCoord.getStdDev(tweets);
 	}
 	
 	@Override
-	public double getMax(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
+	public double getStdDev(Collection<TwitterData> tweets, Geo capoluogo) {
+
+		return GeoStdDevDistance.getStdDev(tweets, capoluogo);
+	}
+	
+	@Override
+	public double getMax(Collection<TwitterData> tweets, Geo capoluogo) {
 		
-		return GeoMaxDistance.getMax(tweetsMap, capoluogo);
+		return GeoMaxDistance.getMax(tweets, capoluogo);
 	}
 	
 	@Override
-	public double getMin(HashMap<String, TwitterData> tweetsMap, Geo capoluogo) {
+	public double getMin(Collection<TwitterData> tweets, Geo capoluogo) {
 		
-		return GeoMinDistance.getMin(tweetsMap, capoluogo);
+		return GeoMinDistance.getMin(tweets, capoluogo);
 	}
 	
 	@Override
-	public double getTextAverageLength(HashMap<String, TwitterData> tweetsMap) {
+	public double getTextAverageLength(Collection<TwitterData> tweets) {
 		
-		return TextAverageLength.averageLength(tweetsMap);
+		return TextAverageLength.averageLength(tweets);
 	}
 	
 	@Override
-	public int countTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap) {
+	public int countTweetsInsideMarche(Collection<TwitterData> tweets) {
 		
-		return CountTweetsInsideMarche.insideMarche(tweetsMap);
+		return CountTweetsInsideMarche.insideMarche(tweets);
 	}
 	
 	@Override
-	public ArrayList<TwitterData> getTweetsInsideMarche(HashMap<String, TwitterData> tweetsMap) {
+	public ArrayList<TwitterData> getTweetsInsideMarche(Collection<TwitterData> tweets) {
 		
-		return TweetsInsideMarche.tweetsInsideMarche(tweetsMap);
+		return TweetsInsideMarche.tweetsInsideMarche(tweets);
 	}
 	
 	@Override
-	public boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id) {
+	public boolean tweetInsideMarche(HashMap<String, TwitterData> tweetsMap, String id) {		//??
 		
 		return TweetInsideMarche.tweetInsideMarche(tweetsMap, id);
 	}

@@ -1,7 +1,7 @@
 package it.univpm.projectGeoTwitter.utils.filter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
@@ -9,7 +9,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TextFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithThisText(HashMap<String, TwitterData> tweetsMap, String operator, Object filterValue) {
+	public static ArrayList<TwitterData> getTweetsWithThisText(Collection<TwitterData> tweets, String operator, Object filterValue) {
 		
 		ArrayList<TwitterData> tweetsWithThisText = new ArrayList<TwitterData>();
 		if(filterValue.getClass() != String.class)
@@ -25,7 +25,7 @@ public class TextFilter {
 		else
 			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
 		
-		for(TwitterData tweet : tweetsMap.values()) {
+		for(TwitterData tweet : tweets) {
 			
 			if(tweet.getText().contains(text) == choice) {
 					
