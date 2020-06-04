@@ -3,6 +3,8 @@ package it.univpm.projectGeoTwitter.service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public interface Filters {

@@ -3,6 +3,8 @@ package it.univpm.projectGeoTwitter.service;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
 
+import it.univpm.projectGeoTwitter.exception.CoordinatesException;
+
 public class Calculator {
 
 	private final static long R = 6371; //raggio della terra (in Km)
@@ -54,7 +56,10 @@ public class Calculator {
 		
 		poligono.moveTo(arrayLongit[0], arrayLatit[0]);
 		for(int i = 1; i < arrayLongit.length; i++) {
-			poligono.lineTo(arrayLongit[i], arrayLatit[i]);
+			if(arrayLongit[i] < -180 ||  arrayLongit[i] > 180 || arrayLongit[i] < -90 || arrayLongit[i] > 90)
+				throw new CoordinatesException("Una o più delle coordinate inserite non è valida.");
+			else
+				poligono.lineTo(arrayLongit[i], arrayLongit[i]);
 		}
 		poligono.closePath();
 		

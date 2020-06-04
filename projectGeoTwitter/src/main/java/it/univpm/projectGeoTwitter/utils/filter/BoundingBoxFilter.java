@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
+import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
@@ -36,7 +37,13 @@ public class BoundingBoxFilter {
 
 		double[] boundingBoxLatit = { topleftCoords.get(1), bottomrightCoords.get(1), bottomrightCoords.get(1), topleftCoords.get(1) };
 		
-		Path2D boundingBox = Calculator.polygonGenerator(boundingBoxLongit, boundingBoxLatit);
+		Path2D boundingBox;
+		try {
+			boundingBox = Calculator.polygonGenerator(boundingBoxLongit, boundingBoxLatit);
+		
+		} catch(CoordinatesException e) {
+			throw e;
+		}
 		
 		boolean choice;
 		

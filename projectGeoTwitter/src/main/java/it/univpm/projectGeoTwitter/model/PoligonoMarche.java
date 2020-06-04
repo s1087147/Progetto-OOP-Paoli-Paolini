@@ -2,6 +2,7 @@ package it.univpm.projectGeoTwitter.model;
 
 import java.awt.geom.Path2D;
 
+import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
 public class PoligonoMarche {
@@ -11,8 +12,12 @@ public class PoligonoMarche {
 	private final double[] latitMarche = {43.64800079902171,42.65820178455667,43.072900581493215,44.19795903948531};
 	
 	public PoligonoMarche() {
+		try {
+			poligonoMarche = Calculator.polygonGenerator(longitMarche, latitMarche);
 		
-		poligonoMarche = Calculator.polygonGenerator(longitMarche, latitMarche);
+		} catch(CoordinatesException e) {
+			throw e;
+		}
 	}
 	
 	public Path2D getPoligonoMarche() {

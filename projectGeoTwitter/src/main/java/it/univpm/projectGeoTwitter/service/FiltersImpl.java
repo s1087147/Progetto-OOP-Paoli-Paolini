@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.filter.BoundingBoxFilter;
 import it.univpm.projectGeoTwitter.utils.filter.RadiusFilter;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;
@@ -15,7 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FilterRunner {
 
-	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body) {
+	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body) throws NoSuchMethodException,
+		SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, BoundingBoxVertexException {
 		
 		FiltersImpl filterInstance = new FiltersImpl();						//METODI DI FILTERSIMPL NON STATICI
 		Collection<TwitterData> filteredData = tweets;						//INIZIALIZZO A TWEETS?
@@ -31,26 +33,20 @@ public class FilterRunner {
 
 			filter = "filter" + filter.substring(0, 1).toUpperCase() + filter.substring(1).toLowerCase();
 			
-			try {
-				Method filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class,
-						Object.class);
-				filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator,
-						filterValue);		//PASSO FILTEREDDATA INVECE CHE SU TWEETSMAP
+			Method filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class, Object.class);
+			filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator, filterValue);
 
-			} catch (NoSuchMethodException | SecurityException e) {
-				// GESTIONE ECCEZIONE
-				throw new FilterNotFoundException("Il filtro selezionato non è disponibile");
-				// e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// GESTIONE ECCEZIONE
-				e.printStackTrace();
+			/*
+			catch (IllegalAccessException e) {
+				throw e;
+				
 			} catch (IllegalArgumentException e) {
-				// GESTIONE ECCEZIONE
-				e.printStackTrace();
+				throw e;
+				
 			} catch (InvocationTargetException e) {
-				// GESTIONE ECCEZIONE
-				e.printStackTrace();
+				throw e;
 			}
+			*/
 		}
 		return filteredData;
 	}

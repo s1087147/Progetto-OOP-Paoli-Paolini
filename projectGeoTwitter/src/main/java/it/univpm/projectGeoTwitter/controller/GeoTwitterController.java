@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
+import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
 import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
@@ -35,12 +37,13 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
 	}
 	 
-	@RequestMapping(value="/stats", method = RequestMethod.GET)
+	@RequestMapping(value="/stats", method = RequestMethod.POST) //HO SOSTITUITO "GET" CON "POST"
 	public ResponseEntity<Object> getStats(
-			@RequestParam(name = "capoluogo") Optional<String> capoluogo) throws NoSuchMethodException, SecurityException,
-					IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+			@RequestParam(name = "capoluogo") Optional<String> capoluogo, @RequestBody Optional<Object> body) throws SecurityException,
+				CapoluogoNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
 		try {
-			return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo), HttpStatus.OK);
+			return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo, body), HttpStatus.OK);
 			
 		} catch(Exception e) {
 			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
@@ -49,6 +52,7 @@ public class GeoTwitterController {
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
 	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) {
+		
 		try{
 			return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 			
