@@ -47,4 +47,9 @@ public class ErrorHandler {
 	public ResponseEntity<Object> filterNotFoundHandler(FilterNotFoundException e){
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
+	
+	@ExceptionHandler(EmptyCollectionException.class)
+	public ResponseEntity<Object> emptyCollectionHandler(EmptyCollectionException e){
+		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
+	}
 }

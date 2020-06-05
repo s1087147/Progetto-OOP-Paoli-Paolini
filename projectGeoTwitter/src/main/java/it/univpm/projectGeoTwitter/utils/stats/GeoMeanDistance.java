@@ -7,7 +7,7 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMeanDistance extends Calculator{
+public class GeoMeanDistance {
 
 	public static double getMean(Collection<TwitterData> tweets, Geo capoluogo) {
 
@@ -18,10 +18,10 @@ public class GeoMeanDistance extends Calculator{
 		
 		for(TwitterData tweet : tweets) {
 			
-			distancesFromCapoluogo.add(distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
+			distancesFromCapoluogo.add(Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
 		}
 		
-		distancesMean = mean(distancesFromCapoluogo);
+		distancesMean = Calculator.mean(distancesFromCapoluogo);
 		
 		return distancesMean;
 	}

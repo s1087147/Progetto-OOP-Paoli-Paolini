@@ -6,7 +6,7 @@ import java.util.Collection;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoVarianceCoord extends Calculator {
+public class GeoVarianceCoord {
 
 	public static double[] getVariance(Collection<TwitterData> tweets) {
 
@@ -21,8 +21,8 @@ public class GeoVarianceCoord extends Calculator {
 			coordinatesLatit.add(tweet.getLatit());
 		}
 		
-		coordinatesVariance[0] = variance(coordinatesLongit, coordinatesMean[0]);
-		coordinatesVariance[1] = variance(coordinatesLatit, coordinatesMean[1]);
+		coordinatesVariance[0] = Calculator.variance(coordinatesLongit, coordinatesMean[0]);
+		coordinatesVariance[1] = Calculator.variance(coordinatesLatit, coordinatesMean[1]);
 		
 		return coordinatesVariance;
 	}

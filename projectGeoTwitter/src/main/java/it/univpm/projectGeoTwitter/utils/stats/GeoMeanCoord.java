@@ -6,7 +6,7 @@ import java.util.Collection;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMeanCoord extends Calculator {
+public class GeoMeanCoord {
 
 	public static double[] getMean(Collection<TwitterData> tweets) {
 
@@ -19,8 +19,8 @@ public class GeoMeanCoord extends Calculator {
 			coordinatesLatit.add(tweet.getLatit());
 		}
 		
-		coordinatesMean[0] = mean(coordinatesLongit);
-		coordinatesMean[1] = mean(coordinatesLatit);
+		coordinatesMean[0] = Calculator.mean(coordinatesLongit);
+		coordinatesMean[1] = Calculator.mean(coordinatesLatit);
 		
 		return coordinatesMean;
 	}

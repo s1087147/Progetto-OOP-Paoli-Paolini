@@ -60,8 +60,7 @@ public class Calculator {
 				throw new CoordinatesException("Una o più delle coordinate inserite non è valida.");
 			}
 			else {
-				poligono.lineTo(arrayLongit[i], arrayLongit[i]);
-				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				poligono.lineTo(arrayLongit[i], arrayLatit[i]);
 			}
 		}
 		poligono.closePath();

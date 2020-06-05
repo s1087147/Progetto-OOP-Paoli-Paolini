@@ -14,11 +14,13 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.filter.BoundingBoxFilter;
 import it.univpm.projectGeoTwitter.utils.filter.RadiusFilter;
 import it.univpm.projectGeoTwitter.utils.filter.TextFilter;
+import it.univpm.projectGeoTwitter.utils.filter.TweetsMarche;
 
 public class FiltersImpl implements Filters {
 
 	@Override
-	public ArrayList<TwitterData> filterText(Collection<TwitterData> tweets, String operator, Object filterValue) {
+	public ArrayList<TwitterData> filterText(Collection<TwitterData> tweets, String operator, Object filterValue)
+			throws IllegalValueException, OperatorNotFoundException {
 		
 		return TextFilter.getTweetsWithThisText(tweets, operator, filterValue);
 	}
@@ -26,7 +28,7 @@ public class FiltersImpl implements Filters {
 	@Override
 	public ArrayList<TwitterData> filterDistance(
 			Collection<TwitterData> tweets, String operator, Object filterValue) throws IllegalAccessException,
-			InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException {
+				InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException {
 		
 		
 		return RadiusFilter.getTweetsWithinRadius(tweets, operator, filterValue);
@@ -39,5 +41,12 @@ public class FiltersImpl implements Filters {
 				CoordinatesException, IllegalValueException, OperatorNotFoundException {				
 		
 		return BoundingBoxFilter.getTweetsWithinBoundingBox(tweets, operator, filterValue);
+	}
+	
+	@Override
+	public ArrayList<TwitterData> filterMarche(
+			Collection<TwitterData> tweets, String operator, Object filterValue) throws CoordinatesException {				
+		
+		return TweetsMarche.getTweetsMarche(tweets, operator, filterValue);
 	}
 }

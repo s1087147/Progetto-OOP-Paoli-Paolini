@@ -8,7 +8,7 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMinDistance extends Calculator {
+public class GeoMinDistance {
 
 public static double getMin(Collection<TwitterData> tweets, Geo capoluogo) {
 		
@@ -17,7 +17,7 @@ public static double getMin(Collection<TwitterData> tweets, Geo capoluogo) {
 		double capoluogoLatit = capoluogo.getLatit();
 		
 		for(TwitterData tweet : tweets) {
-			distances.add(distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
+			distances.add(Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
 		}
 		
 		return Collections.min(distances);

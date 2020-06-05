@@ -13,6 +13,7 @@ import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
+import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;
 
@@ -23,7 +24,7 @@ public class FilterRunner {
 
 	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body) throws BoundingBoxVertexException,
 		NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
-		CapoluogoNotFoundException, FilterNotFoundException {
+		CapoluogoNotFoundException, FilterNotFoundException, OperatorNotFoundException {
 		
 		FiltersImpl filterInstance = new FiltersImpl();
 		Collection<TwitterData> filteredData = tweets;
@@ -42,7 +43,8 @@ public class FilterRunner {
 				
 				Method filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class, Object.class);
 				filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator, filterValue);
-			} catch (NoSuchMethodException nsme) {
+				
+			} catch (NoSuchMethodException e) {
 				throw new FilterNotFoundException("Nome del filtro non valido");
 				
 			} catch (IllegalAccessException | IllegalArgumentException e) {

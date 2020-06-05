@@ -19,6 +19,7 @@ import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
+import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
 import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
@@ -41,23 +42,19 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(dataService.getMetadata(), HttpStatus.OK);
 	}
 	 
-	@RequestMapping(value="/stats", method = RequestMethod.POST) //HO SOSTITUITO "GET" CON "POST"
-	public ResponseEntity<Object> getStats(
-			@RequestParam(name = "capoluogo") Optional<String> capoluogo, @RequestBody Optional<Object> body) throws SecurityException,
-				CapoluogoNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	@RequestMapping(value="/stats", method = RequestMethod.POST)
+	public ResponseEntity<Object> getStats(@RequestParam(name = "capoluogo") Optional<String> capoluogo,
+			@RequestBody Optional<Object> body) throws BoundingBoxVertexException, NegativeRadiusException, IllegalValueException,
+				CoordinatesException, GenericErrorException, InvocationTargetException, CapoluogoNotFoundException,
+				FilterNotFoundException, OperatorNotFoundException {
 		
-		try {
-			return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo, body), HttpStatus.OK);
-			
-		} catch(Exception e) {
-			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
-		}
+		return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo, body), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
 	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) throws BoundingBoxVertexException,
-	NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
-	CapoluogoNotFoundException, FilterNotFoundException {
+		NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
+		CapoluogoNotFoundException, FilterNotFoundException, OperatorNotFoundException {
 		
 		return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 	}

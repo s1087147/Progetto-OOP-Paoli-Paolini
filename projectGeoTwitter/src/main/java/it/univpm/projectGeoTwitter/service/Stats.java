@@ -28,8 +28,4 @@ public interface Stats {
 	public abstract double getTextAverageLength(Collection<TwitterData> tweets);
 	
 	public abstract int countTweetsInsideMarche(Collection<TwitterData> tweets);
-	
-	public abstract ArrayList<TwitterData> getTweetsInsideMarche(Collection<TwitterData> tweets);
-	
-	public abstract boolean tweetInsideMarche(HashMap<String, TwitterData> tweets, String id);
 }

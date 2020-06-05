@@ -7,7 +7,7 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoVarianceDistance extends Calculator {
+public class GeoVarianceDistance {
 
 	public static double getVariance(Collection<TwitterData> tweets, Geo capoluogo) {
 
@@ -20,10 +20,10 @@ public class GeoVarianceDistance extends Calculator {
 		
 		for(TwitterData tweet : tweets) {
 			
-			distancesFromCapoluogo.add(distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
+			distancesFromCapoluogo.add(Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
 		}
 		
-		distancesMean = variance(distancesFromCapoluogo, distancesMean);
+		distancesMean = Calculator.variance(distancesFromCapoluogo, distancesMean);
 		
 		return distancesMean;
 	}

@@ -8,7 +8,7 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
-public class GeoMaxDistance extends Calculator {
+public class GeoMaxDistance {
 
 	public static double getMax(Collection<TwitterData> tweets, Geo capoluogo) {
 		
@@ -17,7 +17,7 @@ public class GeoMaxDistance extends Calculator {
 		double capoluogoLatit = capoluogo.getLatit();
 		
 		for(TwitterData tweet : tweets) {
-			distances.add(distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
+			distances.add(Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogoLongit, capoluogoLatit));
 		}
 		
 		return Collections.max(distances);
