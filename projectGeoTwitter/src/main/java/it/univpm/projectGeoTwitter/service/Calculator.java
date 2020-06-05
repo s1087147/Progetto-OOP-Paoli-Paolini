@@ -50,16 +50,19 @@ public class Calculator {
 		return distanzaKm;
 	}
 	
-	public static Path2D polygonGenerator(double[] arrayLongit, double[] arrayLatit) {
+	public static Path2D polygonGenerator(double[] arrayLongit, double[] arrayLatit) throws CoordinatesException {
 		
 		Path2D poligono = new Path2D.Double();
 		
 		poligono.moveTo(arrayLongit[0], arrayLatit[0]);
 		for(int i = 1; i < arrayLongit.length; i++) {
-			if(arrayLongit[i] < -180 ||  arrayLongit[i] > 180 || arrayLongit[i] < -90 || arrayLongit[i] > 90)
+			if(arrayLongit[i] < -180 ||  arrayLongit[i] > 180 || arrayLatit[i] < -90 || arrayLatit[i] > 90) {
 				throw new CoordinatesException("Una o più delle coordinate inserite non è valida.");
-			else
+			}
+			else {
 				poligono.lineTo(arrayLongit[i], arrayLongit[i]);
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			}
 		}
 		poligono.closePath();
 		

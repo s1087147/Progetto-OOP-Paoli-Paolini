@@ -18,13 +18,33 @@ public class ErrorHandler {
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
 	
-	@ExceptionHandler(NegativeRadiusException.class)		//NON FUNZIONANTE
+	@ExceptionHandler(NegativeRadiusException.class)
 	public ResponseEntity<Object> negativeRadiusHandler(NegativeRadiusException e){
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
 	
 	@ExceptionHandler(IllegalValueException.class)
 	public ResponseEntity<Object> illegalValueHandler(IllegalValueException e){
+		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
+	}
+	
+	@ExceptionHandler(BoundingBoxVertexException.class)
+	public ResponseEntity<Object> boundingBoxVertexHandler(BoundingBoxVertexException e){
+		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
+	}
+	
+	@ExceptionHandler(CoordinatesException.class)
+	public ResponseEntity<Object> coordinatesHandler(CoordinatesException e){
+		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
+	}
+	
+	@ExceptionHandler(GenericErrorException.class)
+	public ResponseEntity<Object> genericErrorHandler(GenericErrorException e){
+		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
+	}
+	
+	@ExceptionHandler(FilterNotFoundException.class)
+	public ResponseEntity<Object> filterNotFoundHandler(FilterNotFoundException e){
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
 }

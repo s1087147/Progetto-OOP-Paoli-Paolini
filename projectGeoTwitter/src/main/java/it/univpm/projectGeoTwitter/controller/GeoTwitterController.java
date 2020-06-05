@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
+import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
+import it.univpm.projectGeoTwitter.exception.GenericErrorException;
+import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;
@@ -52,14 +55,10 @@ public class GeoTwitterController {
 	}
 	
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
-	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) throws BoundingBoxVertexException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NegativeRadiusException {
+	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) throws BoundingBoxVertexException,
+	NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
+	CapoluogoNotFoundException, FilterNotFoundException {
 		
-		/*try{
-			return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
-			
-		} catch(Exception e) {
-			return new ResponseEntity<>("Exception throwed:\n" + e, HttpStatus.OK);
-		}*/
 		return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 	}
 	
@@ -76,101 +75,5 @@ public class GeoTwitterController {
 	  * }
 	  * 
 	 */
-	 
-	
-	/*@RequestMapping(value = "/data/stats/coordinates/mean", method = RequestMethod.GET)
-	public ResponseEntity<Object> getCoordinatesMean(){
-		
-		double[] coordinatesMean = new StatsImpl().getMean(dataService.getDataRepo());
-		
-		return new ResponseEntity<>("Longitudines mean: " + coordinatesMean[0] + "\n"
-								  + "Latitudines mean: " + coordinatesMean[1], HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/data/stats/coordinates/variance", method = RequestMethod.GET)
-	public ResponseEntity<Object> getCoordinatesVariance(){
-		
-		double[] coordinatesVariance = new StatsImpl().getVariance(dataService.getDataRepo());
-		
-		return new ResponseEntity<>("Longitudines variance: " + coordinatesVariance[0] + "\n"
-								  + "Latitudines variance: " + coordinatesVariance[1], HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/data/stats/insideMarche", method = RequestMethod.GET)
-	public ResponseEntity<Object> getTweetsInsideMarche() {
-		
-		return new ResponseEntity<>(ObjectToJsonStringConverter.convert(new StatsImpl().getTweetsInsideMarche(
-				dataService.getDataRepo())), HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/data/stats/insideMarche", method = RequestMethod.POST)				//POST CHE NON RICHIEDE BODY???
-	public ResponseEntity<Object> tweetInsideMarche(@RequestParam(name="id") String id){
-		
-		if(new StatsImpl().tweetInsideMarche(dataService.getDataRepo(), id)) {
-			
-			return new ResponseEntity<>("Il tweet selezionato è stato inviato da dentro le Marche", HttpStatus.OK);
-		}
-		else {
-			
-			return new ResponseEntity<>("Il tweet selezionato NON è stato inviato da dentro le Marche", HttpStatus.OK);
-		}
-	}
-	
-	@RequestMapping(value = "/data/filter/id/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Object> tweetWithThisId(@PathVariable("id") String id){
-		
-		if(new FiltersImpl().tweetWithThisId(dataService.getDataRepo(), id)) {
-			
-			return new ResponseEntity<>(/*STAMPARE IL TWEET TROVATO*//*"Tweet trovato", HttpStatus.OK);
-		}
-		else {
-			
-			return new ResponseEntity<>("L'id inserito non fa riferimento ad alcun tweet", HttpStatus.OK);
-		}
-	}
-	
-	@RequestMapping(value = "/data/filter/text", method = RequestMethod.POST)							//POST CHE NON RICHIEDE BODY???
-	public ResponseEntity<Object> getTweetsWithThisText(@RequestParam(name="text") String text){
-		
-		return new ResponseEntity<>(ObjectToJsonStringConverter.convert(new FiltersImpl().
-				getTweetsWithThisText(dataService.getDataRepo(), text)), HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/data/filter/insideBox", method = RequestMethod.POST)						//POST CHE NON RICHIEDE BODY???
-	public ResponseEntity<Object> getTweetsWithinBoundingBox(@RequestBody ArrayNode boundingBox) {
-			@RequestParam(name="longitBoundingBoxUpLeft") double longitUpLeft,
-			@RequestParam(name="latitBoundingBoxUpLeft") double latitUpLeft,
-			@RequestParam(name="longitBoundingBoxDownRight") double longitDownRight,
-			@RequestParam(name="latitBoundingBoxDownRight") double latitDownRight){
-		
-		
-		
-		double[] boundingBoxUpLeft = {longitUpLeft, latitUpLeft};
-		double[] boundingBoxDownRight = {longitDownRight, latitDownRight};
-		
-		return new ResponseEntity<>(ArrayListToJsonStringConverter.convert(
-				new FiltersImpl().getTweetsWithinBoundingBox(
-						dataService.getDataRepo(), boundingBoxUpLeft,boundingBoxDownRight)), HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/data/filter/{capoluogo}/radius/{radius}", method = RequestMethod.GET)
-	public ResponseEntity<Object> getTweetsWithinRadius(@PathVariable("capoluogo") String capoluogo,
-														@PathVariable("radius") int radius)
-														throws CapoluogoNotFoundException {
-		
-		ResponseEntity<Object> response = null;
-		
-		try {
-			
-			response = new ResponseEntity<>(ObjectToJsonStringConverter.convert(new FiltersImpl().getTweetsWithinRadius(
-					dataService.getDataRepo(), capoluogo, radius)), HttpStatus.OK);
-		}
-		catch(CapoluogoNotFoundException e) {
-			
-			System.out.println(e);
-		}
-		
-		return response;
-	} */
 	
 }

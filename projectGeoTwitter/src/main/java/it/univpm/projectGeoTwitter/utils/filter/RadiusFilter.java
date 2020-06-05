@@ -21,9 +21,8 @@ import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
 public class RadiusFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinRadius(
-			Collection<TwitterData> tweets, String operator, Object filterValue)
-					throws SecurityException, IllegalAccessException,
-					IllegalArgumentException, InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException{
+			Collection<TwitterData> tweets, String operator, Object filterValue) throws IllegalAccessException,
+					InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException {
 		
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
 		if(filterValue.getClass() != LinkedHashMap.class)
@@ -74,14 +73,15 @@ public class RadiusFilter {
 			
 		} catch(NoSuchMethodException e) {
 			throw new CapoluogoNotFoundException("Il campo inserito non fa riferimento ad alcun capoluogo");
-		}		
+		}	
 	}
-	
-	private static ArrayList<Double> getRadiusArray(Object filterValue) {
+	private static ArrayList<Double> getRadiusArray(Object filterValue) throws IllegalValueException, NegativeRadiusException {
 		ArrayList<Double> radius = new ArrayList<>();
 		if (filterValue.getClass() == ArrayList.class) {
-			for(Number num : (ArrayList<Number>)filterValue)		//NESSUN CONTROLLO SUL NUMERO DI ELEMENTI NELL'ARRAY
+			for(Number num : (ArrayList<Number>)filterValue)
 				radius.add(num.doubleValue());
+			if(radius.size() != 2)
+				throw new IllegalValueException("Sono solamente ammessi 2 valori per la distanza.");
 			if(radius.get(0)< 0 || radius.get(1) < 0)
 				throw new NegativeRadiusException("Non sono ammessi valori negativi per la distanza.");
 		}
@@ -90,7 +90,7 @@ public class RadiusFilter {
 		return radius;
 	}
 	
-	private static double getRadius(Object filterValue) {
+	private static double getRadius(Object filterValue) throws IllegalValueException, NegativeRadiusException {
 		double radius;
 		if (filterValue instanceof Number) {		
 			radius = ((Number) filterValue).doubleValue();

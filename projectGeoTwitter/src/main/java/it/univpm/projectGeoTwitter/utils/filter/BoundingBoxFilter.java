@@ -19,9 +19,10 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 public class BoundingBoxFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinBoundingBox(
-			Collection<TwitterData> tweets, String operator, Object filterValue) {
+			Collection<TwitterData> tweets, String operator, Object filterValue) throws BoundingBoxVertexException,
+				CoordinatesException, IllegalValueException, OperatorNotFoundException {
 		
-		ArrayList<TwitterData> tweetsWithinBoundingBox = new ArrayList<>();
+		ArrayList<TwitterData> tweetsBoundingBox = new ArrayList<>();
 		
 		HashMap<String, Object> jsonMap = new ObjectMapper().convertValue(filterValue, new TypeReference<HashMap<String, Object>>(){});
 		ArrayList<Double> topleftCoords = getCoordsArray(jsonMap.get("topleft"));
@@ -36,6 +37,17 @@ public class BoundingBoxFilter {
 		double[] boundingBoxLongit = { topleftCoords.get(0), topleftCoords.get(0), bottomrightCoords.get(0), bottomrightCoords.get(0) };
 
 		double[] boundingBoxLatit = { topleftCoords.get(1), bottomrightCoords.get(1), bottomrightCoords.get(1), topleftCoords.get(1) };
+		/*
+		System.out.println(topleftCoords.get(0)+" "+ topleftCoords.get(0)+" "+ bottomrightCoords.get(0)+" "+ bottomrightCoords.get(0) +"\n"+
+				topleftCoords.get(1)+" "+ bottomrightCoords.get(1)+" "+ bottomrightCoords.get(1)+" "+ topleftCoords.get(1));
+		*/
+		/*
+		for(double n : boundingBoxLongit)
+			System.out.print(n + " ");
+		System.out.print("\n");
+		for(double n : boundingBoxLatit)
+			System.out.print(n + " ");
+		*/
 		
 		Path2D boundingBox;
 		try {
@@ -44,6 +56,8 @@ public class BoundingBoxFilter {
 		} catch(CoordinatesException e) {
 			throw e;
 		}
+		
+		System.out.println(boundingBox);
 		
 		boolean choice;
 		
@@ -55,28 +69,29 @@ public class BoundingBoxFilter {
 			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
 		
 		for(TwitterData tweet : tweets) {
-			
+			System.out.println(tweet.getLongit() + " " + tweet.getLatit());
+			System.out.println(boundingBox.contains(tweet.getLongit(), tweet.getLatit()));
 			if(boundingBox.contains(tweet.getLongit(), tweet.getLatit()) == choice) {
 				
-				tweetsWithinBoundingBox.add(tweet);
+				tweetsBoundingBox.add(tweet);
 			}
 		}
 		
-		return tweetsWithinBoundingBox;
+		return tweetsBoundingBox;
 	}
 	
 	private static ArrayList<Double> getCoordsArray(Object filterValue) {
 		ArrayList<Double> coords = new ArrayList<>();
 		if (filterValue.getClass() == ArrayList.class) {
 			try {
-			for(Number num : (ArrayList<Number>)filterValue)
-				coords.add(num.doubleValue());
-			//ECCEZIONE PER COORDINATE NEGATIVE?
+				for(Number num : (ArrayList<Number>)filterValue)
+					coords.add(num.doubleValue());
+				if(coords.size() != 2)
+					throw new IllegalValueException("Sono solamente ammessi 2 valori per le coordinate.");
+				
 			} catch (ClassCastException cce) {
 				throw new IllegalValueException("Punti della BoundingBox non validi.");
 			}
-			if(coords.get(0)< 0 || coords.get(1) < 0)
-				throw new NegativeRadiusException();
 		}
 		else
 			throw new IllegalValueException("Punti della BoundingBox non validi.");
