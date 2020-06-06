@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.CoordinatesException;
+import it.univpm.projectGeoTwitter.exception.EmptyCollectionException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
@@ -37,7 +38,7 @@ public class GeoTwitterController {
 	
 	/**
 	 * Metodo che gestisce la richiesta GET /data
-	 * @return 
+	 * @return ResponseEntity<>
 	 */
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
 	public ResponseEntity<Object> getData() {
@@ -47,7 +48,7 @@ public class GeoTwitterController {
 	
 	/**
 	 * Metodo che gestisce la richiesta GET /metadata
-	 * @return 
+	 * @return ResponseEntity<>
 	 */
 	@RequestMapping(value="/metadata", method = RequestMethod.GET)
 	public ResponseEntity<Object> getMetadata() {
@@ -60,30 +61,40 @@ public class GeoTwitterController {
 	 * Vengono restituite le statistiche sulle coordinate, oppure sulle distanze dalla provincia fornita come parametro.
 	 * @param name : nome del capoluogo di provincia da usare nell'eventuale calcolo delle statistiche sulle distanze.
 	 * @param body : Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
-	 * @throws BoundingBoxVertexException quando le coordinate fornite come vertici della boundingbox non sono validi.
-	 * @throws NegativeRadiusExceptionn quando viene fornita un valore negativo per la distanza.
-	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtraggio.
-	 * @throws CoordinatesException quando vengono forniti valori non validi per le coordinate.
+	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtraggio oppure quando il parametro inserito non fa riferimento ad alcun capoluogo.
 	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
-	 * @throws CapoluogoNotFoundException quando il nome del capoluogo fornito non è valido.
 	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
-	 * @return 
+	 * @throws EmptyCollectionException quando si tenta di effettuare statistiche su una collezione di tweets vuota
+	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto
+	 * @return ResponseEntity<> 
 	 * 
 	 */
 	@RequestMapping(value="/stats", method = RequestMethod.POST)
 	public ResponseEntity<Object> getStats(@RequestParam(name = "capoluogo") Optional<String> capoluogo,
-			@RequestBody Optional<Object> body) throws BoundingBoxVertexException, NegativeRadiusException, IllegalValueException,
-				CoordinatesException, GenericErrorException, InvocationTargetException, CapoluogoNotFoundException,
-				FilterNotFoundException, OperatorNotFoundException {
+			@RequestBody Optional<Object> body) throws IllegalValueException, GenericErrorException, InvocationTargetException,
+			FilterNotFoundException, OperatorNotFoundException, EmptyCollectionException {
 		
 		return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo, body), HttpStatus.OK);
 	}
 	
+	/**
+	 * Metodo che gestisce la richiesta POST /filter
+	 * Vengono restituiti tutti i tweets che rientrano nei filtri specificati.
+	 * @param name : nome del capoluogo di provincia da usare nell'eventuale calcolo delle statistiche sulle distanze.
+	 * @param body : Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
+	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtraggio.
+	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
+	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
+	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
+	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto
+	 * @return ResponseEntity<> 
+	 * 
+	 */
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
-	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body) throws BoundingBoxVertexException,
-		NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
-		CapoluogoNotFoundException, FilterNotFoundException, OperatorNotFoundException {
+	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body)
+			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
+				OperatorNotFoundException{
 		
 		return new ResponseEntity<>(FilterRunner.getFilters(dataService.getData(), body), HttpStatus.OK);
 	}	

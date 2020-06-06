@@ -23,8 +23,8 @@ import it.univpm.projectGeoTwitter.service.StatsImpl;
 public class StatsRunner extends StatsImpl{
 
 	public static Object getStats(Collection<TwitterData> tweets, Optional<String> capoluogoName, Optional<Object> body)
-			throws BoundingBoxVertexException, NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException,
-				InvocationTargetException, CapoluogoNotFoundException, FilterNotFoundException, OperatorNotFoundException {
+			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
+				OperatorNotFoundException, EmptyCollectionException {
 		
 		Collection<TwitterData> filteredData;
 		if(body.isPresent()) {

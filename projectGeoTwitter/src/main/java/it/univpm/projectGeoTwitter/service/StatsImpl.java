@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-
+import it.univpm.projectGeoTwitter.exception.GenericErrorException;
+import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.filter.TweetsMarche;
@@ -76,7 +77,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	@Override
-	public int countTweetsInsideMarche(Collection<TwitterData> tweets) {
+	public int countTweetsInsideMarche(Collection<TwitterData> tweets)
+			throws OperatorNotFoundException, GenericErrorException {
 		
 		return CountTweetsInsideMarche.insideMarche(tweets);
 	}

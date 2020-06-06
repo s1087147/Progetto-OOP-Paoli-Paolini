@@ -21,59 +21,57 @@ import it.univpm.projectGeoTwitter.service.FilterValueManager;
 
 public class RadiusFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithinRadius(
-			Collection<TwitterData> tweets, String operator, Object filterValue) throws IllegalAccessException,
-					InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException {
-		
+	public static ArrayList<TwitterData> getTweetsWithinRadius(Collection<TwitterData> tweets, String operator,
+			Object filterValue) throws IllegalAccessException, InvocationTargetException, IllegalValueException {
+
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
-		if(filterValue.getClass() != LinkedHashMap.class)
+		if (filterValue.getClass() != LinkedHashMap.class)
 			throw new IllegalValueException("Il valore inserito non è corretto.");
-		
-		HashMap<String, Object> jsonMap = new ObjectMapper().convertValue(filterValue, new TypeReference<HashMap<String, Object>>(){});
-		
-		//CONTROLLO SUL TIPO DI CAPOLUOGO
+
+		HashMap<String, Object> jsonMap = new ObjectMapper().convertValue(filterValue,
+				new TypeReference<HashMap<String, Object>>() {});
+
+		// CONTROLLO SUL TIPO DI CAPOLUOGO
 		String capoluogoName = jsonMap.get("capoluogo").toString();
 		filterValue = jsonMap.get("distanza");
-		
-		try {
-			Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName);
-			
-			if(operator.equals("inside")) {
-				double radius = FilterValueManager.getRadius(filterValue);
-				for(TwitterData tweet : tweets) {
-					
-					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
-					if(distance < radius)
-						tweetsWithinRadius.add(tweet);
-				}
+
+		Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName);
+
+		if (operator.equals("inside")) {
+			double radius = FilterValueManager.getRadius(filterValue);
+			for (TwitterData tweet : tweets) {
+
+				double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(),
+						capoluogo.getLatit());
+				if (distance < radius)
+					tweetsWithinRadius.add(tweet);
 			}
-			
-			else if(operator.equals("outside")) {
-				double radius = FilterValueManager.getRadius(filterValue);
-				for(TwitterData tweet : tweets) {
-					
-					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
-					if(distance > radius)
-						tweetsWithinRadius.add(tweet);
-				}
+		}
+
+		else if (operator.equals("outside")) {
+			double radius = FilterValueManager.getRadius(filterValue);
+			for (TwitterData tweet : tweets) {
+
+				double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(),
+						capoluogo.getLatit());
+				if (distance > radius)
+					tweetsWithinRadius.add(tweet);
 			}
-			
-			else if(operator.equals("between")) {
-				ArrayList<Double> radius = FilterValueManager.getRadiusArray(filterValue);
-				for(TwitterData tweet : tweets) {
-					
-					double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(), capoluogo.getLatit());
-					if(distance > radius.get(0) && distance < radius.get(1))
-						tweetsWithinRadius.add(tweet);
-				}
+		}
+
+		else if (operator.equals("between")) {
+			ArrayList<Double> radius = FilterValueManager.getRadiusArray(filterValue);
+			for (TwitterData tweet : tweets) {
+
+				double distance = Calculator.distance(tweet.getLongit(), tweet.getLatit(), capoluogo.getLongit(),
+						capoluogo.getLatit());
+				if (distance > radius.get(0) && distance < radius.get(1))
+					tweetsWithinRadius.add(tweet);
 			}
-			else
-				throw new OperatorNotFoundException("L'operatore richiesto non esiste");
-			
-			return tweetsWithinRadius;
-			
-		} catch(NoSuchMethodException e) {
-			throw new CapoluogoNotFoundException("Il campo inserito non fa riferimento ad alcun capoluogo");
-		}	
+		} else
+			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
+
+		return tweetsWithinRadius;
+
 	}
 }

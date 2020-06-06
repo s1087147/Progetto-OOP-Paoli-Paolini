@@ -8,6 +8,7 @@ import java.util.Optional;
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.CoordinatesException;
+import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
@@ -28,8 +29,8 @@ public class FiltersImpl implements Filters {
 
 	@Override
 	public ArrayList<TwitterData> filterDistance(
-			Collection<TwitterData> tweets, String operator, Object filterValue) throws IllegalAccessException,
-				InvocationTargetException, CapoluogoNotFoundException, IllegalValueException, NegativeRadiusException {
+			Collection<TwitterData> tweets, String operator, Object filterValue)
+					throws IllegalAccessException, InvocationTargetException, IllegalValueException {
 		
 		
 		return RadiusFilter.getTweetsWithinRadius(tweets, operator, filterValue);
@@ -38,16 +39,17 @@ public class FiltersImpl implements Filters {
 	
 	@Override
 	public ArrayList<TwitterData> filterBoundingbox(
-			Collection<TwitterData> tweets, String operator, Object filterValue) throws BoundingBoxVertexException,
-				CoordinatesException, IllegalValueException, OperatorNotFoundException {				
+			Collection<TwitterData> tweets, String operator, Object filterValue)
+					throws IllegalValueException, OperatorNotFoundException {				
 		
 		return BoundingBoxFilter.getTweetsWithinBoundingBox(tweets, operator, filterValue);
 	}
 	
 	@Override
 	public ArrayList<TwitterData> filterMarche(
-			Collection<TwitterData> tweets, String operator, Object filterValue) throws CoordinatesException, OperatorNotFoundException {				
+			Collection<TwitterData> tweets, String operator)
+					throws GenericErrorException, OperatorNotFoundException {				
 		
-		return TweetsMarche.getTweetsMarche(tweets, operator, filterValue);
+		return TweetsMarche.getTweetsMarche(tweets, operator);
 	}
 }

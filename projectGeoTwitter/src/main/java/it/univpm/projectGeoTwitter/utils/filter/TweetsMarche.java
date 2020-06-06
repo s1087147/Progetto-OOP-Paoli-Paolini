@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import it.univpm.projectGeoTwitter.exception.CoordinatesException;
+import it.univpm.projectGeoTwitter.exception.GenericErrorException;
+import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.PoligonoMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TweetsMarche {
 																										
-	public static ArrayList<TwitterData> getTweetsMarche(Collection<TwitterData> tweets, String operator, Object filterValue)
-			throws CoordinatesException, OperatorNotFoundException {
+	public static ArrayList<TwitterData> getTweetsMarche(Collection<TwitterData> tweets, String operator)
+			throws OperatorNotFoundException, GenericErrorException {
 		
 		ArrayList<TwitterData> tweetsInsideMarche = new ArrayList<>();
 		

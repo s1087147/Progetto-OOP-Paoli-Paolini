@@ -22,9 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FilterRunner {
 
-	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body) throws BoundingBoxVertexException,
-		NegativeRadiusException, IllegalValueException, CoordinatesException, GenericErrorException, InvocationTargetException,
-		CapoluogoNotFoundException, FilterNotFoundException, OperatorNotFoundException {
+	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body)
+			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
+				OperatorNotFoundException {
 		
 		FiltersImpl filterInstance = new FiltersImpl();
 		Collection<TwitterData> filteredData = tweets;
@@ -33,19 +33,26 @@ public class FilterRunner {
 		ArrayList<Object> filtersList = (ArrayList<Object>)jsonMap.get("filters");
 		
 		for (Object obj : filtersList) {
-			try {
-				jsonMap = new ObjectMapper().convertValue(obj, new TypeReference<HashMap<String, Object>>(){});
-				String filter = jsonMap.get("filter").toString();
-				String operator = jsonMap.get("operator").toString().toLowerCase();
-				Object filterValue = jsonMap.get("filterValue");
-	
-				filter = "filter" + filter.substring(0, 1).toUpperCase() + filter.substring(1).toLowerCase();
+			
+			jsonMap = new ObjectMapper().convertValue(obj, new TypeReference<HashMap<String, Object>>(){});
+			String filter = jsonMap.get("filter").toString();
+			filter = "filter" + filter.substring(0, 1).toUpperCase() + filter.substring(1).toLowerCase();
+			String operator = jsonMap.get("operator").toString().toLowerCase();
 				
-				Method filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class, Object.class);
-				filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator, filterValue);
+			Method filterMethod;
+			
+			try {
+				if(jsonMap.containsKey("filterValue")) {
+					Object filterValue = jsonMap.get("filterValue");
+					filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class, Object.class);
+					filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator, filterValue);
+				}
+				else {
+					filterMethod = (FiltersImpl.class).getDeclaredMethod(filter, Collection.class, String.class);
+					filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator);
+				}
 				
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
 				throw new FilterNotFoundException("Nome del filtro non valido");
 				
 			} catch (IllegalAccessException | IllegalArgumentException e) {
