@@ -8,33 +8,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice 		//??
 public class ErrorHandler {
 	
-	@ExceptionHandler(CapoluogoNotFoundException.class)
-	public ResponseEntity<Object> capoluogoNotFoundHandler(CapoluogoNotFoundException e){
-		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
-	}
-	
 	@ExceptionHandler(OperatorNotFoundException.class)
 	public ResponseEntity<Object> operatorNotFoundHandler(OperatorNotFoundException e){
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
 	
-	@ExceptionHandler(NegativeRadiusException.class)
-	public ResponseEntity<Object> negativeRadiusHandler(NegativeRadiusException e){
-		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
-	}
-	
 	@ExceptionHandler(IllegalValueException.class)
 	public ResponseEntity<Object> illegalValueHandler(IllegalValueException e){
-		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
-	}
-	
-	@ExceptionHandler(BoundingBoxVertexException.class)
-	public ResponseEntity<Object> boundingBoxVertexHandler(BoundingBoxVertexException e){
-		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
-	}
-	
-	@ExceptionHandler(CoordinatesException.class)
-	public ResponseEntity<Object> coordinatesHandler(CoordinatesException e){
 		return new ResponseEntity<>(new ErrorMessage(e), HttpStatus.BAD_REQUEST);		
 	}
 	
