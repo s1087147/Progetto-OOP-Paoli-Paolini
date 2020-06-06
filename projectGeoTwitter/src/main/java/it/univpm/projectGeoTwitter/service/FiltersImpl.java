@@ -3,6 +3,7 @@ package it.univpm.projectGeoTwitter.service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
 import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
@@ -45,7 +46,7 @@ public class FiltersImpl implements Filters {
 	
 	@Override
 	public ArrayList<TwitterData> filterMarche(
-			Collection<TwitterData> tweets, String operator, Object filterValue) throws CoordinatesException {				
+			Collection<TwitterData> tweets, String operator, Object filterValue) throws CoordinatesException, OperatorNotFoundException {				
 		
 		return TweetsMarche.getTweetsMarche(tweets, operator, filterValue);
 	}

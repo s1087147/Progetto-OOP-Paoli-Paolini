@@ -45,6 +45,7 @@ public class FilterRunner {
 				filteredData = (Collection<TwitterData>) filterMethod.invoke(filterInstance, filteredData, operator, filterValue);
 				
 			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
 				throw new FilterNotFoundException("Nome del filtro non valido");
 				
 			} catch (IllegalAccessException | IllegalArgumentException e) {

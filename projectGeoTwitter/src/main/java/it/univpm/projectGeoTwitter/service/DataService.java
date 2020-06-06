@@ -59,8 +59,4 @@ public class DataService {
 	public static Collection<TwitterMetadata> getMetadata(){
 		return metadata;
 	}
-
-	/*public static HashMap<String, TwitterData> getDataRepo() {
-		return dataRepo;
-	}*/ 
 }

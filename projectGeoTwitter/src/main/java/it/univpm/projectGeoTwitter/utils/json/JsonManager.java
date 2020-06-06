@@ -77,7 +77,7 @@ public class JsonManager {
 		metadata.add(new TwitterMetadata("id", "Numero identificativo del tweet", "String"));
 		metadata.add(new TwitterMetadata("text", "Testo del tweet", "String"));
 		metadata.add(new TwitterMetadata("place_id", "Identificativo della località da cui è stato inviato il tweet", "String"));
-		metadata.add(new TwitterMetadata("place", "Località da cui è stato inviato il tweet", "String"));
+		metadata.add(new TwitterMetadata("place", "Località e regione da cui è stato inviato il tweet", "String"));
 		metadata.add(new TwitterMetadata("longit", "Longitudine", "double"));
 		metadata.add(new TwitterMetadata("latit", "Latitudine", "double"));
 	}
