@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import io.restassured.RestAssured;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.StatsRunner;
 
@@ -29,24 +30,26 @@ public class TestGeoTwitter {
 		//operator = "inside";
 		//filters = new String[] {filter, operator};
 		//body = filters;
-		bodyRequest = "{\n" + 
+		/*bodyRequest = "{\n" + 
 				"	\"filters\": [\n" + 
 				"		{\n" + 
 				"			\"filter\": \"marche\",\n" + 
 				"			\"operator\": \"inside\"\n" + 
 				"		}\n" + 
 				"	]\n" + 
-				"}";
+				"}";*/
+		RestAssured.baseURI = "https://localhost";
+	    RestAssured.port = 8080;
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		
 	}
 
+	//NON FUNZIONA ANCORA
 	@Test
-	@DisplayName("Test count tweets inside Marche")
-	void testInsideMarche() {
+	@DisplayName("Test tweets inside Marche")
+	public void testInsideMarche() {
 		/*
 		with().
 			body(bodyRequest).
