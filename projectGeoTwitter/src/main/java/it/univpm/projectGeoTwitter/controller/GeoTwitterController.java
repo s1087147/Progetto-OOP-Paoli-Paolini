@@ -78,11 +78,6 @@ public class GeoTwitterController {
 		return new ResponseEntity<>(StatsRunner.getStats(dataService.getData(), capoluogo, body), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/stat", method = RequestMethod.POST)
-	public ResponseEntity<Object> getStats() {
-		return new ResponseEntity<>("", HttpStatus.OK);
-	}
-	
 	/**
 	 * Metodo che gestisce la richiesta POST /filter
 	 * Vengono restituiti tutti i tweets che rientrano nei filtri specificati.
