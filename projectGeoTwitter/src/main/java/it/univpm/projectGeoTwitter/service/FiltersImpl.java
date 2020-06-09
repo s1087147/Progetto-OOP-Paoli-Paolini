@@ -3,14 +3,9 @@ package it.univpm.projectGeoTwitter.service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
-import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
-import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.utils.filter.BoundingBoxFilter;
@@ -24,7 +19,7 @@ public class FiltersImpl implements Filters {
 	public ArrayList<TwitterData> filterText(Collection<TwitterData> tweets, String operator, Object filterValue)
 			throws IllegalValueException, OperatorNotFoundException {
 		
-		return TextFilter.getTweetsWithThisText(tweets, operator, filterValue);
+		return TextFilter.getTweetsWithText(tweets, operator, filterValue);
 	}
 
 	@Override
@@ -33,7 +28,7 @@ public class FiltersImpl implements Filters {
 					throws IllegalAccessException, InvocationTargetException, IllegalValueException, OperatorNotFoundException {
 		
 		
-		return RadiusFilter.getTweetsWithinRadius(tweets, operator, filterValue);
+		return RadiusFilter.getTweetsWithRadius(tweets, operator, filterValue);
 		
 	}
 	
@@ -42,7 +37,7 @@ public class FiltersImpl implements Filters {
 			Collection<TwitterData> tweets, String operator, Object filterValue)
 					throws IllegalValueException, OperatorNotFoundException {				
 		
-		return BoundingBoxFilter.getTweetsWithinBoundingBox(tweets, operator, filterValue);
+		return BoundingBoxFilter.getTweetsWithBoundingBox(tweets, operator, filterValue);
 	}
 	
 	@Override

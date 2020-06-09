@@ -1,8 +1,6 @@
 package it.univpm.projectGeoTwitter.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;

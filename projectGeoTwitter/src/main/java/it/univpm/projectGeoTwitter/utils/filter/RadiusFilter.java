@@ -19,7 +19,7 @@ import it.univpm.projectGeoTwitter.service.FilterValueManager;
 
 public class RadiusFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithinRadius(Collection<TwitterData> tweets, String operator,
+	public static ArrayList<TwitterData> getTweetsWithRadius(Collection<TwitterData> tweets, String operator,
 			Object filterValue) throws IllegalAccessException, InvocationTargetException, IllegalValueException { //PRIME DUE ECCEZIONI???
 
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();

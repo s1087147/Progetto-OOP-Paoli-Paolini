@@ -3,7 +3,6 @@ package it.univpm.projectGeoTwitter.service;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
 
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 
 public class Calculator {

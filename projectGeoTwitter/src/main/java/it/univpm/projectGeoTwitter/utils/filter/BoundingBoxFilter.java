@@ -8,8 +8,6 @@ import java.util.HashMap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
@@ -18,7 +16,7 @@ import it.univpm.projectGeoTwitter.service.FilterValueManager;
 
 public class BoundingBoxFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithinBoundingBox(
+	public static ArrayList<TwitterData> getTweetsWithBoundingBox(
 			Collection<TwitterData> tweets, String operator, Object filterValue)
 					throws IllegalValueException, OperatorNotFoundException {
 		

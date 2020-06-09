@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
-import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.FiltersImpl;

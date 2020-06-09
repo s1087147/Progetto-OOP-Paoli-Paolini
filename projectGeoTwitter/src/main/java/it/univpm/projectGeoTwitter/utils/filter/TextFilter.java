@@ -9,7 +9,7 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 
 public class TextFilter {
 
-	public static ArrayList<TwitterData> getTweetsWithThisText(Collection<TwitterData> tweets, String operator, Object filterValue)
+	public static ArrayList<TwitterData> getTweetsWithText(Collection<TwitterData> tweets, String operator, Object filterValue)
 		throws IllegalValueException, OperatorNotFoundException {
 		
 		ArrayList<TwitterData> tweetsWithThisText = new ArrayList<TwitterData>();

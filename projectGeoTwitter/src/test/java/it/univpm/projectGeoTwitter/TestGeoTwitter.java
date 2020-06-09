@@ -51,15 +51,12 @@ class TestGeoTwitter {
 		result.add(tweetsMap.get("1264988123957788674"));
 				
 		try {
-			assertEquals(result, RadiusFilter.getTweetsWithinRadius(tweets, "between", filter));
+			assertEquals(result, RadiusFilter.getTweetsWithRadius(tweets, "between", filter));
 		} catch (IllegalValueException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +68,7 @@ class TestGeoTwitter {
 		filter.put("distanza", 10);
 		
 		IllegalValueException e = assertThrows(IllegalValueException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "outside", filter);
+			RadiusFilter.getTweetsWithRadius(tweets, "outside", filter);
 			});
 		assertEquals("Il parametro inserito non fa riferimento ad alcun capoluogo.", e.getMessage());
 	}
@@ -83,7 +80,7 @@ class TestGeoTwitter {
 		filter.put("distanza", "100");									//Valore della distanza non corrispondente ad un numero
 		
 		IllegalValueException e = assertThrows(IllegalValueException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "between", filter);
+			RadiusFilter.getTweetsWithRadius(tweets, "inside", filter);
 			});
 		assertEquals("Valori della distanza non validi.", e.getMessage());
 	}
@@ -95,7 +92,7 @@ class TestGeoTwitter {
 		filter.put("distanza", -50);									//Valore della distanza negativo
 		
 		IllegalValueException e = assertThrows(IllegalValueException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "outside", filter);
+			RadiusFilter.getTweetsWithRadius(tweets, "outside", filter);
 			});
 		assertEquals("Non sono ammessi valori negativi per la distanza.", e.getMessage());
 	}
@@ -107,7 +104,7 @@ class TestGeoTwitter {
 		filter.put("distanza", 10);										//Non viene fornito un array di distanza con l'operatore between
 		
 		IllegalValueException e = assertThrows(IllegalValueException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "between", filter);
+			RadiusFilter.getTweetsWithRadius(tweets, "between", filter);
 			});
 		assertEquals("Valori della distanza non validi.", e.getMessage());
 	}
@@ -124,7 +121,7 @@ class TestGeoTwitter {
 		filter.put("distanza", radius);
 
 		IllegalValueException e = assertThrows(IllegalValueException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "between", filter);
+			RadiusFilter.getTweetsWithRadius(tweets, "between", filter);
 		});
 		assertEquals("Sono solamente ammessi 2 valori per la distanza.", e.getMessage());
 	}
@@ -136,7 +133,7 @@ class TestGeoTwitter {
 		filter.put("distanza", 10);										
 		
 		OperatorNotFoundException e = assertThrows(OperatorNotFoundException.class, () -> {
-			RadiusFilter.getTweetsWithinRadius(tweets, "maggiore", filter);			//Operatore non esistente
+			RadiusFilter.getTweetsWithRadius(tweets, "maggiore", filter);			//Operatore non esistente
 			});
 		assertEquals("L'operatore richiesto non esiste.", e.getMessage());
 	}	

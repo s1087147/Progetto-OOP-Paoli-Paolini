@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.univpm.projectGeoTwitter.exception.BoundingBoxVertexException;
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.EmptyCollectionException;
 import it.univpm.projectGeoTwitter.exception.FilterNotFoundException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
-import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.service.DataService;
 import it.univpm.projectGeoTwitter.utils.runner.FilterRunner;

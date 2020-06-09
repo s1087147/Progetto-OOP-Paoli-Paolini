@@ -2,7 +2,6 @@ package it.univpm.projectGeoTwitter.model;
 
 import java.awt.geom.Path2D;
 
-import it.univpm.projectGeoTwitter.exception.CoordinatesException;
 import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.service.Calculator;

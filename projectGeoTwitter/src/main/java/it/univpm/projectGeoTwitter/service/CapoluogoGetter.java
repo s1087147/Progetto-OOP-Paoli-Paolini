@@ -3,7 +3,6 @@ package it.univpm.projectGeoTwitter.service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.model.CapoluoghiMarche;
 import it.univpm.projectGeoTwitter.model.Geo;
