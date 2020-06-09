@@ -30,7 +30,7 @@ public class FiltersImpl implements Filters {
 	@Override
 	public ArrayList<TwitterData> filterDistance(
 			Collection<TwitterData> tweets, String operator, Object filterValue)
-					throws IllegalAccessException, InvocationTargetException, IllegalValueException {
+					throws IllegalAccessException, InvocationTargetException, IllegalValueException, OperatorNotFoundException {
 		
 		
 		return RadiusFilter.getTweetsWithinRadius(tweets, operator, filterValue);

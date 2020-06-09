@@ -21,7 +21,7 @@ public class CapoluogoGetter {
 			return (Geo) getterCapoluogo.invoke(capoluogoMarche, null);
 			
 		} catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
-			throw new IllegalValueException("Il parametro inserito non fa riferimento ad alcun capoluogo");
+			throw new IllegalValueException("Il parametro inserito non fa riferimento ad alcun capoluogo.");
 		}
 	}
 }

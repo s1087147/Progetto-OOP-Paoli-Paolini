@@ -53,10 +53,13 @@ public class DataService {
 	
 	public static Collection<TwitterData> getData(){
 		return dataRepo.values();
-		//return JsonData(dataRepo);
 	}
 	
 	public static Collection<TwitterMetadata> getMetadata(){
 		return metadata;
 	}
+	
+	public static HashMap<String, TwitterData> getDataMap(){
+		return dataRepo;
+	}	
 }

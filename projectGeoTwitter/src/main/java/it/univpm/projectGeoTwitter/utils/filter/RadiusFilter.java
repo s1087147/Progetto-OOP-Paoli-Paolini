@@ -9,9 +9,7 @@ import java.util.LinkedHashMap;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.univpm.projectGeoTwitter.exception.CapoluogoNotFoundException;
 import it.univpm.projectGeoTwitter.exception.IllegalValueException;
-import it.univpm.projectGeoTwitter.exception.NegativeRadiusException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
@@ -22,7 +20,7 @@ import it.univpm.projectGeoTwitter.service.FilterValueManager;
 public class RadiusFilter {
 
 	public static ArrayList<TwitterData> getTweetsWithinRadius(Collection<TwitterData> tweets, String operator,
-			Object filterValue) throws IllegalAccessException, InvocationTargetException, IllegalValueException {
+			Object filterValue) throws IllegalAccessException, InvocationTargetException, IllegalValueException { //PRIME DUE ECCEZIONI???
 
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
 		if (filterValue.getClass() != LinkedHashMap.class)
@@ -69,7 +67,7 @@ public class RadiusFilter {
 					tweetsWithinRadius.add(tweet);
 			}
 		} else
-			throw new OperatorNotFoundException("L'operatore richiesto non esiste");
+			throw new OperatorNotFoundException("L'operatore richiesto non esiste.");
 
 		return tweetsWithinRadius;
 
