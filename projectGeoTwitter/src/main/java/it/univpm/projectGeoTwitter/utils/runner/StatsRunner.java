@@ -31,7 +31,7 @@ public class StatsRunner extends StatsImpl{
 		else
 			filteredData = tweets;
 		
-		StatsImpl statsInstance = new StatsImpl();
+		StatsRunner statsInstance = new StatsRunner();
 		
 		if(capoluogoName.isPresent()) {
 			

@@ -20,13 +20,13 @@ import it.univpm.projectGeoTwitter.service.FiltersImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class FilterRunner {
+public class FilterRunner extends FiltersImpl {
 
 	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body)
 			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
 				OperatorNotFoundException {
 		
-		FiltersImpl filterInstance = new FiltersImpl();
+		FilterRunner filterInstance = new FilterRunner();
 		Collection<TwitterData> filteredData = tweets;
 		
 		HashMap<String, Object> jsonMap = new ObjectMapper().convertValue(body, new TypeReference<HashMap<String, Object>>(){});
