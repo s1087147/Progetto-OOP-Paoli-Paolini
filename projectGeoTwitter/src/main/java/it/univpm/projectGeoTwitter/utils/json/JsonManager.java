@@ -29,15 +29,16 @@ import it.univpm.projectGeoTwitter.model.TwitterMetadata;
 public class JsonManager {
 	
 	final static String idpath = new File("src/main/resources/id.txt").getAbsolutePath(); 				//Inserire path per il documento contenente gli id
-	static String url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets"
-						+ "?ids=" + readIds()				//Id dei tweet
-						+ "&tweet.fields=geo"				//Ottieni dati geo
-						+ "&expansions=geo.place_id"		//Includi informazioni sulla località 	
-						+ "&place.fields=full_name";		//Mostra nome completo della località
+	static String url;
 	
 	public JsonManager() {}
 	
 	public static String getJson() throws IOException, URLException{
+		url = "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/user/labs/2/tweets"
+				+ "?ids=" + readIds()				//Id dei tweet
+				+ "&tweet.fields=geo"				//Ottieni dati geo
+				+ "&expansions=geo.place_id"		//Includi informazioni sulla località 	
+				+ "&place.fields=full_name";		//Mostra nome completo della località
 		String content = "";
 		String line = "";
 		URLConnection connection = new URL(url).openConnection();
@@ -55,7 +56,6 @@ public class JsonManager {
 		ArrayList<TwitterData> appoggio = new ArrayList<>();
 		ObjectMapper mapper = new ObjectMapper();
 		
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // VERIFICARE SE NECESSARIO
 		JsonNode tree = mapper.readTree(json);
 		JsonNode node = tree.findValue("data");
 		json = node.toString();		
@@ -82,15 +82,10 @@ public class JsonManager {
 		metadata.add(new TwitterMetadata("latit", "Latitudine", "double"));
 	}
 	
-	private static String readIds(){
+	private static String readIds() throws IOException{
 		String line = "";
-		try (BufferedReader fileReader = new BufferedReader(new FileReader(new File(idpath)))) {
-			line = fileReader.readLine();
-		} catch (FileNotFoundException fileNotFoundException) {
-			// GESTIONE ECCEZIONE FILE
-		} catch (IOException ioException) {
-			// GESTIONE ECCEZIONE IO
-		}
+		BufferedReader fileReader = new BufferedReader(new FileReader(new File(idpath)));
+		line = fileReader.readLine();
 		return line;
 	}	
 }

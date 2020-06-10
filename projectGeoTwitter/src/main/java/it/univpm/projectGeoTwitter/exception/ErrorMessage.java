@@ -2,11 +2,25 @@ package it.univpm.projectGeoTwitter.exception;
 
 import java.time.Instant;
 
+/** Modello degli errori da restituire al client che ha effettuato la richiesta.
+ * 
+ * @author Davide Paolini
+ */
 public class ErrorMessage {
+	/**
+	 * Istante in cui si è verificato l'errore.
+	 */
 	private Instant timestamp;
+	
+	/**
+	 * Nome della classe dell'eccezione che è stata generata.
+	 */
 	private String title;
+	
+	/**
+	 * Messaggio dell'eccezione lanciata.
+	 */
 	private String description;
-	//private String trace;
 	
 	public ErrorMessage(Exception e) {
 		this.timestamp = Instant.now();

@@ -13,6 +13,11 @@ import it.univpm.projectGeoTwitter.utils.filter.RadiusFilter;
 import it.univpm.projectGeoTwitter.utils.filter.TextFilter;
 import it.univpm.projectGeoTwitter.utils.filter.TweetsMarche;
 
+/**
+ * 
+ * @author Davide Paolini
+ * @author Francesco Paoli Leonardi
+ */
 public class FiltersImpl implements Filters {
 
 	@Override

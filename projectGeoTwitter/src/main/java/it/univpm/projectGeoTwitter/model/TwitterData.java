@@ -4,17 +4,43 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import it.univpm.projectGeoTwitter.utils.json.TwitterDataDeserializer;
 
+/**
+ * Modello per la deserializzazione degli oggetti contenuti nell'array "data" presente nella risposta dell'API di Twitter.
+ * @author Davide Paolini
+ */
 @JsonDeserialize(using = TwitterDataDeserializer.class)
 public class TwitterData {
 
-	String id;			
-	String text;	
-	String place_id;
-	String place;
-	double longit;
-	double latit;
+	/**
+	 * Stringa che identifica univocamente il tweet.
+	 */
+	private String id;
 	
-	//GETTERS	
+	/**
+	 * Testo del tweet.
+	 */
+	private String text;
+	
+	/**
+	 * Stringa che identifica univocamente la località da cui è stato inviato il tweet.
+	 */
+	private String place_id;
+	
+	/**
+	 * Stringa nel formato "nome della località, regione" da cui è stato inviato il tweet.
+	 */
+	private String place;
+	
+	/**
+	 * Valore della longitudine da cui è stato inviato il tweet.
+	 */
+	private double longit;
+	
+	/**
+	 * Valore della latitudine da cui è stato inviato il tweet.
+	 */
+	private double latit;
+	
 	public String getId() {
 		return id;
 	}

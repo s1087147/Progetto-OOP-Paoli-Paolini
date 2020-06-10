@@ -9,6 +9,11 @@ import it.univpm.projectGeoTwitter.exception.IllegalValueException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
+/**
+ *  
+ * @author Davide Paolini
+ * @author Francesco Paoli Leonardi
+ */
 public interface Filters {
 
 	public abstract ArrayList<TwitterData> filterText(
