@@ -1,5 +1,3 @@
-# Progetto-OOP-Paoli-Paolini
-
 # Geo Twitter Web Service
 
 L'applicazione web in questione è un Web Service che usufruisce delle
