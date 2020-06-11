@@ -15,7 +15,7 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 import it.univpm.projectGeoTwitter.service.FilterValueManager;
 
 /**
- * Classe che gestisce il filtro sull'appartenenza ad una BoundingBox.
+ * Classe che gestisce il filtro sull'appartenenza o meno ad una BoundingBox.
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */
@@ -27,7 +27,7 @@ public class BoundingBoxFilter {
 	 * @param operator stringa che indica l'operatore del filtro.
 	 * @param filterValue coppie di valori longitudine, latitudine per i punti "top-left" e "bottom-right" della BoundingBox.
 	 * 
-	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido. 
+	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * @throws IllegalValueException quando il valore fornito dall'utente non è una stringa di testo.
 	 * 
 	 * @return ArrayList contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.

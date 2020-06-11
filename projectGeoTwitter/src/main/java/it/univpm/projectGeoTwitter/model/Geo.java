@@ -1,5 +1,9 @@
 package it.univpm.projectGeoTwitter.model;
 
+/**
+ * Modello per la rappresentazione dei capoluoghi delle Marche tramite le relative coordinate geografiche.
+ * @author Francesco Paoli Leonardi
+ */
 public class Geo {
 
 	private double longit;

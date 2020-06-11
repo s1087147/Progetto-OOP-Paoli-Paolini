@@ -82,6 +82,7 @@ public class JsonManager {
 	 * Metodo che carica i dati relativi ai tweet in una Map.
 	 * @param json stringa in formato Json contenente i dati.
 	 * @param data Map in cui effettuare il caricamento dei dati.
+	 * 
 	 * @throws JsonProcessingException quando si verifica un errore nella deserializzazione del Json.
 	 */
 	public static void loadData(String json, Map<String, TwitterData> data) throws JsonProcessingException{

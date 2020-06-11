@@ -17,7 +17,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Classe che gestisce la chiamata ai filtri.
+ * Classe che gestisce la chiamata ai filtri facendo uso dei metodi implementati dalla
+ * classe {@link it.univpm.projectGeoTwitter.service.FiltersImpl FiltersImpl}.
+ * 
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */

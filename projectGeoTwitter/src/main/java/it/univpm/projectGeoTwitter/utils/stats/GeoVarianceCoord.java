@@ -6,8 +6,20 @@ import java.util.Collection;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
+/**
+ * Classe che gestisce la statistica riguardante la varianza di longitudine e latitudine calcolata su tutte le
+ * coordinate di provenienza dei tweets.
+ * @author Francesco Paoli Leonardi
+ */
 public class GeoVarianceCoord {
 
+	/**
+	 * Metodo che applica la statistica riguardante la varianza di longitudine e latitudine calcolata su tutte
+	 * le coordinate di provenienza dei tweets.
+	 * @param tweets Collection dei tweet su cui eseguire la statistica.
+	 * 
+	 * @return double[] contenente la varianza di tutte le longitudini e latitudini relative ai tweets.
+	 */
 	public static double[] getVariance(Collection<TwitterData> tweets) {
 
 		double[] coordinatesMean = GeoMeanCoord.getMean(tweets);

@@ -14,7 +14,9 @@ public class FilterValueManager {
 	/**
 	 * Metodo usato per ottenere due valori: un raggio esterno e un raggio interno.
 	 * @param filterValue oggetto "filterValue" da deserializzare.
+	 * 
 	 * @return ArrayList di Double contenente i valori del raggio interno e del raggio esterno.
+	 * 
 	 * @throws IllegalValueException quando non è possibile ricondurre filterValue ad un array di due Double o sono presenti valori negativi.
 	 */
 	public static ArrayList<Double> getRadiusArray(Object filterValue) throws IllegalValueException {
@@ -36,7 +38,9 @@ public class FilterValueManager {
 	/**
 	 * Metodo usato per ottenere una distanza.
 	 * @param filterValue oggetto "filterValue" da deserializzare.
+	 * 
 	 * @return double che rappresenta la distanza.
+	 * 
 	 * @throws IllegalValueException quando non è possibile ricondurre filterValue un double o sono presenti valori negativi.
 	 */	
 	public static double getRadius(Object filterValue) throws IllegalValueException {
@@ -55,7 +59,9 @@ public class FilterValueManager {
 	/**
 	 * Metodo usato per ottenere i valori della longitudine e della latitudine.
 	 * @param filterValue oggetto "filterValue" da deserializzare.
+	 * 
 	 * @return ArrayList di Double contenente i valori della longitudine e della latitudine.
+	 * 
 	 * @throws IllegalValueException quando non è possibile ricondurre filterValue ad un array di due Double o a coordinate valide.
 	 */
 	public static ArrayList<Double> getCoordsArray(Object filterValue) throws IllegalValueException {

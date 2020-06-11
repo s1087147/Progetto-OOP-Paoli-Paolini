@@ -1,11 +1,35 @@
 package it.univpm.projectGeoTwitter.model;
 
+/**
+ * Modello per la rappresentazione delle statistiche riguardanti le distanze delle locazioni dei tweets
+ * relative al capoluogo scelto.
+ * @author Francesco Paoli Leonardi
+ */
 public class StatsDistance {
 
+	/**
+	 * Media delle distanze tra i tweets e il capoluogo scelto.
+	 */
 	private double mean;
+	
+	/**
+	 * Varianza delle distanze tra i tweets e il capoluogo scelto.
+	 */
 	private double variance;
+	
+	/**
+	 * Deviazione standard delle distanze tra i tweets e il capoluogo scelto.
+	 */
 	private double stdDev;
+	
+	/**
+	 * Valore massimo delle distanze tra i tweets e il capoluogo scelto.
+	 */
 	private double max;
+	
+	/**
+	 * Valore minimo delle distanze tra i tweets e il capoluogo scelto.
+	 */
 	private double min;
 	
 	public StatsDistance(double mean, double variance, double stdDev, double max, double min) {

@@ -57,12 +57,14 @@ public class GeoTwitterController {
 	 * Vengono restituite le statistiche sulle coordinate, oppure sulle distanze dalla provincia fornita come parametro.
 	 * @param capoluogo nome del capoluogo di provincia da usare nell'eventuale calcolo delle statistiche sulle distanze.
 	 * @param body Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
+	 * 
 	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro oppure quando il parametro inserito non fa riferimento ad alcun capoluogo.
 	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
 	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
 	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * @throws EmptyCollectionException quando si tenta di effettuare statistiche su una collezione di tweets vuota. 
+	 * 
 	 * @return ResponseEntity 
 	 */
 	@RequestMapping(value="/stats", method = RequestMethod.POST)
@@ -77,11 +79,13 @@ public class GeoTwitterController {
 	 * Metodo che gestisce la richiesta POST /filter
 	 * Vengono restituiti tutti i tweets che rientrano nei filtri specificati.
 	 * @param body Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
+	 * 
 	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
 	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione. 
 	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
 	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
+	 * 
 	 * @return ResponseEntity 
 	 */
 	@RequestMapping(value="/filter", method = RequestMethod.POST)

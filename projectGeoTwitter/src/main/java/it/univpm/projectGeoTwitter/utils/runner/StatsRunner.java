@@ -17,14 +17,17 @@ import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
 import it.univpm.projectGeoTwitter.service.StatsImpl;
 
 /**
- * Classe che gestisce la chiamata alle statistiche.
+ * Classe che gestisce la chiamata alle statistiche facendo uso dei metodi implemetati dalla classe
+ * {@link it.univpm.projectGeoTwitter.service.StatsImpl StatsImpl}, effettuando prima eventuali operazioni di filtraggio
+ * richieste dal client e gestite dalla classe {@link it.univpm.projectGeoTwitter.utils.runner.FilterRunner FilterRunner}.
+ * 
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */
 public class StatsRunner extends StatsImpl{
 
 	/**
-	 * Metodo che gestisce la chiamata alle statistiche e ad eventuali filtri richiesti dal client.
+	 * Metodo che gestisce la chiamata alle statistiche.
 	 * @param tweets Collection dei tweet da filtrare.
 	 * @param capoluogoName nome del capoluogo di provincia rispetto al quale calcolare la distanza da usare nelle statistiche. Se non presente si calcolano le statistiche relative alle coordinate.
 	 * @param body "body" della richiesta HTTP effettuata dal client per effettuare eventuali filtri.
@@ -56,7 +59,7 @@ public class StatsRunner extends StatsImpl{
 		if(capoluogoName.isPresent()) {
 			
 			Geo capoluogo = CapoluogoGetter.getCapoluogo(capoluogoName.get());
-				
+			
 			return new StatsDistance(statsInstance.getMean(filteredData, capoluogo),
 					statsInstance.getVariance(filteredData, capoluogo),
 					statsInstance.getStdDev(filteredData, capoluogo),

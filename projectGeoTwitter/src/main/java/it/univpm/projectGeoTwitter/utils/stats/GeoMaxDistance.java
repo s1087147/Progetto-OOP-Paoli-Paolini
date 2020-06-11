@@ -8,8 +8,21 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.Calculator;
 
+/**
+ * Classe che gestisce la statistica sul valore massimo della distanza tra la località di invio del tweet e
+ * il capoluogo scelto.
+ * @author Francesco Paoli Leonardi
+ */
 public class GeoMaxDistance {
 
+	/**
+	 * Metodo che applica la statistica sul valore massimo della distanza tra la località di invio del tweet
+	 * e il capoluogo scelto.
+	 * @param tweets Collection dei tweet su cui eseguire la statistica.
+	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
+	 * 
+	 * @return double rappresentante la distanza massima.
+	 */
 	public static double getMax(Collection<TwitterData> tweets, Geo capoluogo) {
 		
 		ArrayList<Double> distances = new ArrayList<>();

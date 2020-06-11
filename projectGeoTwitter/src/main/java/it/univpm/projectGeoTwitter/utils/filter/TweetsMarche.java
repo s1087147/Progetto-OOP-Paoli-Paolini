@@ -9,7 +9,7 @@ import it.univpm.projectGeoTwitter.model.PoligonoMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 /**
- * Classe che gestisce il filtro sull'appartenenza alla regione Marche.
+ * Classe che gestisce il filtro sull'appartenenza o meno alla regione Marche.
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */

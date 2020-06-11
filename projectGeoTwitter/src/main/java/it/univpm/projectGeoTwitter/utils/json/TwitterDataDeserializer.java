@@ -38,7 +38,7 @@ public class TwitterDataDeserializer extends StdDeserializer<TwitterData>{
 		data.setId(node.get("id").asText());
 		data.setText(node.get("text").asText());
 		
-		JsonNode geo = node.get("geo");		
+		JsonNode geo = node.get("geo");
 		data.setPlace_id(geo.get("place_id").asText());
 		
 		JsonNode coordnode = geo.get("coordinates");		
