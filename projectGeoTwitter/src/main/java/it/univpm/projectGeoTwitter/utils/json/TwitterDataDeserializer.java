@@ -10,6 +10,12 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
+/**
+ * Deserializzatore personalizzato per i TwitterData.
+ * @see <a href="https://javadoc.io/static/com.fasterxml.jackson.core/jackson-databind/2.11.0/com/fasterxml/jackson/databind/JsonDeserializer.html"> JsonDeserializer</a>
+ * @see <a href="https://javadoc.io/static/com.fasterxml.jackson.core/jackson-databind/2.11.0/com/fasterxml/jackson/databind/deser/std/StdDeserializer.html"> StdDeserializer</a>
+ * @author Davide Paolini
+ */
 public class TwitterDataDeserializer extends StdDeserializer<TwitterData>{
 
 	public TwitterDataDeserializer() {
@@ -20,6 +26,9 @@ public class TwitterDataDeserializer extends StdDeserializer<TwitterData>{
 		super(c);
 	}
 	
+	/**
+	 * Metodo usato per deserializzare i TwitterData.
+	 */
 	@Override
 	public TwitterData deserialize(JsonParser p, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
@@ -38,5 +47,4 @@ public class TwitterDataDeserializer extends StdDeserializer<TwitterData>{
 		
 		return data;
 	}
-
 }

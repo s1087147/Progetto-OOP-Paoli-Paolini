@@ -6,7 +6,6 @@ import it.univpm.projectGeoTwitter.exception.GenericErrorException;
 import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
-import it.univpm.projectGeoTwitter.utils.filter.TweetsMarche;
 import it.univpm.projectGeoTwitter.utils.stats.CountTweetsInsideMarche;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMaxDistance;
 import it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord;

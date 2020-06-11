@@ -54,10 +54,6 @@ class TestGeoTwitter {
 			assertEquals(result, RadiusFilter.getTweetsWithRadius(tweets, "between", filter));
 		} catch (IllegalValueException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
 		}
 	}
 	

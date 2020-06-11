@@ -16,8 +16,26 @@ import it.univpm.projectGeoTwitter.service.FiltersImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Classe che gestisce la chiamata ai filtri.
+ * @author Davide Paolini
+ * @author Francesco Paoli Leonardi
+ */
 public class FilterRunner extends FiltersImpl {
 
+	/**
+	 * Metodo che effettua la chiamata al filtro richiesto dal client.
+	 * @param tweets Collection dei tweet da filtrare.
+	 * @param body "body" della richiesta HTTP effettuata dal client.
+
+	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
+	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
+	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
+	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
+	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
+	 * 
+	 * @return Collection contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
+	 */
 	public static Collection<TwitterData> getFilters(Collection<TwitterData> tweets, Object body)
 			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
 				OperatorNotFoundException {

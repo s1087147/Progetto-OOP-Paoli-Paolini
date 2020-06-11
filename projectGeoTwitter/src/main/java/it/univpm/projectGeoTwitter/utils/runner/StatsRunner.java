@@ -16,8 +16,28 @@ import it.univpm.projectGeoTwitter.model.TwitterData;
 import it.univpm.projectGeoTwitter.service.CapoluogoGetter;
 import it.univpm.projectGeoTwitter.service.StatsImpl;
 
+/**
+ * Classe che gestisce la chiamata alle statistiche.
+ * @author Davide Paolini
+ * @author Francesco Paoli Leonardi
+ */
 public class StatsRunner extends StatsImpl{
 
+	/**
+	 * Metodo che gestisce la chiamata alle statistiche e ad eventuali filtri richiesti dal client.
+	 * @param tweets Collection dei tweet da filtrare.
+	 * @param capoluogoName nome del capoluogo di provincia rispetto al quale calcolare la distanza da usare nelle statistiche. Se non presente si calcolano le statistiche relative alle coordinate.
+	 * @param body "body" della richiesta HTTP effettuata dal client per effettuare eventuali filtri.
+	 * 
+	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro oppure quando il parametro inserito non fa riferimento ad alcun capoluogo.
+	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
+	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
+	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
+	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito per il filtro non è valido.
+	 * @throws EmptyCollectionException quando si tenta di effettuare statistiche su una collezione di tweets vuota.
+	 * 
+	 * @return Object contenente le statistiche richieste.
+	 */
 	public static Object getStats(Collection<TwitterData> tweets, Optional<String> capoluogoName, Optional<Object> body)
 			throws IllegalValueException, GenericErrorException, InvocationTargetException, FilterNotFoundException,
 				OperatorNotFoundException, EmptyCollectionException {
