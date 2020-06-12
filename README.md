@@ -77,7 +77,7 @@ I body delle richieste che prevedono l'applicazione di un operazione di filtragg
 		
 #### Filtro con BoundingBox
 
-È possibile selezionare i tweet che appartengono o meno ad una BoundingBox di cui si forniscono le coordinate dei vertice in alto a sinistra (top-left) e in basso a destra (bottom-right).
+È possibile selezionare i tweet che appartengono o meno ad una BoundingBox di cui si forniscono le coordinate dei vertici in alto a sinistra (top-left) e in basso a destra (bottom-right).
 
 **Operatori** disponibili:
 
