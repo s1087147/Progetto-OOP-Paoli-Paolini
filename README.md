@@ -6,8 +6,6 @@ API di Twitter per mettere a disposizione del proprio Client (Postman) un elenco
 I servizi sopracitati si riferiscono ad operazioni di statistiche e filtraggio che fanno riferimento ad un Data-set di tweets di diversa estrazione all'interno del territorio italiano, ognuno caratterizzato da attributi che costituiscono l'oggetto di studio della nostra applicazione.
 
 Mediante le API REST (sia GET che POST) da noi implementate è possibile  richiedere tramite rotte diverse i seguenti servizi:
-verificare quali tweet sono stati postati dall'interno del perimetro della regione Marche
-distanza minima dal capoluogo scelto
 
 
 - Visualizzazione dei dati relativi al Data-set di tweets.
