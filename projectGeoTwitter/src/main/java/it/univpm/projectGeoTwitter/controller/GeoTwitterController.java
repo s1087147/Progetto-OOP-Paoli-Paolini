@@ -34,7 +34,8 @@ public class GeoTwitterController {
 	DataService dataService;	
 	
 	/** 
-	 * Metodo che gestisce la richiesta GET /data 
+	 * Metodo che gestisce la richiesta GET /data.
+	 * La risposta è elaborata da {@link DataService DataService}. 
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
@@ -44,7 +45,8 @@ public class GeoTwitterController {
 	}
 	
 	/**
-	 * Metodo che gestisce la richiesta GET /metadata
+	 * Metodo che gestisce la richiesta GET /metadata.
+	 * La risposta è elaborata da {@link DataService DataService}.
 	 * @return ResponseEntity
 	 */
 	@RequestMapping(value="/metadata", method = RequestMethod.GET)
@@ -55,6 +57,7 @@ public class GeoTwitterController {
 	 
 	/** Metodo che gestisce la richiesta POST /stats
 	 * Vengono restituite le statistiche sulle coordinate, oppure sulle distanze dalla provincia fornita come parametro.
+	 * La risposta è elaborata da {@link StatsRunner StatsRunner}.
 	 * @param capoluogo nome del capoluogo di provincia da usare nell'eventuale calcolo delle statistiche sulle distanze.
 	 * @param body Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
 	 * 
@@ -78,6 +81,7 @@ public class GeoTwitterController {
 	/**
 	 * Metodo che gestisce la richiesta POST /filter
 	 * Vengono restituiti tutti i tweets che rientrano nei filtri specificati.
+	 * La risposta è elaborata da {@link FilterRunner FilterRunner}.
 	 * @param body Json da fornire opzionalmente come corpo della richiesta se si vuole effettuare un filtro sui tweet prima del calcolo delle statistiche.
 	 * 
 	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.

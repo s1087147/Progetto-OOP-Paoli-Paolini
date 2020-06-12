@@ -17,7 +17,7 @@ public class Calculator {
 	private final static long R = 6371;
 	
 	/**
-	 * Metodo che calcola la media di tutti i valori contenuti in un ArrayList<Double>.
+	 * Metodo che calcola la media di tutti i valori contenuti in un ArrayList di Double.
 	 * @param arrayDouble contenente i valori su cui calcolare la media.
 	 * 
 	 * @return double rappresentante la media dei valori contenuti in arrayDouble.
@@ -36,7 +36,7 @@ public class Calculator {
 	}
 
 	/**
-	 * Metodo che calcola la varianza di tutti i valori contenuti in un ArrayList<Double>.
+	 * Metodo che calcola la varianza di tutti i valori contenuti in un ArrayList di Double.
 	 * @param arrayDouble contenente i valori su cui calcolare la media.
 	 * @param mean media di tutti i valori contenuti in arrayDouble.
 	 * 

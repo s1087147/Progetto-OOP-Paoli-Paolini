@@ -24,7 +24,10 @@ public interface Filters {
 	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
 	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
 	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
+	 * @return ArrayList di TwitterData contenente i tweets che rientrano nelle specifiche richieste dal filtro.
+	 * 
+	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
+	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * 
 	 * @see it.univpm.projectGeoTwitter.service.FiltersImpl#filterText(Collection, String, Object) filterText
 	 */
@@ -38,7 +41,7 @@ public interface Filters {
 	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
 	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
 	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
+	 * @return ArrayList di TwitterData contenente i tweets che rientrano nelle specifiche richieste dal filtro.
 	 * 
 	 * @throws IllegalAccessException quando si verifica un problema di accesso.
 	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
@@ -57,7 +60,7 @@ public interface Filters {
 	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
 	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
 	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
+	 * @return ArrayList di TwitterData contenente i tweets che rientrano nelle specifiche richieste dal filtro.
 	 * 
 	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
@@ -73,7 +76,7 @@ public interface Filters {
 	 * @param tweets Collection dei tweet da filtrare.
 	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
 	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
+	 * @return ArrayList di TwitterData contenente i tweets che rientrano nelle specifiche richieste dal filtro.
 	 * 
 	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.

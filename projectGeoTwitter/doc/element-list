@@ -1,0 +1,9 @@
+it.univpm.projectGeoTwitter
+it.univpm.projectGeoTwitter.controller
+it.univpm.projectGeoTwitter.exception
+it.univpm.projectGeoTwitter.model
+it.univpm.projectGeoTwitter.service
+it.univpm.projectGeoTwitter.utils.filter
+it.univpm.projectGeoTwitter.utils.json
+it.univpm.projectGeoTwitter.utils.runner
+it.univpm.projectGeoTwitter.utils.stats

@@ -22,13 +22,7 @@ import it.univpm.projectGeoTwitter.utils.filter.TweetsMarche;
 public class FiltersImpl implements Filters {
 
 	/**
-	 * Metodo che effettua il filtraggio tramite testo.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
-	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
-	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.filter.TextFilter#getTweetsWithText(Collection, String, Object) getTweetsWithText
 	 */
 	@Override
@@ -39,18 +33,7 @@ public class FiltersImpl implements Filters {
 	}
 
 	/**
-	 * Metodo che effettua il filtraggio tramite distanza.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
-	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
-	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
-	 * 
-	 * @throws IllegalAccessException quando si verifica un problema di accesso.
-	 * @throws InvocationTargetException quando non è stato trovato il metodo relativo al filtro richiesto.
-	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
-	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.filter.RadiusFilter#getTweetsWithRadius(Collection, String, Object) getTweetsWithRadius
 	 */
 	@Override
@@ -64,16 +47,7 @@ public class FiltersImpl implements Filters {
 	}
 	
 	/**
-	 * Metodo che effettua il filtraggio tramite bounding box.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
-	 * @param filterValue Object contenente il valore rispetto a cui eseguire il filtraggio.
-	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
-	 * 
-	 * @throws IllegalValueException quando vengono forniti valori non validi per eseguire il filtro.
-	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.filter.BoundingBoxFilter#getTweetsWithBoundingBox(Collection, String, Object) getTweetsWithBoundingBox
 	 */
 	@Override
@@ -85,15 +59,7 @@ public class FiltersImpl implements Filters {
 	}
 	
 	/**
-	 * Metodo che effettua il filtraggio tramite bounding box.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param operator String rappresentante il criterio secondo cui eseguire il filtraggio.
-	 * 
-	 * @return ArrayList<TwitterData> contenente i tweets che rientrano nelle specifiche richieste dal filtro.
-	 * 
-	 * @throws GenericErrorException quando si verifica un errore interno durante l'esecuzione.
-	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.filter.TweetsMarche#getTweetsMarche(Collection, String) getTweetsMarche
 	 */
 	@Override

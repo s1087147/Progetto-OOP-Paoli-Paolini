@@ -8,8 +8,8 @@ import it.univpm.projectGeoTwitter.model.Geo;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 /**
- *  Classe in cui vengono dichiarati i metodi utili alle operazioni di statistica su tweets. I metodi qui
- *  dichiarati vengono implementati all'interno della classe {@link it.univpm.projectGeoTwitter.service.StatsImpl StatsImpl}
+ *  Classe in cui vengono dichiarati i metodi utili alle operazioni di statistica su tweets. 
+ *  I metodi qui dichiarati vengono implementati all'interno della classe {@link it.univpm.projectGeoTwitter.service.StatsImpl StatsImpl}
  *  
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi

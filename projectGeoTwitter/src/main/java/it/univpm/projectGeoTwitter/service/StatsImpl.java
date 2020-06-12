@@ -26,11 +26,7 @@ import it.univpm.projectGeoTwitter.utils.stats.TextAverageLength;
 public class StatsImpl implements Stats {
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla media di longitudine e latitudine delle località dei tweets.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * 
-	 * @return double[] contenente la media di tutte le longitudini e latitudini relative ai tweets.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMeanCoord#getMean(Collection) getMean
 	 */
 	@Override
@@ -40,14 +36,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla media delle distanze tra le località dei tweets e
-	 * il capoluogo scelto.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
-	 * 
-	 * @return double rappresentante la media di tutte le distanze.
-	 * 
-	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMeanDistance#getMean(Collection) getMean
+	 * {@inheritDoc}
+	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMeanDistance#getMean(Collection, Geo) getMean
 	 */
 	@Override
 	public double getMean(Collection<TwitterData> tweets, Geo capoluogo) {
@@ -56,11 +46,7 @@ public class StatsImpl implements Stats {
 	}
 
 	/**
-	 * Metodo che effettua la statistica relativa alla varianza di longitudine e latitudine delle località dei tweets.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * 
-	 * @return double[] contenente la varianza di tutte le longitudini e latitudini relative ai tweets.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoVarianceCoord#getVariance(Collection) getVariance
 	 */
 	@Override
@@ -70,14 +56,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla varianza delle distanze tra le località dei tweets e
-	 * il capoluogo scelto.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
-	 * 
-	 * @return double rappresentante la varianza di tutte le distanze.
-	 * 
-	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoVarianceDistance#getVariance(Collection) getVariance
+	 * {@inheritDoc}
+	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoVarianceDistance#getVariance(Collection, Geo) getVariance
 	 */
 	@Override
 	public double getVariance(Collection<TwitterData> tweets, Geo capoluogo) {
@@ -86,11 +66,7 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla deviazione standard di longitudine e latitudine delle località dei tweets.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * 
-	 * @return double[] contenente la deviazione standard di tutte le longitudini e latitudini relative ai tweets.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoStdDevCoord#getStdDev(Collection) getStdDev
 	 */
 	@Override
@@ -100,14 +76,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla deviazione standard delle distanze tra le località dei tweets e
-	 * il capoluogo scelto.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
-	 * 
-	 * @return double rappresentante la deviazione standard di tutte le distanze.
-	 * 
-	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoStdDevDistance#getStdDev(Collection) getStdDev
+	 * {@inheritDoc}
+	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoStdDevDistance#getStdDev(Collection, Geo) getStdDev
 	 */
 	@Override
 	public double getStdDev(Collection<TwitterData> tweets, Geo capoluogo) {
@@ -116,14 +86,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla massima distanza tra le località dei tweets e
-	 * il capoluogo scelto.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
-	 * 
-	 * @return double rappresentante la distanza massima.
-	 * 
-	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMaxDistance#getMax(Collection) getMax
+	 * {@inheritDoc}
+	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMaxDistance#getMax(Collection, Geo) getMax
 	 */
 	@Override
 	public double getMax(Collection<TwitterData> tweets, Geo capoluogo) {
@@ -132,14 +96,8 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa alla minima distanza tra le località dei tweets e
-	 * il capoluogo scelto.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * @param capoluogo istanza di Geo contenente le coordinate del capoluogo scelto.
-	 * 
-	 * @return double rappresentante la distanza minima.
-	 * 
-	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMinDistance#getMin(Collection) getMin
+	 * {@inheritDoc}
+	 * @see it.univpm.projectGeoTwitter.utils.stats.GeoMinDistance#getMin(Collection, Geo) getMin
 	 */
 	@Override
 	public double getMin(Collection<TwitterData> tweets, Geo capoluogo) {
@@ -148,11 +106,7 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa al numero medio di caratteri per tweet.
-	 * @param tweets Collection dei tweet da filtrare.
-	 * 
-	 * @return double rappresentante il numero medio di caratteri per tweet.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.stats.TextAverageLength#averageLength(Collection) averageLength
 	 */
 	@Override
@@ -162,14 +116,7 @@ public class StatsImpl implements Stats {
 	}
 	
 	/**
-	 * Metodo che effettua la statistica relativa al numero di tweets inviati da dentro le Marche.
-	 * @param tweets Collection dei tweet su cui eseguire la statistica.
-	 * 
-	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
-	 * @throws GenericErrorException quando si verifica un errore interno.
-	 * 
-	 * @return int rappresentante il numero di tweets inviati da dentro la regione Marche.
-	 * 
+	 * {@inheritDoc}
 	 * @see it.univpm.projectGeoTwitter.utils.stats.CountTweetsInsideMarche#insideMarche(Collection) insideMarche
 	 */
 	@Override
