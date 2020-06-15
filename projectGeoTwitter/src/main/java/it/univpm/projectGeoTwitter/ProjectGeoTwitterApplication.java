@@ -15,5 +15,4 @@ public class ProjectGeoTwitterApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectGeoTwitterApplication.class, args);
 	}
-
 }

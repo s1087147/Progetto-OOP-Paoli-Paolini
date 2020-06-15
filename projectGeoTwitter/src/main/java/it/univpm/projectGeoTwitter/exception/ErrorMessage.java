@@ -2,8 +2,8 @@ package it.univpm.projectGeoTwitter.exception;
 
 import java.time.Instant;
 
-/** Modello degli errori da restituire al client che ha effettuato la richiesta.
- * 
+/** 
+ * Modello degli errori da restituire al client.
  * @author Davide Paolini
  */
 public class ErrorMessage {

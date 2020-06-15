@@ -23,7 +23,7 @@ public class TextFilter {
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido. 
 	 * @throws IllegalValueException quando il valore fornito dall'utente non è una stringa di testo.
 	 * 
-	 * @return ArrayList contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
+	 * @return {@literal ArrayList<TwitterData>} contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
 	 */
 	public static ArrayList<TwitterData> getTweetsWithText(Collection<TwitterData> tweets, String operator, Object filterValue)
 		throws IllegalValueException, OperatorNotFoundException {

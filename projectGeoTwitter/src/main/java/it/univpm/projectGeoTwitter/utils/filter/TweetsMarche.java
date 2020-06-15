@@ -9,7 +9,7 @@ import it.univpm.projectGeoTwitter.model.PoligonoMarche;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 /**
- * Classe che gestisce il filtro sull'appartenenza o meno alla regione Marche.
+ * Classe che gestisce il filtro sull'appartenenza alla regione Marche.
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */
@@ -23,7 +23,7 @@ public class TweetsMarche {
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido. 
 	 * @throws GenericErrorException quando si verifica un errore interno.
 	 * 
-	 * @return ArrayList contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
+	 * @return {@literal ArrayList<TwitterData>} contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
 	 */
 	public static ArrayList<TwitterData> getTweetsMarche(Collection<TwitterData> tweets, String operator)
 			throws OperatorNotFoundException, GenericErrorException {

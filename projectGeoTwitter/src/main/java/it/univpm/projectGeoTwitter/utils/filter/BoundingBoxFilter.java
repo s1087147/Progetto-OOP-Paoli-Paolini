@@ -15,7 +15,7 @@ import it.univpm.projectGeoTwitter.service.Calculator;
 import it.univpm.projectGeoTwitter.service.FilterValueManager;
 
 /**
- * Classe che gestisce il filtro sull'appartenenza o meno ad una BoundingBox.
+ * Classe che gestisce il filtro sull'appartenenza ad una BoundingBox.
  * @author Davide Paolini
  * @author Francesco Paoli Leonardi
  */
@@ -30,7 +30,7 @@ public class BoundingBoxFilter {
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * @throws IllegalValueException quando il valore fornito dall'utente non è una stringa di testo.
 	 * 
-	 * @return ArrayList contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
+	 * @return {@literal ArrayList<TwitterData>} contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
 	 */
 	public static ArrayList<TwitterData> getTweetsWithBoundingBox(
 			Collection<TwitterData> tweets, String operator, Object filterValue)

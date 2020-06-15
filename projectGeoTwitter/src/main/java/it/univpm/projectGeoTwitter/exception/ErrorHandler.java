@@ -16,9 +16,9 @@ public class ErrorHandler {
 	/**
 	 * Metodo chiamato quando viene lanciata l'eccezione OperatorNotFoundException.
 	 * Crea e restituisce un oggetto errorModel, con stato BAD_REQUEST.
-	 * @param e L'eccezione OperatorNotFoundException lanciata.
+	 * @param e l'eccezione OperatorNotFoundException lanciata.
 	 * 
-	 * @return ResponseEntity con l'eccezione come body e l' HttpStatus BAD_REQUEST.
+	 * @return {@literal ResponseEntity<>} con l'eccezione come body e l'HttpStatus BAD_REQUEST.
 	 */	
 	@ExceptionHandler(OperatorNotFoundException.class)
 	public ResponseEntity<Object> operatorNotFoundHandler(OperatorNotFoundException e){
@@ -28,9 +28,9 @@ public class ErrorHandler {
 	/**
 	 * Metodo chiamato quando viene lanciata l'eccezione IllegalValueException.
 	 * Crea e restituisce un oggetto errorModel, con stato BAD_REQUEST.
-	 * @param e L'eccezione IllegalValueException lanciata.
+	 * @param e l'eccezione IllegalValueException lanciata.
 	 * 
-	 * @return ResponseEntity con l'eccezione come body e l' HttpStatus BAD_REQUEST.
+	 * @return {@literal ResponseEntity<>} con l'eccezione come body e l'HttpStatus BAD_REQUEST.
 	 */	
 	@ExceptionHandler(IllegalValueException.class)
 	public ResponseEntity<Object> illegalValueHandler(IllegalValueException e){
@@ -40,9 +40,9 @@ public class ErrorHandler {
 	/**
 	 * Metodo chiamato quando viene lanciata l'eccezione GenericErrorException.
 	 * Crea e restituisce un oggetto errorModel, con stato BAD_REQUEST.
-	 * @param e L'eccezione GenericErrorException lanciata.
+	 * @param e l'eccezione GenericErrorException lanciata.
 	 * 
-	 * @return ResponseEntity con l'eccezione come body e l' HttpStatus BAD_REQUEST.
+	 * @return {@literal ResponseEntity<>} con l'eccezione come body e l'HttpStatus BAD_REQUEST.
 	 */	
 	@ExceptionHandler(GenericErrorException.class)
 	public ResponseEntity<Object> genericErrorHandler(GenericErrorException e){
@@ -52,9 +52,9 @@ public class ErrorHandler {
 	/**
 	 * Metodo chiamato quando viene lanciata l'eccezione FilterNotFoundException.
 	 * Crea e restituisce un oggetto errorModel, con stato BAD_REQUEST.
-	 * @param e L'eccezione FilterNotFoundException lanciata.
+	 * @param e l'eccezione FilterNotFoundException lanciata.
 	 * 
-	 * @return ResponseEntity con l'eccezione come body e l' HttpStatus BAD_REQUEST.
+	 * @return {@literal ResponseEntity<>} con l'eccezione come body e l'HttpStatus BAD_REQUEST.
 	 */	
 	@ExceptionHandler(FilterNotFoundException.class)
 	public ResponseEntity<Object> filterNotFoundHandler(FilterNotFoundException e){
@@ -64,9 +64,9 @@ public class ErrorHandler {
 	/**
 	 * Metodo chiamato quando viene lanciata l'eccezione EmptyCollectionException.
 	 * Crea e restituisce un oggetto errorModel, con stato BAD_REQUEST.
-	 * @param e L'eccezione EmptyCollectionException lanciata.
+	 * @param e l'eccezione EmptyCollectionException lanciata.
 	 * 
-	 * @return ResponseEntity con l'eccezione come body e l' HttpStatus BAD_REQUEST.
+	 * @return {@literal ResponseEntity<>} con l'eccezione come body e l'HttpStatus BAD_REQUEST.
 	 */	
 	@ExceptionHandler(EmptyCollectionException.class)
 	public ResponseEntity<Object> emptyCollectionHandler(EmptyCollectionException e){

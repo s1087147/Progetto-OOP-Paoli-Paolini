@@ -6,7 +6,6 @@ package it.univpm.projectGeoTwitter.exception;
  * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html"> RuntimeException</a>
  * @author Davide Paolini
  */
-
 public class GenericErrorException extends RuntimeException {
 
 	public GenericErrorException() {

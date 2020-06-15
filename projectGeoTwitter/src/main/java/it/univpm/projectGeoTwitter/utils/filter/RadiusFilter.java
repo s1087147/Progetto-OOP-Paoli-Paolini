@@ -32,7 +32,7 @@ public class RadiusFilter {
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido. 
 	 * @throws IllegalValueException i valori forniti dall'utente non possono essere utilizzati per creare un intervallo di distanza.
 	 * 
-	 * @return ArrayList contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
+	 * @return {@literal ArrayList<TwitterData>} contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
 	 */
 	public static ArrayList<TwitterData> getTweetsWithRadius(Collection<TwitterData> tweets, String operator,
 			Object filterValue) throws /*IllegalAccessException, InvocationTargetException,*/ OperatorNotFoundException, IllegalValueException { //TEST ECCEZIONI

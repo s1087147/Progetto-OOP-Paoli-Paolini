@@ -36,7 +36,7 @@ public class GeoTwitterController {
 	/** 
 	 * Metodo che gestisce la richiesta GET /data.
 	 * La risposta è elaborata da {@link DataService DataService}. 
-	 * @return ResponseEntity
+	 * @return {@literal ResponseEntity<>}
 	 */
 	@RequestMapping(value = "/data", method = RequestMethod.GET)
 	public ResponseEntity<Object> getData() {
@@ -47,7 +47,7 @@ public class GeoTwitterController {
 	/**
 	 * Metodo che gestisce la richiesta GET /metadata.
 	 * La risposta è elaborata da {@link DataService DataService}.
-	 * @return ResponseEntity
+	 * @return {@literal ResponseEntity<>}
 	 */
 	@RequestMapping(value="/metadata", method = RequestMethod.GET)
 	public ResponseEntity<Object> getMetadata() {
@@ -68,7 +68,7 @@ public class GeoTwitterController {
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * @throws EmptyCollectionException quando si tenta di effettuare statistiche su una collezione di tweets vuota. 
 	 * 
-	 * @return ResponseEntity 
+	 * @return {@literal ResponseEntity<>}
 	 */
 	@RequestMapping(value="/stats", method = RequestMethod.POST)
 	public ResponseEntity<Object> getStats(@RequestParam(name = "capoluogo") Optional<String> capoluogo,
@@ -90,7 +90,7 @@ public class GeoTwitterController {
 	 * @throws FilterNotFoundException quando il nome del filtro fornito non è valido.
 	 * @throws OperatorNotFoundException quando il nome dell'operatore fornito non è valido.
 	 * 
-	 * @return ResponseEntity 
+	 * @return {@literal ResponseEntity<>}
 	 */
 	@RequestMapping(value="/filter", method = RequestMethod.POST)
 	public ResponseEntity<Object> getFilteredTweets(@RequestBody Object body)
