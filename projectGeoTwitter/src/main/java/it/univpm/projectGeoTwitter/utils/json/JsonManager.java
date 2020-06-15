@@ -128,6 +128,7 @@ public class JsonManager {
 		String line = "";
 		BufferedReader fileReader = new BufferedReader(new FileReader(new File(idpath)));
 		line = fileReader.readLine();
+		fileReader.close();
 		return line;
 	}	
 }

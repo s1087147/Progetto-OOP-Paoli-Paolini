@@ -2,8 +2,6 @@ package it.univpm.projectGeoTwitter.utils.stats;
 
 import java.util.Collection;
 
-import it.univpm.projectGeoTwitter.exception.GenericErrorException;
-import it.univpm.projectGeoTwitter.exception.OperatorNotFoundException;
 import it.univpm.projectGeoTwitter.model.TwitterData;
 
 /**
