@@ -110,6 +110,22 @@ I body delle richieste che prevedono l'applicazione di un operazione di filtragg
 **Importante: non inserire l'oggetto "filterValue" nella richiesta.**
 
 
+## Statistiche
+
+#### Statistiche fornite dalla richiesta POST /stats
+ - "**mean**": baricentro geografico delle coordinate dei tweets, espresso in longitudine e latitudine
+ - "**variance**": varianza di longitudine e latitudine relative alle coordinate dei tweets
+ - "**stdDev**": deviazione standard di longitudine e latitudine relative alle coordinate dei tweets
+ - "**textAverageLength**": numero medio di caratteri per tweet
+ - "**tweetsInsideMarche**": numero di tweets postati dall'interno del territorio marchigiano
+
+#### Statistiche fornite dalla richiesta POST /stats?capoluogo=
+ - "**mean**": media di tutte le distanze intercorrenti tra i singoli tweet e il capoluogo scelto
+ - "**variance**": varianza della distanza intercorrente tra i singoli tweet e il capoluogo scelto
+ - "**stdDev**": deviazione standard della distanza intercorrente tra i singoli tweet e il capoluogo scelto
+ - "**max**": massima distanza misurata tra un tweet e il capoluogo scelto
+ - "**min**": minima distanza misurata tra un tweet e il capoluogo scelto
+
 
 # Progettazione
 
