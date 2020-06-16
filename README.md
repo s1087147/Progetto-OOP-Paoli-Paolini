@@ -112,14 +112,16 @@ I body delle richieste che prevedono l'applicazione di un operazione di filtragg
 
 ## Statistiche
 
-#### Statistiche fornite dalla richiesta POST /stats
+
+**Statistiche fornite dalla richiesta POST /stats** (relative a coordinate e testo dei tweets)
  - "**mean**": baricentro geografico delle coordinate dei tweets, espresso in longitudine e latitudine
  - "**variance**": varianza di longitudine e latitudine relative alle coordinate dei tweets
  - "**stdDev**": deviazione standard di longitudine e latitudine relative alle coordinate dei tweets
  - "**textAverageLength**": numero medio di caratteri per tweet
  - "**tweetsInsideMarche**": numero di tweets postati dall'interno del territorio marchigiano
 
-#### Statistiche fornite dalla richiesta POST /stats?capoluogo=
+
+**Statistiche fornite dalla richiesta POST /stats?capoluogo=** (relative alle distanze dei tweets dal capoluogo passato come parametro)
  - "**mean**": media di tutte le distanze intercorrenti tra i singoli tweet e il capoluogo scelto
  - "**variance**": varianza della distanza intercorrente tra i singoli tweet e il capoluogo scelto
  - "**stdDev**": deviazione standard della distanza intercorrente tra i singoli tweet e il capoluogo scelto
@@ -185,15 +187,15 @@ I body delle richieste che prevedono l'applicazione di un operazione di filtragg
 ![retrieve metadata sequence](https://github.com/s1087147/Progetto-OOP-Paoli-Paolini/blob/master/UML%20diagrams/Sequence%20Diagram/retrieve%20metadata%20sequence.jpg?raw=true)
 
 - #### POST /filter
-`GeoTwitterController` utilizza la classe `FilterRunner` attraverso il metodo `getFilters`, il quale effettua il parsing del body della richiesta e, con le informazioni così ottenute relative alle operazioni di filtraggio, chiama iterativamente la classe `FiltersImpl` che provvede ad eseguire in serie i filtri richiesti. Al termine della procedura, il metodo `Collection<TwitterData>` restituisce i record che rientrano nelle specifiche richieste dal Client in formato JSON.
+`GeoTwitterController` richiama il metodo `getFilters`, implementato dalla classe `FilterRunner`, che effettua il parsing del body della richiesta e, con le informazioni così ottenute relative alle operazioni di filtraggio, chiama iterativamente i metodi implementati dalla classe `FiltersImpl` adibiti all'esecuzione dei filtri richiesti in serie. Al termine della procedura, `getFilters` restituisce una `Collection<TwitterData>` contenente i record che rientrano nelle specifiche richieste dal Client, restituendoli a quest'ultimo in formato JSON.
 ##### es. Filtrare i tweets che sono stati postati dall'interno di una determinata zona geografica delimitata da una Bounding Box
-La classe `BoundingBoxFilter` fa uso del metodo `polygonGenerator` implementato da `Calculator` per istanziare la bounding box, rappresentata sotto forma di spezzata chiusa di tipo `Path2D`.
+La classe `BoundingBoxFilter` fa uso del metodo `polygonGenerator` implementato dalla classe `Calculator` e utilizzato per istanziare la bounding box, rappresentata sotto forma di spezzata chiusa in due dimensioni di tipo `Path2D`.
 
 ![bounding box filter diagram](https://github.com/s1087147/Progetto-OOP-Paoli-Paolini/blob/master/UML%20diagrams/Sequence%20Diagram/filter%20data%20with%20bounding%20box%20sequence.jpg?raw=true)
 
 
 - #### POST /stats
-`GeoTwitterController` utilizza la classe `StatsRunner` attraverso il metodo `getStats`, il quale richiama a sua volta tutti i metodi relativi alle statistiche su coordinate e testo implementati dalla classe `StatsImpl`. Nel caso in cui il body della richiesta contenga informazioni relative ad operazioni di filtraggio, queste vengono preventivamente elaborate ed applicate al Data-set di record dalla classe `FilterRunner`, ottenendo quindi una nuova `Collection<TwitterData>` di record filtrati sui quali calcolare le statistiche.
+`GeoTwitterController` richiama il metodo `getStats`, implementato dalla classe `StatsRunner`, il quale richiama a sua volta tutti i metodi relativi alle statistiche su coordinate e testo implementati dalla classe `StatsImpl`. Nel caso in cui il body della richiesta contenga informazioni relative ad operazioni di filtraggio, queste vengono preventivamente elaborate ed applicate al Data-set di record dalla classe `FilterRunner`, ottenendo quindi una nuova `Collection<TwitterData>` di record filtrati sui quali calcolare le statistiche.
 
 ##### es. statistiche SENZA filtri
 
@@ -204,16 +206,19 @@ La classe `BoundingBoxFilter` fa uso del metodo `polygonGenerator` implementato 
 ![stats coord on filtered data diagram](https://github.com/s1087147/Progetto-OOP-Paoli-Paolini/blob/master/UML%20diagrams/Sequence%20Diagram/retrieve%20stats%20coord%20on%20filtered%20data%20sequence.jpg?raw=true)
 
 - #### POST /stats?capoluogo="nome capoluogo"
-`GeoTwitterController` utilizza la classe `StatsRunner` attraverso il metodo `getStats`, il quale a sua volta richiama `getCapoluogo` implementato da `CapoluogoGetter` per ottenere l'istanza `Geo` rappresentante il capoluogo che fa riferimento alla stringa `capoluogo` fornita come parametro della chiamata dal Client, per poi richiamare tutti i metodi relativi alle statistiche sulle distanze dei tweets dal capoluogo scelto implementati dalla classe `StatsImpl`. 
+`GeoTwitterController` richiama il metodo `getStats`, implementato dalla classe `StatsRunner`, che a sua volta richiama il metodo `getCapoluogo`, implementato da `CapoluogoGetter`, dal quale ottiene l'istanza della classe `Geo` rappresentante il capoluogo che fa riferimento alla stringa `capoluogo` fornita come parametro della chiamata dal Client, per poi richiamare tutti i metodi relativi alle statistiche sulle distanze dei tweets dal capoluogo scelto implementati dalla classe `StatsImpl`. 
 ##### es. statistiche relative alle distanze dei tweets dal capoluogo scelto
 
 ![enter image description here](https://github.com/s1087147/Progetto-OOP-Paoli-Paolini/blob/master/UML%20diagrams/Sequence%20Diagram/retrieve%20stats%20distance%20on%20data%20sequence.jpg?raw=true)
 
 ## Risorse utilizzate
-- #### [Spring Boot](https://spring.io/projects/spring-boot)
-- #### [Eclipse](https://www.eclipse.org/)
-- #### [Maven](https://maven.apache.org/)
-- #### [UML Designer](http://www.umldesigner.org/)
+- [**Spring Boot**](https://spring.io/projects/spring-boot)
+
+- [**Eclipse**](https://www.eclipse.org/)
+
+- [**Maven**](https://maven.apache.org/)
+
+- [**UML Designer**](http://www.umldesigner.org/)
 
 ## Autori
 #### Francesco Paoli Leonardi
