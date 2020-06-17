@@ -1,7 +1,7 @@
 # Geo Twitter Web Service
 
 L'applicazione web in questione è un Web Service che usufruisce delle
-API di Twitter per mettere a disposizione del proprio Client (Postman) un elenco di servizi, i quali possono essere richiesti da quest'ultimo tramite chiamate gestite con protocollo HTTP.
+API di Twitter per mettere a disposizione del proprio Client (Postman) un elenco di servizi, i quali possono essere richiesti da quest'ultimo tramite chiamate gestite con protocollo HTTP alla porta 8080.
 
 I servizi sopracitati si riferiscono ad operazioni di statistiche e filtraggio che fanno riferimento ad un Data-set di tweets di diversa estrazione all'interno del territorio italiano, ognuno caratterizzato da attributi che costituiscono l'oggetto di studio della nostra applicazione.
 
@@ -24,7 +24,7 @@ Tutte le richieste sopraindicate restituiscono al Client una risposta in formato
 |GET	     |/data      |Restituisce i dati relativi a tutti i tweet|
 |GET	     |/metadata  |Restituisce i metadati|
 |POST	     |/stats     |Restituisce le statistiche relative alle coordinate da cui sono stati inviati i tweet selezionati attraverso eventuali filtri forniti come body|
-|POST	     |/stats?capoluogo=     |Restituisce le statistiche relative alle distanze da cui sono stati inviati i tweet selezionati attraverso eventuali filtri forniti come body|
+|POST	     |/stats?capoluogo="nome"     |Restituisce le statistiche relative alle distanze dal capoluogo corrispondente al parametro "nome" sui tweet selezionati attraverso eventuali filtri forniti come body|
 |POST        |/filter    |Restituisce i tweet selezionati attraverso i filtri forniti come body|
 
 ## Filtri
@@ -223,3 +223,8 @@ La classe `BoundingBoxFilter` fa uso del metodo `polygonGenerator` implementato 
 ## Autori
 #### Francesco Paoli Leonardi
 #### Davide Paolini
+
+### Suddivisione del lavoro
+- **Entrambi**: GeoTwitterController, CapoluogoGetter, Filters, FiltersImpl, FilterValueManager, Stats, StatsImpl, BoundingBoxFilter, RadiusFilter, TextFilter, TweetsMarche, FilterRunner, StatsRunner, Documentazione con Javadoc
+- **Francesco Paoli Leonardi** :  EmptyCollectionException, CapoluoghiMarche, Geo, PoligonoMarche, StatsCoord, StatsDistance, Calculator, CountTweetsInsideMarche, GeoMaxDistance, GeoMeanCoord, GeoMeanDistance, GeoMinDistance, GeoStdDevCoord, GeoStdDevDistance, GeoVarianceCoord, GeoVarianceDistance, TextAverageLength, Diagrammi UML
+- **Davide Paolini** : ErrorHandler, ErrorMessage, FilterNotFoundException, GenericErrorException, IllegalValueException, OperatorNotFoundException, URLException, Place, TwitterData, TwitterMetadata, DataService, JsonManager, TwitterDataSerializer, TestGeoTwitter
