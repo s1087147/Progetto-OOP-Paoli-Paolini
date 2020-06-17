@@ -35,7 +35,7 @@ public class RadiusFilter {
 	 * @return {@literal ArrayList<TwitterData>} contenente tutti gli elementi di tweets che rispettano la condizione imposta dal filtro.
 	 */
 	public static ArrayList<TwitterData> getTweetsWithRadius(Collection<TwitterData> tweets, String operator,
-			Object filterValue) throws /*IllegalAccessException, InvocationTargetException,*/ OperatorNotFoundException, IllegalValueException { //TEST ECCEZIONI
+			Object filterValue) throws OperatorNotFoundException, IllegalValueException {
 
 		ArrayList<TwitterData> tweetsWithinRadius = new ArrayList<>();
 		if (filterValue.getClass() != LinkedHashMap.class)
